@@ -1,38 +1,384 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+/* Global */
+button,
+input[type="submit"] {
+  color: #ffffff;
+  background-color: #0a80d7;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #076591;
+}
+
+.container {
+  width: 95%;
+  margin: auto;
+}
+
+.error-message {
   text-align: center;
+  color: red;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.red {
+  background-color: #c0250e;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.green {
+  background-color: #76b711;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.round-bordered-subject {
+  border: 2px solid rgb(0, 0, 0);
+  color: black;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #bdbdc2;
+}
+
+#main-content {
+  display: block;
+  width: 100%;
+  padding: 0;
+  height: 100%;
+}
+
+#main-content-centered-element {
+  width: 45%;
+  padding: 5px;
+  margin: auto;
+}
+
+.search-field {}
+
+.search-field input {
+  width: 100%;
+  line-height: 20px;
+  font-size: 20px;
+  border-radius: 6px;
+  color: black;
+  background-color: #ffffff;
+  border: 1px solid #30363d;
+}
+
+/* Header*/
+header {
+  background-color: #161b22;
   color: white;
+  border-bottom: 2px solid rgba(47, 43, 43, 0.55);
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+header img {
+  height: 50px;
+  width: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+header h1 {
+  display: inline-block;
+  margin: 0;
+}
+
+.right-header-buttons {
+  position: absolute;
+  right: 20px;
+}
+
+.right-header-buttons button {
+  padding: 10px;
+  margin: 0;
+}
+
+.right-header-buttons button img {
+  height: 25px;
+  width: 25px;
+}
+
+/* Navigation */
+nav {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #b4b6c0;
+  border-bottom: 2px solid rgba(49, 44, 44, 0.55);
+}
+
+nav div {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav div a {
+  flex-grow: 1;
+  display: block;
+  min-height: 40px;
+  background: none;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid black;
+  color: black;
+  margin: 0;
+  font-size: 24px;
+}
+
+nav div a button {
+  width: 100%;
+  min-height: 40px;
+  background: none;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid black;
+  color: black;
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Logout Button */
+.sign-out-button {
+  margin: 0;
+  display: inline-block;
+}
+
+.sign-out-button div {
+  margin: 0;
+}
+
+.sign-out-button button {
+  padding: 10px;
+  margin: 0;
+}
+
+/* Language change */
+#language-change {
+  margin: 0;
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  z-index: 1;
+  position: absolute;
+}
+
+#language-change:hover {
+  background-color: #02273b;
+}
+
+#language-change:hover .dropdown-content {
+  display: block;
+}
+
+#language-change:hover .dropdown-content button {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+}
+
+/* Pagination */
+#pagination {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  margin: 10px auto;
+  padding: 5px;
+}
+
+#pagination form,
+#pagination div {
+  display: block;
+  margin: 0 5px;
+}
+
+#pagination form *,
+#pagination div * {
+  font-size: 20px;
+}
+
+#pagination form input {
+  width: 125px;
+}
+
+/* Login Form*/
+.login-form {
+  width: 340px;
+  margin: 36px auto;
+  padding: 20px;
+}
+
+.login-form input,
+.login-form button {
+  width: 100%;
+  padding: 5px 12px;
+  line-height: 20px;
+  display: block;
+  margin: 14px auto;
+  border: 1px solid #30363d;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  border-radius: 6px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+/* Main Page */
+.main-page-message {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Books, Users, Orders Page */
+.block-container {
+  height: max-content;
+  width: 100%;
+  margin: 8px auto;
+}
+
+.block-container h1,
+.block-container p {
+  overflow: auto;
+  margin: 10px auto;
+}
+
+.block-container h1 {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 10px auto;
+}
+
+.block-container .block-parameters {
+  display: block;
+  width: 100%;
+}
+
+.block-parameters * {
+  display: block;
+  text-align: left;
+  font-size: 18px;
+  width: 100%;
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+}
+
+.buttons-container button,
+.buttons-container input[type="submit"] {
+  min-width: 25%;
+  min-height: 60px;
+  margin: 10px auto;
+  font-size: 20px;
+}
+
+.order-options-container {
+  display: block;
+  width: 100%;
+}
+
+.order-options-container button[type="submit"] {
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  min-height: 45px;
+}
+
+/* Edit book page */
+#book-changes {
+  padding: 15px;
+}
+
+#book-changes label,
+#book-changes input {
+  display: block;
+}
+
+#book-changes input[type="text"] {
+  width: 100%;
+}
+
+#book-changes input {
+  padding: 5px 12px;
+  line-height: 20px;
+  margin: 14px 0;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+/* Edit user page */
+#user-changes {
+  padding: 15px;
+}
+
+#user-changes label,
+#user-changes input {
+  display: block;
+  width: 100%;
+}
+
+#user-changes input[type="text"] {
+  width: 100%;
+}
+
+#user-changes input,
+#user-changes select {
+  padding: 5px 12px;
+  line-height: 20px;
+  margin: 14px 0;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+@media screen and (max-width: 480px) {
+
+  /* General */
+  #main-content-centered-element {
+    width: 95%;
   }
-  to {
-    transform: rotate(360deg);
+
+  /* Navigation */
+  nav form {
+    display: block;
   }
+
+  nav form a,
+  nav form a button {
+    border-right: none;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+    width: 100%;
+  }
+
 }
