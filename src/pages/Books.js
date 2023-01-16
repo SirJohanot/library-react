@@ -7,5 +7,5 @@ export default function Books() {
                 Cool books
             </div>
         </section>
-    );
+    )
 }

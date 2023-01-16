@@ -8,10 +8,10 @@ export default function AddBook() {
             <div id="main-content-centered-element">
                 <BookChanges />
                 <div className="buttons-container">
-                    <Link className="red" to="/books/">Cancel</Link>
+                    <Link className="button red" to="/books/">Cancel</Link>
                     <button type="button" className="green">Add</button>
                 </div>
             </div>
         </section>
-    );
+    )
 }

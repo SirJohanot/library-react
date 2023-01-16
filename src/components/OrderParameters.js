@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function OrderParameters(props) {
     return (
-        <div>
+        <>
             <p>Start date: {props.order.startDate}</p>
             <p>End date: {props.order.endDate}</p>
             {props.order.returnDate != null &&
@@ -10,6 +10,6 @@ export default function OrderParameters(props) {
             }
             <p>Rental type: {props.order.rentalType}</p>
             <p>State: {props.order.state}</p>
-        </div>
-    );
+        </>
+    )
 }

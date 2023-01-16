@@ -7,5 +7,5 @@ export default function Users() {
                 Cool users
             </div>
         </section>
-    );
+    )
 }

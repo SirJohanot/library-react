@@ -14,17 +14,32 @@ body {
 }
 
 /* Global */
+.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font: 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 3px 0;
+}
+
 button,
-input[type="submit"] {
+input[type="submit"],
+.button {
   color: #ffffff;
   background-color: #0a80d7;
   border-radius: 6px;
   cursor: pointer;
   border: 1px solid rgb(255, 255, 255);
+  font-size: 14px;
 }
 
 button:hover,
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+.button:hover {
   background-color: #076591;
 }
 
@@ -67,8 +82,6 @@ input[type="submit"]:hover {
   margin: auto;
 }
 
-.search-field {}
-
 .search-field input {
   width: 100%;
   line-height: 20px;
@@ -105,7 +118,7 @@ header h1 {
 
 .right-header-buttons button {
   padding: 10px;
-  margin: 0;
+  margin: 10px;
 }
 
 .right-header-buttons button img {
@@ -115,7 +128,7 @@ header h1 {
 
 /* Navigation */
 nav {
-  display: block;
+  display: flex;
   width: 100%;
   height: auto;
   margin: 0;
@@ -124,27 +137,10 @@ nav {
   border-bottom: 2px solid rgba(49, 44, 44, 0.55);
 }
 
-nav div {
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-nav div a {
+nav *,
+nav .button {
   flex-grow: 1;
   display: block;
-  min-height: 40px;
-  background: none;
-  border-radius: 0;
-  border: none;
-  border-right: 1px solid black;
-  color: black;
-  margin: 0;
-  font-size: 24px;
-}
-
-nav div a button {
-  width: 100%;
   min-height: 40px;
   background: none;
   border-radius: 0;
@@ -161,7 +157,7 @@ nav div a button {
   display: inline-block;
 }
 
-.sign-out-button div {
+.sign-out-button form {
   margin: 0;
 }
 
@@ -229,7 +225,8 @@ nav div a button {
 }
 
 .login-form input,
-.login-form button {
+.login-form button,
+.login-form .button {
   width: 100%;
   padding: 5px 12px;
   line-height: 20px;
@@ -292,7 +289,8 @@ nav div a button {
 }
 
 .buttons-container button,
-.buttons-container input[type="submit"] {
+.buttons-container input[type="submit"],
+.buttons-container .button {
   min-width: 25%;
   min-height: 60px;
   margin: 10px auto;
@@ -369,12 +367,12 @@ nav div a button {
   }
 
   /* Navigation */
-  nav form {
+  nav {
     display: block;
   }
 
-  nav form a,
-  nav form a button {
+  nav *,
+  nav .button {
     border-right: none;
     border-bottom: 1px solid black;
     padding-bottom: 10px;

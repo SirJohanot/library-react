@@ -16,5 +16,5 @@ export default function BookChanges(props) {
             <label for="amount">In stock:</label>
             <input id="amount" type="number" min="0" step="1" value="1" required="required" />
         </form>
-    );
+    )
 }

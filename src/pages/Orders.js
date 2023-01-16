@@ -7,5 +7,5 @@ export default function Orders() {
                 Cool orders
             </div>
         </section>
-    );
+    )
 }
