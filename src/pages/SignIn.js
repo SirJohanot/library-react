@@ -4,7 +4,7 @@ import axios from '../api/axios';
 import useAuth from '../hooks/useAuth';
 
 const SIGN_IN_URL = '/users/auth';
-const SIGN_IN_METHOD = 'post';
+const SIGN_IN_METHOD = 'get';
 
 export default function SignIn() {
     const { setAuthentication } = useAuth();
