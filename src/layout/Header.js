@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import signoutSymbol from '../assets/sign_out_symbol.png';
+import logo from '../assets/white_book_symbol.png';
+import languageSymbol from '../assets/white_globe_symbol.png';
 import useAuthentication from '../hooks/useAuthentication';
-import signoutSymbol from '../resources/sign_out_symbol.png';
-import logo from '../resources/white_book_symbol.png';
-import languageSymbol from '../resources/white_globe_symbol.png';
 
 export default function Header() {
 

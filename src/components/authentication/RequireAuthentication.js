@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import useAuthentication from '../hooks/useAuthentication';
+import useAuthentication from '../../hooks/useAuthentication';
 
 export default function RequireAuthentication({ allowedRoles }) {
 

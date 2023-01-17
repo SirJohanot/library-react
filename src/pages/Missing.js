@@ -1,5 +1,5 @@
 import React from 'react'
-import GoBackButton from '../components/GoBackButton'
+import GoBackButton from '../components/ui/GoBackButton'
 
 export default function Missing() {
     return (

@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import RequireAthentication from './components/RequireAuthentication';
+import './assets/global.css';
+import RequireAthentication from './components/authentication/RequireAuthentication';
 import Layout from './layout/Layout';
 import AddBook from './pages/AddBook';
 import Books from './pages/Books';
