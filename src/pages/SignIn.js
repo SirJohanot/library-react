@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
-import useAuth from '../hooks/useAuth';
+import useAuthentication from '../hooks/useAuthentication';
 
 const SIGN_IN_URL = '/users/auth';
 const SIGN_IN_METHOD = 'get';
 
 export default function SignIn() {
-    const { setAuthentication } = useAuth();
+    const { setAuthentication } = useAuthentication();
 
     const navigate = useNavigate();
     const location = useLocation();

@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import RequireAuth from './components/RequireAuth';
+import RequireAthentication from './components/RequireAuthentication';
 import Layout from './layout/Layout';
 import AddBook from './pages/AddBook';
 import Books from './pages/Books';
@@ -19,16 +19,16 @@ function App() {
         <Route exact path="sign-in" element={<SignIn />} />
         <Route exact path="sign-up" element={<SignUp />} />
         <Route path="*" element={<Missing />} />
-        <Route element={<RequireAuth allowedRoles={["READER", "LIBRARIAN", "ADMIN"]} />}>
+        <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN", "ADMIN"]} />}>
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route exact path="" element={<Home />} />
           <Route exact path="books/" element={<Books />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
+        <Route element={<RequireAthentication allowedRoles={["ADMIN"]} />}>
           <Route exact path="users/" element={<Users />} />
           <Route exact path="add-book" element={<AddBook />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={["READER", "LIBRARIAN"]} />}>
+        <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN"]} />}>
           <Route exact path="orders/" element={<Orders />} />
         </Route>
       </Route>

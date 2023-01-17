@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import useAuthentication from '../hooks/useAuthentication';
 import signoutSymbol from '../resources/sign_out_symbol.png';
 import logo from '../resources/white_book_symbol.png';
 import languageSymbol from '../resources/white_globe_symbol.png';
 
 export default function Header() {
 
-    const { authentication, setAuthentication } = useAuth();
+    const { authentication, setAuthentication } = useAuthentication();
 
     const navigate = useNavigate();
 
