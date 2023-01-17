@@ -68,8 +68,10 @@ export default function SignIn() {
                 {error &&
                     <div className="error-message">{error}</div>
                 }
-                <button>Sign in</button>
-                <Link className="button" to="/sign-up">Sign up</Link>
+                <button type="submit">Sign in</button>
+                <Link to="/sign-up">
+                    <button type="button">Sign up</button>
+                </Link>
             </form>
         </section>
     )
