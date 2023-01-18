@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 import axios from '../api/axios';
+import SignUpButton from '../components/ui/SignUpButton';
 
 const SIGN_UP_METHOD = 'post';
 const SIGN_UP_URL = '/users';
 
 export default function SignUp() {
+    const intl = useIntl();
+
     const loginRef = useRef();
 
     const [login, setLogin] = useState('');
@@ -49,15 +53,15 @@ export default function SignUp() {
     return (
         <section id="main-content">
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
-                <input type="text" id="login" value={login} onChange={(e) => setLogin(e.target.value)} ref={loginRef} placeholder="Login" required />
-                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-                <input type="password" id="confirmed-password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)} placeholder="Confirm password" required />
-                <input type="text" id="first-name" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First name" required />
-                <input type="text" id="last-name" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last name" required />
+                <input type="text" id="login" value={login} onChange={(e) => setLogin(e.target.value)} ref={loginRef} placeholder={intl.formatMessage({ id: "loginLocale" })} required />
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={intl.formatMessage({ id: "passwordLocale" })} required />
+                <input type="password" id="confirmed-password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)} placeholder={intl.formatMessage({ id: "confirmPassword" })} required />
+                <input type="text" id="first-name" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder={intl.formatMessage({ id: "firstName" })} required />
+                <input type="text" id="last-name" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder={intl.formatMessage({ id: "lastName" })} required />
                 {error &&
                     <div className="error-message">{error}</div>
                 }
-                <button>Sign up</button>
+                <SignUpButton />
             </form>
         </section>
     )

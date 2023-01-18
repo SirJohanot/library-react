@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -11,25 +12,25 @@ export default function Navbar() {
             {authentication?.login &&
                 <nav>
                     <Link to="/books/">
-                        <button>Books</button>
+                        <button><FormattedMessage id="books" /></button>
                     </Link>
                     {authentication?.roles?.find((role) => role === "READER") &&
                         <Link to="/orders/">
-                            <button>My Orders</button>
+                            <button><FormattedMessage id="myOrders" /></button>
                         </Link>
                     }
                     {authentication?.roles?.find((role) => role === "LIBRARIAN") &&
                         <Link to="/orders/">
-                            <button>Orders</button>
+                            <button><FormattedMessage id="orders" /></button>
                         </Link>
                     }
                     {authentication?.roles?.find((role) => role === "ADMIN") &&
                         <>
                             <Link to="/add-book">
-                                <button>Add a Book</button>
+                                <button><FormattedMessage id="addABook" /></button>
                             </Link>
                             <Link to="/users/">
-                                <button>Users</button>
+                                <button><FormattedMessage id="users" /></button>
                             </Link>
                         </>
                     }

@@ -1,15 +1,16 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 export default function OrderParameters({ order }) {
     return (
         <>
-            <p>Start date: {order?.startDate}</p>
-            <p>End date: {order?.endDate}</p>
+            <p><FormattedMessage id="startDate" />: {order?.startDate}</p>
+            <p><FormattedMessage id="endDate" />: {order?.endDate}</p>
             {order?.returnDate &&
-                <p>Return date: {order?.returnDate}</p>
+                <p><FormattedMessage id="returnDate" />: {order?.returnDate}</p>
             }
-            <p>Rental type: {order?.rentalType}</p>
-            <p>State: {order?.state}</p>
+            <p><FormattedMessage id="rentalType" />: {order?.rentalType}</p>
+            <p><FormattedMessage id="rentalState" />: {order?.state}</p>
         </>
     )
 }

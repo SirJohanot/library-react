@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
+import SignUpButton from '../components/ui/SignUpButton';
 import useAuthentication from '../hooks/useAuthentication';
 
 const SIGN_IN_URL = '/users/auth';
 const SIGN_IN_METHOD = 'get';
 
 export default function SignIn() {
+    const intl = useIntl();
+
     const { setAuthentication } = useAuthentication();
 
     const navigate = useNavigate();
@@ -63,14 +67,14 @@ export default function SignIn() {
     return (
         <section id="main-content">
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
-                <input type="text" id="login" value={login} onChange={(e) => setLogin(e.target.value)} ref={loginRef} placeholder="Login" required />
-                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+                <input type="text" id="login" value={login} onChange={(e) => setLogin(e.target.value)} ref={loginRef} placeholder={intl.formatMessage({ id: "loginLocale" })} required />
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={intl.formatMessage({ id: "passwordLocale" })} required />
                 {error &&
                     <div className="error-message">{error}</div>
                 }
-                <button type="submit">Sign in</button>
+                <button type="submit"><FormattedMessage id="signInLocale" /></button>
                 <Link to="/sign-up">
-                    <button type="button">Sign up</button>
+                    <SignUpButton />
                 </Link>
             </form>
         </section>

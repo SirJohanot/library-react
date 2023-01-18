@@ -1,6 +1,10 @@
+import { useState } from 'react';
+import { IntlProvider } from 'react-intl';
 import { Route, Routes } from 'react-router-dom';
 import './assets/global.css';
 import RequireAthentication from './components/authentication/RequireAuthentication';
+import { LOCALES } from './i18n/locales';
+import { messages } from './i18n/messages';
 import Layout from './layout/Layout';
 import AddBook from './pages/AddBook';
 import Book from './pages/Book';
@@ -11,30 +15,39 @@ import Orders from './pages/Orders';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Unauthorized from './pages/Unauthorized';
+import User from './pages/User';
 import Users from './pages/Users';
 
 function App() {
+
+  const locale = LOCALES.ENGLISH;
+
+  const [currentLocale, setCurrentLocale] = useState(locale);
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route exact path="sign-in" element={<SignIn />} />
-        <Route exact path="sign-up" element={<SignUp />} />
-        <Route path="*" element={<Missing />} />
-        <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN", "ADMIN"]} />}>
-          <Route path="/unauthorized" element={<Unauthorized />} />
-          <Route path="" element={<Home />} />
-          <Route path="books/" element={<Books />} />
-          <Route path="book/:id" element={<Book />} />
+    <IntlProvider locale={currentLocale} defaultLocale={LOCALES.ENGLISH} messages={messages[currentLocale]}>
+      <Routes>
+        <Route path="/" element={<Layout setCurrentLocale={setCurrentLocale} />}>
+          <Route exact path="sign-in" element={<SignIn />} />
+          <Route exact path="sign-up" element={<SignUp />} />
+          <Route path="*" element={<Missing />} />
+          <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN", "ADMIN"]} />}>
+            <Route path="/unauthorized" element={<Unauthorized />} />
+            <Route path="" element={<Home />} />
+            <Route path="books/" element={<Books />} />
+            <Route path="book/:id" element={<Book />} />
+          </Route>
+          <Route element={<RequireAthentication allowedRoles={["ADMIN"]} />}>
+            <Route path="users/" element={<Users />} />
+            <Route path="user/:login" element={<User />} />
+            <Route path="add-book" element={<AddBook />} />
+          </Route>
+          <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN"]} />}>
+            <Route path="orders/" element={<Orders />} />
+          </Route>
         </Route>
-        <Route element={<RequireAthentication allowedRoles={["ADMIN"]} />}>
-          <Route path="users/" element={<Users />} />
-          <Route path="add-book" element={<AddBook />} />
-        </Route>
-        <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN"]} />}>
-          <Route path="orders/" element={<Orders />} />
-        </Route>
-      </Route>
-    </Routes>
+      </Routes>
+    </IntlProvider>
   )
 }
 

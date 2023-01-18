@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link, useParams } from 'react-router-dom';
 import axios from '../api/axios';
+import CancelButton from '../components/ui/CancelButton';
 import BookParameters from '../components/view/BookParameters';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -27,7 +29,7 @@ export default function Book() {
             setBook(response?.data);
         }
         fetchBook();
-    })
+    }, [authentication, id])
 
     return (
         <section id="main-content">
@@ -37,10 +39,10 @@ export default function Book() {
                 </div>
                 <div className="buttons-container">
                     <Link to="/books/">
-                        <button className="red">Cancel</button>
+                        <CancelButton />
                     </Link>
                     <Link to={`/book/${id}/edit`}>
-                        <button>Edit</button>
+                        <button><FormattedMessage id="edit" /></button>
                     </Link>
                 </div>
             </div>

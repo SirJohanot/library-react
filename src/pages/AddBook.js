@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import BookChanges from '../components/forms/BookChanges';
+import CancelButton from '../components/ui/CancelButton';
 import useAuthentication from '../hooks/useAuthentication';
 
 const ADD_BOOK_METHOD = 'post';
@@ -59,9 +61,9 @@ export default function AddBook() {
                 <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} />
                 <div className="buttons-container">
                     <Link to="/books/">
-                        <button className="red">Cancel</button>
+                        <CancelButton />
                     </Link>
-                    <button type="submit" form="book-changes" className="green">Add</button>
+                    <button type="submit" form="book-changes" className="green"><FormattedMessage id="add" /></button>
                 </div>
             </div>
         </section>
