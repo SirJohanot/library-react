@@ -12,6 +12,7 @@ import Books from './pages/Books';
 import EditBook from './pages/EditBook';
 import Home from './pages/Home';
 import Missing from './pages/Missing';
+import Order from './pages/Order';
 import Orders from './pages/Orders';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -46,6 +47,7 @@ function App() {
           </Route>
           <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN"]} />}>
             <Route path="orders/" element={<Orders />} />
+            <Route path="order/:id" element={<Order />} />
           </Route>
         </Route>
       </Routes>
