@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
+import BookOrderForm from '../components/forms/BookOrderForm';
 import BookParameters from '../components/view/BookParameters';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -53,6 +54,9 @@ export default function Book() {
                 <div className="round-bordered-subject block-container">
                     <BookParameters book={book} />
                 </div>
+                {(authentication?.roles.includes("READER") && book?.amount > 0) &&
+                    <BookOrderForm bookId={book?.id} />
+                }
                 {authentication?.roles.includes("ADMIN") &&
                     <div className="buttons-container">
                         <button className="red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
