@@ -33,6 +33,7 @@ export default function Books() {
         <section id="main-content">
             <div id="main-content-centered-element">
                 {displayedBooks.map((book) =>
+                    !book.deleted &&
                     <Link to={`/book/${book.id}`} key={book.id}>
                         <button className="round-bordered-subject block-container">
                             <BookParameters book={book} />
