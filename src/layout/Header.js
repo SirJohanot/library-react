@@ -1,11 +1,13 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import signoutSymbol from '../assets/sign_out_symbol.png';
+import logo from '../assets/white_book_symbol.png';
+import languageSymbol from '../assets/white_globe_symbol.png';
 import useAuthentication from '../hooks/useAuthentication';
-import signoutSymbol from '../resources/sign_out_symbol.png';
-import logo from '../resources/white_book_symbol.png';
-import languageSymbol from '../resources/white_globe_symbol.png';
+import { LOCALES } from '../i18n/locales';
 
-export default function Header() {
+export default function Header({ setCurrentLocale }) {
 
     const { authentication, setAuthentication } = useAuthentication();
 
@@ -20,7 +22,7 @@ export default function Header() {
         <header>
             <div className="container">
                 <img src={logo} alt="Book symbol" />
-                <h1>Library</h1>
+                <h1><FormattedMessage id="appName" /></h1>
                 <h1 className="right-header-buttons">
                     {authentication?.login &&
                         <div className="sign-out-button">
@@ -34,9 +36,9 @@ export default function Header() {
                             <img src={languageSymbol} alt="Globe symbol" />
                         </button>
                         <div className="dropdown-content">
-                            <button type="button" name="lang" value="en">EN</button>
-                            <button type="button" name="lang" value="ru">RU</button>
-                            <button type="button" name="lang" value="bel">BEL</button>
+                            <button type="button" value={LOCALES.ENGLISH} onClick={(e) => { setCurrentLocale(e.target.value) }}><FormattedMessage id="englishCode" /></button>
+                            <button type="button" value={LOCALES.RUSSIAN} onClick={(e) => { setCurrentLocale(e.target.value) }}><FormattedMessage id="russianCode" /></button>
+                            <button type="button" value={LOCALES.BELARUSIAN} onClick={(e) => { setCurrentLocale(e.target.value) }}><FormattedMessage id="belarusianCode" /></button>
                         </div>
                     </div>
                 </h1>

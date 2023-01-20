@@ -3,12 +3,12 @@ import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Navbar from './Navbar'
 
-export default function Layout() {
+export default function Layout({ setCurrentLocale }) {
     return (
-        <div className="App">
-            <Header />
+        <>
+            <Header setCurrentLocale={setCurrentLocale} />
             <Navbar />
             <Outlet />
-        </div>
+        </>
     )
 }

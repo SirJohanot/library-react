@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import BookChanges from '../components/forms/BookChanges';
 import CancelButton from '../components/ui/CancelButton';
 import useAuthentication from '../hooks/useAuthentication';
 
-const ADD_BOOK_METHOD = 'post';
-const ADD_BOOK_URL = '/books';
+const GET_BOOK_METHOD = 'get';
+const GET_BOOK_URL = '/books/';
 
-export default function AddBook() {
+const EDIT_BOOK_METHOD = 'put';
+const EDIT_BOOK_URL = '/books/';
+
+export default function EditBook() {
     const { authentication } = useAuthentication();
+
+    const { id } = useParams();
 
     const navigate = useNavigate();
 
@@ -25,6 +30,29 @@ export default function AddBook() {
     const [error, setError] = useState('');
 
     useEffect(() => {
+        const fetchBook = async () => {
+            const response = await axios.request({
+                method: GET_BOOK_METHOD,
+                url: GET_BOOK_URL + id,
+                auth: {
+                    username: authentication?.login,
+                    password: authentication?.password
+                }
+            });
+            const resultBook = response?.data;
+            setBook({
+                title: resultBook?.title,
+                authors: resultBook?.authors.map((author) => author?.name).join(", "),
+                genre: resultBook?.genre?.name,
+                publisher: resultBook?.publisher?.name,
+                publishmentYear: resultBook?.publishmentYear,
+                amount: resultBook?.amount
+            });
+        }
+        fetchBook();
+    }, [authentication, id])
+
+    useEffect(() => {
         setError('');
     }, [book]);
 
@@ -32,8 +60,8 @@ export default function AddBook() {
         e.preventDefault();
         try {
             await axios.request({
-                method: ADD_BOOK_METHOD,
-                url: ADD_BOOK_URL,
+                method: EDIT_BOOK_METHOD,
+                url: EDIT_BOOK_URL + id,
                 data: JSON.stringify(book),
                 headers: "Content-Type: application/json",
                 auth: {
@@ -41,7 +69,7 @@ export default function AddBook() {
                     password: authentication?.password
                 }
             });
-            navigate("/books/", { replace: true });
+            navigate(`/book/${id}`, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setError('No response from server');
@@ -50,7 +78,7 @@ export default function AddBook() {
                     setError(err.response?.data?.error);
                     break;
                 default:
-                    setError('Could not add book');
+                    setError('Could not edit book');
             }
         }
     }
@@ -60,10 +88,10 @@ export default function AddBook() {
             <div id="main-content-centered-element">
                 <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} />
                 <div className="buttons-container">
-                    <Link to="/books/">
+                    <Link to={`/book/${id}`}>
                         <CancelButton />
                     </Link>
-                    <button type="submit" form="book-changes" className="green"><FormattedMessage id="add" /></button>
+                    <button type="submit" form="book-changes" className="green"><FormattedMessage id="commitChanges" /></button>
                 </div>
             </div>
         </section>
