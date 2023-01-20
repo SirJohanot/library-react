@@ -10,6 +10,7 @@ import AddBook from './pages/AddBook';
 import Book from './pages/Book';
 import Books from './pages/Books';
 import EditBook from './pages/EditBook';
+import EditUser from './pages/EditUser';
 import Home from './pages/Home';
 import Missing from './pages/Missing';
 import Order from './pages/Order';
@@ -42,6 +43,7 @@ function App() {
           <Route element={<RequireAthentication allowedRoles={["ADMIN"]} />}>
             <Route path="users/" element={<Users />} />
             <Route path="user/:login" element={<User />} />
+            <Route path="user/:login/edit" element={<EditUser />} />
             <Route path="add-book" element={<AddBook />} />
             <Route path="book/:id/edit" element={<EditBook />} />
           </Route>
