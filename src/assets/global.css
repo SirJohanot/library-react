@@ -181,10 +181,12 @@ nav * {
 
 #language-change:hover .dropdown-content {
   display: block;
+  width: 100%;
 }
 
 #language-change:hover .dropdown-content button {
   display: block;
+  margin: 0;
   width: 100%;
   min-height: 30px;
 }
