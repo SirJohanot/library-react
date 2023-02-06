@@ -3,14 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from '../api/axios';
 import PaginationBar from '../components/ui/PaginationBar';
 import OrderParameters from '../components/view/OrderParameters';
-import useAuthentication from '../hooks/useAuthentication';
 
 const GET_ORDERS_METHOD = 'get';
 const GET_ORDERS_URL = '/orders';
 
 export default function Orders() {
-    const { authentication } = useAuthentication();
-
     const [orders, setOrders] = useState([]);
     const [displayedOrders, setDisplayedOrders] = useState([]);
 
@@ -18,16 +15,12 @@ export default function Orders() {
         const fetchOrders = async () => {
             const response = await axios.request({
                 method: GET_ORDERS_METHOD,
-                url: GET_ORDERS_URL,
-                auth: {
-                    username: authentication?.login,
-                    password: authentication?.password
-                }
+                url: GET_ORDERS_URL
             });
             setOrders(response?.data);
         }
         fetchOrders();
-    }, [authentication])
+    }, [])
 
     return (
         <section id="main-content">

@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import BookChanges from '../components/forms/BookChanges';
 import CancelButton from '../components/ui/CancelButton';
-import useAuthentication from '../hooks/useAuthentication';
 
 const GET_BOOK_METHOD = 'get';
 const GET_BOOK_URL = '/books/';
@@ -13,8 +12,6 @@ const EDIT_BOOK_METHOD = 'put';
 const EDIT_BOOK_URL = '/books/';
 
 export default function EditBook() {
-    const { authentication } = useAuthentication();
-
     const { id } = useParams();
 
     const navigate = useNavigate();
@@ -33,11 +30,7 @@ export default function EditBook() {
         const fetchBook = async () => {
             const response = await axios.request({
                 method: GET_BOOK_METHOD,
-                url: GET_BOOK_URL + id,
-                auth: {
-                    username: authentication?.login,
-                    password: authentication?.password
-                }
+                url: GET_BOOK_URL + id
             });
             const resultBook = response?.data;
             setBook({
@@ -50,7 +43,7 @@ export default function EditBook() {
             });
         }
         fetchBook();
-    }, [authentication, id])
+    }, [id])
 
     useEffect(() => {
         setError('');
@@ -62,12 +55,7 @@ export default function EditBook() {
             await axios.request({
                 method: EDIT_BOOK_METHOD,
                 url: EDIT_BOOK_URL + id,
-                data: JSON.stringify(book),
-                headers: "Content-Type: application/json",
-                auth: {
-                    username: authentication?.login,
-                    password: authentication?.password
-                }
+                data: JSON.stringify(book)
             });
             navigate(`/book/${id}`, { replace: true });
         } catch (err) {

@@ -23,14 +23,10 @@ export default function Order() {
     const fetchOrder = useCallback(async () => {
         const response = await axios.request({
             method: GET_ORDER_METHOD,
-            url: GET_ORDER_URL + id,
-            auth: {
-                username: authentication?.login,
-                password: authentication?.password
-            }
+            url: GET_ORDER_URL + id
         });
         setOrder(response?.data);
-    }, [id, authentication])
+    }, [id])
 
     useEffect(() => {
         try {
@@ -43,11 +39,7 @@ export default function Order() {
     const handleStateChange = async (action) => {
         await axios.request({
             method: CHANGE_ORDER_STATE_METHOD,
-            url: `${CHANGE_ORDER_STATE_URL}${order?.id}/${action}`,
-            auth: {
-                username: authentication?.login,
-                password: authentication?.password
-            }
+            url: `${CHANGE_ORDER_STATE_URL}${order?.id}/${action}`
         });
         fetchOrder();
     }

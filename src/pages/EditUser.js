@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import CancelButton from '../components/ui/CancelButton';
-import useAuthentication from '../hooks/useAuthentication';
 
 const GET_USER_METHOD = 'get';
 const GET_USER_URL = '/users/';
@@ -12,8 +11,6 @@ const EDIT_USER_METHOD = 'put';
 const EDIT_USER_URL = '/users/';
 
 export default function EditUser() {
-    const { authentication } = useAuthentication();
-
     const { login } = useParams();
 
     const navigate = useNavigate();
@@ -29,16 +26,12 @@ export default function EditUser() {
         const fetchUser = async () => {
             const response = await axios.request({
                 method: GET_USER_METHOD,
-                url: GET_USER_URL + login,
-                auth: {
-                    username: authentication?.login,
-                    password: authentication?.password
-                }
+                url: GET_USER_URL + login
             });
             setUser(response?.data);
         }
         fetchUser();
-    }, [authentication, login])
+    }, [login])
 
     useEffect(() => {
         setError('');
@@ -50,12 +43,7 @@ export default function EditUser() {
             await axios.request({
                 method: EDIT_USER_METHOD,
                 url: EDIT_USER_URL + user?.id,
-                data: JSON.stringify(user),
-                headers: "Content-Type: application/json",
-                auth: {
-                    username: authentication?.login,
-                    password: authentication?.password
-                }
+                data: JSON.stringify(user)
             });
             navigate(`/user/${login}`, { replace: true });
         } catch (err) {

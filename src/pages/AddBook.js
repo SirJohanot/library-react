@@ -4,14 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import BookChanges from '../components/forms/BookChanges';
 import CancelButton from '../components/ui/CancelButton';
-import useAuthentication from '../hooks/useAuthentication';
 
 const ADD_BOOK_METHOD = 'post';
 const ADD_BOOK_URL = '/books';
 
 export default function AddBook() {
-    const { authentication } = useAuthentication();
-
     const navigate = useNavigate();
 
     const [book, setBook] = useState({
@@ -34,12 +31,7 @@ export default function AddBook() {
             await axios.request({
                 method: ADD_BOOK_METHOD,
                 url: ADD_BOOK_URL,
-                data: JSON.stringify(book),
-                headers: "Content-Type: application/json",
-                auth: {
-                    username: authentication?.login,
-                    password: authentication?.password
-                }
+                data: JSON.stringify(book)
             });
             navigate("/books/", { replace: true });
         } catch (err) {

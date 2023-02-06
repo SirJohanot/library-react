@@ -25,25 +25,17 @@ export default function Book() {
         const fetchBook = async () => {
             const response = await axios.request({
                 method: GET_BOOK_METHOD,
-                url: GET_BOOK_URL + id,
-                auth: {
-                    username: authentication?.login,
-                    password: authentication?.password
-                }
+                url: GET_BOOK_URL + id
             });
             setBook(response?.data);
         }
         fetchBook();
-    }, [authentication, id])
+    }, [id])
 
     const handleDelete = async () => {
         await axios.request({
             method: DELETE_BOOK_METHOD,
-            url: DELETE_BOOK_URL + id,
-            auth: {
-                username: authentication?.login,
-                password: authentication?.password
-            }
+            url: DELETE_BOOK_URL + id
         });
         navigate("/books/", { replace: true });
     }

@@ -45,8 +45,23 @@ export default function SignIn() {
                     password: password
                 }
             });
+
             const roles = response?.data?.roles;
             setAuthentication({ login, password, roles });
+
+            axios.interceptors.request.use(
+                (config) => {
+                    return {
+                        ...config,
+                        auth: {
+                            username: login,
+                            password: password
+                        }
+                    }
+                },
+                (error) => Promise.reject(error)
+            );
+
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
