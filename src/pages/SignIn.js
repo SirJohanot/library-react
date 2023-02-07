@@ -49,6 +49,7 @@ export default function SignIn() {
             const roles = response?.data?.roles;
             setAuthentication({ login, password, roles });
 
+            axios.interceptors.request.clear();
             axios.interceptors.request.use(
                 (config) => {
                     return {
