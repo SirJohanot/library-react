@@ -34,8 +34,7 @@ export default function SignUp() {
             await axios.request({
                 method: SIGN_UP_METHOD,
                 url: SIGN_UP_URL,
-                data: JSON.stringify({ login, password, confirmedPassword, firstName, lastName }),
-                headers: "Content-Type: application/json"
+                data: JSON.stringify({ login, password, confirmedPassword, firstName, lastName })
             });
         } catch (err) {
             if (!err?.response) {

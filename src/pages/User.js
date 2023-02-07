@@ -3,16 +3,13 @@ import { FormattedMessage } from 'react-intl';
 import { Link, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import UserParameters from '../components/view/UserParameters';
-import useAuthentication from '../hooks/useAuthentication';
 
 const GET_USER_METHOD = 'get';
 const GET_USER_URL = '/users/';
 
-const SWITCH_USER_BLOCKED_METHOD = 'put';
+const SWITCH_USER_BLOCKED_METHOD = 'patch';
 
 export default function User() {
-    const { authentication } = useAuthentication();
-
     const { login } = useParams();
 
     const [user, setUser] = useState({});
@@ -20,14 +17,10 @@ export default function User() {
     const fetchUser = useCallback(async () => {
         const response = await axios.request({
             method: GET_USER_METHOD,
-            url: GET_USER_URL + login,
-            auth: {
-                username: authentication?.login,
-                password: authentication?.password
-            }
+            url: GET_USER_URL + login
         });
         setUser(response?.data);
-    }, [authentication, login])
+    }, [login])
 
     useEffect(() => {
         fetchUser();
@@ -36,11 +29,7 @@ export default function User() {
     const handleBlockButton = async () => {
         await axios.request({
             method: SWITCH_USER_BLOCKED_METHOD,
-            url: `/users/${user?.id}/switch-blocked`,
-            auth: {
-                username: authentication?.login,
-                password: authentication?.password
-            }
+            url: `/users/${user?.id}/switch-blocked`
         });
         fetchUser();
     }

@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
-import useAuthentication from '../../hooks/useAuthentication';
 
 const PLACE_ORDER_METHOD = 'post';
 const PLACE_ORDER_URL = '/orders/'
 
 export default function BookOrderForm({ bookId }) {
-    const { authentication } = useAuthentication();
-
     const navigate = useNavigate();
 
     const [order, setOrder] = useState({
@@ -42,12 +39,7 @@ export default function BookOrderForm({ bookId }) {
             await axios.request({
                 method: PLACE_ORDER_METHOD,
                 url: PLACE_ORDER_URL + bookId,
-                data: JSON.stringify(order),
-                headers: "Content-Type: application/json",
-                auth: {
-                    username: authentication?.login,
-                    password: authentication?.password
-                }
+                data: JSON.stringify(order)
             });
             navigate("/orders/", { replace: true });
         } catch (err) {
