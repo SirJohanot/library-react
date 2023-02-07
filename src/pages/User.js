@@ -7,7 +7,7 @@ import UserParameters from '../components/view/UserParameters';
 const GET_USER_METHOD = 'get';
 const GET_USER_URL = '/users/';
 
-const SWITCH_USER_BLOCKED_METHOD = 'put';
+const SWITCH_USER_BLOCKED_METHOD = 'patch';
 
 export default function User() {
     const { login } = useParams();

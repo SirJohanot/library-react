@@ -8,7 +8,7 @@ import useAuthentication from '../hooks/useAuthentication';
 const GET_ORDER_METHOD = 'get';
 const GET_ORDER_URL = '/orders/';
 
-const CHANGE_ORDER_STATE_METHOD = 'put';
+const CHANGE_ORDER_STATE_METHOD = 'patch';
 const CHANGE_ORDER_STATE_URL = '/orders/';
 
 export default function Order() {
