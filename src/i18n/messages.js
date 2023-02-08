@@ -66,7 +66,10 @@ export const messages = {
         BOOK_TAKEN: "book taken",
         BOOK_RETURNED: "book returned",
         true: "yes",
-        false: "no"
+        false: "no",
+        insufficientPrivileges: "You lack the sufficient privileges to view this page",
+        goBack: "Go Back",
+        missingPage: "The page you're looking for does not exist"
     },
     [LOCALES.RUSSIAN]: {
         appName: "Библиотека",
@@ -133,7 +136,10 @@ export const messages = {
         BOOK_TAKEN: "книга забрана",
         BOOK_RETURNED: "книга возвращена",
         true: "да",
-        false: "нет"
+        false: "нет",
+        insufficientPrivileges: "У вас недостаточно прав для просмотра данной страницы",
+        goBack: "Назад",
+        missingPage: "Страница не найдена"
     },
     [LOCALES.BELARUSIAN]: {
         appName: "Бібліятэка",
@@ -200,6 +206,9 @@ export const messages = {
         BOOK_TAKEN: "кніга забрана",
         BOOK_RETURNED: "кніга вернутая",
         true: "так",
-        false: "не"
+        false: "не",
+        insufficientPrivileges: "У вас недастаткова правоў для прагляду гэтай старонкі",
+        goBack: "Назад",
+        missingPage: "Старонка не знойдзена"
     }
 }
