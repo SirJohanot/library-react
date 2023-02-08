@@ -149,7 +149,7 @@ nav * {
 
 /* Logout Button */
 .sign-out-button {
-  margin: 0;
+  margin: 10px;
   display: inline-block;
 }
 
@@ -164,9 +164,13 @@ nav * {
 
 /* Language change */
 #language-change {
-  margin: 0;
+  margin: 10px;
   display: inline-block;
   position: relative;
+}
+
+#language-change>button {
+  margin: 0;
 }
 
 .dropdown-content {
