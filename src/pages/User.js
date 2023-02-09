@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import UserParameters from '../components/view/UserParameters';
@@ -10,6 +10,8 @@ const GET_USER_URL = '/users/';
 const SWITCH_USER_BLOCKED_METHOD = 'patch';
 
 export default function User() {
+    const intl = useIntl();
+
     const { login } = useParams();
 
     const [user, setUser] = useState({});
@@ -27,6 +29,11 @@ export default function User() {
     }, [fetchUser])
 
     const handleBlockButton = async () => {
+        if (!window.confirm(intl.formatMessage({
+            id: user?.blocked ? 'unblockConfirmation' : 'blockConfirmation'
+        }))) {
+            return;
+        }
         await axios.request({
             method: SWITCH_USER_BLOCKED_METHOD,
             url: `/users/${user?.id}/switch-blocked`
