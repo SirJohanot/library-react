@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import BookOrderForm from '../components/forms/BookOrderForm';
@@ -14,6 +14,8 @@ const DELETE_BOOK_URL = '/books/';
 
 export default function Book() {
     const { authentication } = useAuthentication();
+
+    const intl = useIntl();
 
     const { id } = useParams();
 
@@ -33,6 +35,9 @@ export default function Book() {
     }, [id])
 
     const handleDelete = async () => {
+        if (!window.confirm(intl.formatMessage({ id: 'deleteConfirmation' }))) {
+            return;
+        }
         await axios.request({
             method: DELETE_BOOK_METHOD,
             url: DELETE_BOOK_URL + id
