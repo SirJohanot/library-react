@@ -15,12 +15,14 @@ export default function SignIn() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location?.state?.from?.pathname || "/";
+    const from = location?.state?.from?.pathname || '/';
 
     const loginRef = useRef();
 
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
+    const [credentials, setCredentials] = useState({
+        login: '',
+        password: ''
+    })
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -29,25 +31,24 @@ export default function SignIn() {
 
     useEffect(() => {
         setError('');
-    }, [login, password]);
-
+    }, [credentials]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setPassword('');
+        setCredentials(prev => ({ ...prev, password: '' }));
         try {
             const response = await axios.request({
                 method: SIGN_IN_METHOD,
                 url: SIGN_IN_URL,
                 data: {},
                 auth: {
-                    username: login,
-                    password: password
+                    username: credentials?.login,
+                    password: credentials?.password
                 }
             });
 
             const roles = response?.data?.roles;
-            setAuthentication({ login, password, roles });
+            setAuthentication({ login: credentials?.login, password: credentials?.password, roles });
 
             axios.interceptors.request.clear();
             axios.interceptors.request.use(
@@ -55,8 +56,8 @@ export default function SignIn() {
                     return {
                         ...config,
                         auth: {
-                            username: login,
-                            password: password
+                            username: credentials?.login,
+                            password: credentials?.password
                         }
                     }
                 },
@@ -80,11 +81,15 @@ export default function SignIn() {
         }
     }
 
+    const handleChange = (e) => {
+        setCredentials(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    }
+
     return (
         <section id="main-content">
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
-                <input type="text" id="login" value={login} onChange={(e) => setLogin(e.target.value)} ref={loginRef} placeholder={intl.formatMessage({ id: "loginLocale" })} required />
-                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={intl.formatMessage({ id: "passwordLocale" })} required />
+                <input type="text" id="login" name="login" value={credentials?.login} onChange={handleChange} ref={loginRef} placeholder={intl.formatMessage({ id: 'loginLocale' })} required />
+                <input type="password" id="password" name="password" value={credentials?.password} onChange={handleChange} placeholder={intl.formatMessage({ id: 'passwordLocale' })} required />
                 {error &&
                     <div className="error-message">{error}</div>
                 }
