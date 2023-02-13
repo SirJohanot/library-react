@@ -31,7 +31,7 @@ export default function EditUser() {
             setUser(response?.data);
         }
         fetchUser();
-    }, [login])
+    }, [login]);
 
     useEffect(() => {
         setError('');
@@ -59,17 +59,21 @@ export default function EditUser() {
         }
     }
 
+    const handleChange = (e) => {
+        setUser(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    }
+
     return (
         <section id="main-content">
             <div id="main-content-centered-element">
                 <form id="user-changes" className="round-bordered-subject block-container" onSubmit={handleSubmit}>
                     <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
                     <label for="first-name"><FormattedMessage id="firstName" />:</label>
-                    <input type="text" id="first-name" value={user?.firstName} onChange={(e) => setUser({ ...user, firstName: e.target.value })} required />
+                    <input type="text" id="first-name" name="firstName" value={user?.firstName} onChange={handleChange} required />
                     <label for="last-name"><FormattedMessage id="lastName" />:</label>
-                    <input type="text" id="last-name" value={user?.lastName} onChange={(e) => setUser({ ...user, lastName: e.target.value })} required />
+                    <input type="text" id="last-name" name="lastName" value={user?.lastName} onChange={handleChange} required />
                     <label for="role"><FormattedMessage id="role" />:</label>
-                    <select name="role" id="role" value={user?.role} onChange={(e) => setUser({ ...user, role: e.target.value })} required>
+                    <select id="role" name="role" value={user?.role} onChange={handleChange} required>
                         <option value="READER">
                             <FormattedMessage id="READER" />
                         </option>
