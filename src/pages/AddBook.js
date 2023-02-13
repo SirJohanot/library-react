@@ -33,7 +33,7 @@ export default function AddBook() {
                 url: ADD_BOOK_URL,
                 data: JSON.stringify(book)
             });
-            navigate("/books/", { replace: true });
+            navigate('/books/', { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setError('No response from server');
@@ -59,5 +59,5 @@ export default function AddBook() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

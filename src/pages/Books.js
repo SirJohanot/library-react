@@ -20,7 +20,7 @@ export default function Books() {
             setBooks(response?.data);
         }
         fetchBooks();
-    }, [])
+    }, []);
 
     return (
         <section id="main-content">
@@ -36,5 +36,5 @@ export default function Books() {
                 <PaginationBar items={books} setDisplayedItems={setDisplayedBooks} maxItemsPerPage={5} initialPage={1} />
             </div>
         </section>
-    )
+    );
 }

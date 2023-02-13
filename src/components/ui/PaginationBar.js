@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getClosestAcceptableTargetPage, getEntitiesOfPage, getNumberOfPagesToContainEntities } from '../../utility/paginator';
 
 export default function PaginationBar({ items, setDisplayedItems, maxItemsPerPage, initialPage }) {
-
     const maxPage = getNumberOfPagesToContainEntities(items, maxItemsPerPage);
 
     const [currentPage, setCurrentPage] = useState(getClosestAcceptableTargetPage(items, initialPage, maxItemsPerPage));
@@ -11,10 +10,10 @@ export default function PaginationBar({ items, setDisplayedItems, maxItemsPerPag
     useEffect(() => {
         let itemsOfPage = getEntitiesOfPage(items, currentPage, maxItemsPerPage);
         setDisplayedItems(itemsOfPage);
-    }, [currentPage, items, maxItemsPerPage, setDisplayedItems])
+    }, [currentPage, items, maxItemsPerPage, setDisplayedItems]);
 
     useEffect(() => setCurrentPage(getClosestAcceptableTargetPage(items, initialPage, maxItemsPerPage)),
-        [items, maxItemsPerPage, initialPage])
+        [items, maxItemsPerPage, initialPage]);
 
     useEffect(() => setInputPage(currentPage),
         [currentPage]);
@@ -45,5 +44,5 @@ export default function PaginationBar({ items, setDisplayedItems, maxItemsPerPag
                 </button>
             </div>
         </div>
-    )
+    );
 }

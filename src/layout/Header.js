@@ -9,7 +9,6 @@ import useAuthentication from '../hooks/useAuthentication';
 import { LOCALES } from '../i18n/locales';
 
 export default function Header({ setCurrentLocale }) {
-
     const { authentication, setAuthentication } = useAuthentication();
 
     const navigate = useNavigate();
@@ -17,7 +16,7 @@ export default function Header({ setCurrentLocale }) {
     const handleSignOut = () => {
         setAuthentication({});
         axios.interceptors.request.clear();
-        navigate("/sign-in", { replace: true });
+        navigate('/sign-in', { replace: true });
     }
 
     return (
@@ -46,5 +45,5 @@ export default function Header({ setCurrentLocale }) {
                 </h1>
             </div>
         </header>
-    )
+    );
 }

@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import useAuthentication from '../hooks/useAuthentication';
 
 export default function Home() {
-
     const { authentication } = useAuthentication();
 
     return (
@@ -14,5 +13,5 @@ export default function Home() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

@@ -20,7 +20,7 @@ export default function Users() {
             setUsers(response?.data);
         }
         fetchUsers();
-    }, [])
+    }, []);
 
     return (
         <section id="main-content">
@@ -35,5 +35,5 @@ export default function Users() {
                 <PaginationBar items={users} setDisplayedItems={setDisplayedUsers} maxItemsPerPage={5} initialPage={1} />
             </div>
         </section>
-    )
+    );
 }

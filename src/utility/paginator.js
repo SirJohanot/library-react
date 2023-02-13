@@ -1,5 +1,5 @@
 export function getNumberOfPagesToContainEntities(entities, entitiesPerPage) {
-    let entitiesNumber = entities.length;
+    const entitiesNumber = entities.length;
     return Math.ceil(entitiesNumber / entitiesPerPage);
 }
 
@@ -8,10 +8,10 @@ export function getEntitiesOfPage(entitiesList, targetPage, entitiesPerPage) {
         return entitiesList;
     }
 
-    let acceptableTargetPage = getClosestAcceptableTargetPage(entitiesList, targetPage, entitiesPerPage);
-    let entitiesNumber = entitiesList.length;
+    const acceptableTargetPage = getClosestAcceptableTargetPage(entitiesList, targetPage, entitiesPerPage);
+    const entitiesNumber = entitiesList.length;
 
-    let firstEntityOfPageIndex = entitiesPerPage * (acceptableTargetPage - 1);
+    const firstEntityOfPageIndex = entitiesPerPage * (acceptableTargetPage - 1);
 
     let lastEntityOfPageIndex = firstEntityOfPageIndex + entitiesPerPage;
     if (lastEntityOfPageIndex > entitiesNumber) {
@@ -22,7 +22,7 @@ export function getEntitiesOfPage(entitiesList, targetPage, entitiesPerPage) {
 }
 
 export function getClosestAcceptableTargetPage(entitiesList, targetPage, entitiesPerPage) {
-    let maxPage = getNumberOfPagesToContainEntities(entitiesList, entitiesPerPage);
+    const maxPage = getNumberOfPagesToContainEntities(entitiesList, entitiesPerPage);
     if (targetPage < 1) {
         return 1;
     } else if (targetPage > maxPage) {

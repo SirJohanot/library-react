@@ -22,11 +22,11 @@ export default function User() {
             url: GET_USER_URL + login
         });
         setUser(response?.data);
-    }, [login])
+    }, [login]);
 
     useEffect(() => {
         fetchUser();
-    }, [fetchUser])
+    }, [fetchUser]);
 
     const handleBlockButton = async () => {
         if (!window.confirm(intl.formatMessage({
@@ -47,7 +47,7 @@ export default function User() {
                 <div className="round-bordered-subject block-container">
                     <UserParameters user={user} />
                 </div>
-                {user?.role !== "ADMIN" &&
+                {user?.role !== 'ADMIN' &&
                     <div className="buttons-container">
                         <button className="red" onClick={handleBlockButton}><FormattedMessage id={user?.blocked ? "unblock" : "block"} /></button>
                         <Link to={`/user/${login}/edit`}>
@@ -56,5 +56,5 @@ export default function User() {
                     </div>}
             </div>
         </section>
-    )
+    );
 }

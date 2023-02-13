@@ -22,7 +22,6 @@ import User from './pages/User';
 import Users from './pages/Users';
 
 function App() {
-
   const locale = LOCALES.ENGLISH;
 
   const [currentLocale, setCurrentLocale] = useState(locale);
@@ -54,7 +53,7 @@ function App() {
         </Route>
       </Routes>
     </IntlProvider>
-  )
+  );
 }
 
 export default App;

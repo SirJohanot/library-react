@@ -20,7 +20,7 @@ export default function Orders() {
             setOrders(response?.data);
         }
         fetchOrders();
-    }, [])
+    }, []);
 
     return (
         <section id="main-content">
@@ -35,5 +35,5 @@ export default function Orders() {
                 <PaginationBar items={orders} setDisplayedItems={setDisplayedOrders} maxItemsPerPage={5} initialPage={1} />
             </div>
         </section>
-    )
+    );
 }

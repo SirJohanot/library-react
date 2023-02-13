@@ -42,7 +42,7 @@ export default function Book() {
             method: DELETE_BOOK_METHOD,
             url: DELETE_BOOK_URL + id
         });
-        navigate("/books/", { replace: true });
+        navigate('/books/', { replace: true });
     }
 
     return (
@@ -51,10 +51,10 @@ export default function Book() {
                 <div className="round-bordered-subject block-container">
                     <BookParameters book={book} />
                 </div>
-                {(authentication?.roles.includes("READER") && book?.amount > 0) &&
+                {(authentication?.roles.includes('READER') && book?.amount > 0) &&
                     <BookOrderForm bookId={book?.id} />
                 }
-                {authentication?.roles.includes("ADMIN") &&
+                {authentication?.roles.includes('ADMIN') &&
                     <div className="buttons-container">
                         <button className="red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
                         <Link to={`/book/${id}/edit`}>

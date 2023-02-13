@@ -1,6 +1,6 @@
-import React from 'react'
-import { FormattedMessage } from 'react-intl'
-import GoBackButton from '../components/ui/GoBackButton'
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import GoBackButton from '../components/ui/GoBackButton';
 
 export default function Missing() {
     return (
@@ -14,5 +14,5 @@ export default function Missing() {
                 <GoBackButton />
             </div>
         </section>
-    )
+    );
 }

@@ -26,15 +26,15 @@ export default function Order() {
             url: GET_ORDER_URL + id
         });
         setOrder(response?.data);
-    }, [id])
+    }, [id]);
 
     useEffect(() => {
         try {
             fetchOrder();
         } catch (err) {
-            navigate("/unauthorized", { replace: true });
+            navigate('/unauthorized', { replace: true });
         }
-    }, [fetchOrder, navigate])
+    }, [fetchOrder, navigate]);
 
     const handleStateChange = async (action) => {
         await axios.request({
@@ -52,15 +52,15 @@ export default function Order() {
                 </div>
                 {(authentication?.roles?.includes('LIBRARIAN') && order?.state === 'PLACED') &&
                     <div className="buttons-container">
-                        <button className="red" onClick={() => handleStateChange('decline')}><FormattedMessage id='decline' /></button>
-                        <button className="green" onClick={() => handleStateChange('approve')}><FormattedMessage id='approveOrder' /></button>
+                        <button className="red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
+                        <button className="green" onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
                     </div>}
                 {authentication?.roles?.includes('READER') &&
                     <div className="buttons-container">
-                        {order?.state === "APPROVED" && <button onClick={() => handleStateChange('collect')}><FormattedMessage id='collectOrder' /></button>}
-                        {order?.state === "BOOK_TAKEN" && <button onClick={() => handleStateChange('return')}><FormattedMessage id='returnOrder' /></button>}
+                        {order?.state === 'APPROVED' && <button onClick={() => handleStateChange('collect')}><FormattedMessage id="collectOrder" /></button>}
+                        {order?.state === 'BOOK_TAKEN' && <button onClick={() => handleStateChange('return')}><FormattedMessage id="returnOrder" /></button>}
                     </div>}
             </div>
         </section>
-    )
+    );
 }

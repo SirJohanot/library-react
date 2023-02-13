@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 export default function GoBackButton() {
-
     const navigate = useNavigate();
 
     const handleGoBack = () => {
@@ -12,5 +11,5 @@ export default function GoBackButton() {
 
     return (
         <button type="button" onClick={(e) => handleGoBack()}><FormattedMessage id="goBack" /></button>
-    )
+    );
 }

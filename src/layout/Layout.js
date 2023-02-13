@@ -1,7 +1,7 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from './Header'
-import Navbar from './Navbar'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from './Header';
+import Navbar from './Navbar';
 
 export default function Layout({ setCurrentLocale }) {
     return (
@@ -10,5 +10,5 @@ export default function Layout({ setCurrentLocale }) {
             <Navbar />
             <Outlet />
         </>
-    )
+    );
 }

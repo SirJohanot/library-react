@@ -13,5 +13,5 @@ export default function OrderParameters({ order }) {
             <p><FormattedMessage id="rentalType" />: {order?.rentalType && <FormattedMessage id={order?.rentalType} />}</p>
             <p><FormattedMessage id="rentalState" />: {order?.state && <FormattedMessage id={order?.state} />}</p>
         </>
-    )
+    );
 }
