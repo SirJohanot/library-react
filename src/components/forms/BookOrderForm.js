@@ -10,7 +10,7 @@ export default function BookOrderForm({ bookId }) {
     const navigate = useNavigate();
 
     const [order, setOrder] = useState({
-        rentalType: "OUT_OF_LIBRARY",
+        rentalType: 'OUT_OF_LIBRARY',
         days: 7
     });
     const [error, setError] = useState('');
@@ -23,14 +23,16 @@ export default function BookOrderForm({ bookId }) {
         daysRadios.forEach((radio) => radio.disabled = disabled);
     }
 
-    const handleDaysChange = (e) => setOrder({ ...order, days: e.target.value });
-
     const handleTypeChange = (e, disableDays) => {
         setDaysRadiosDisabled(disableDays);
         if (disableDays) {
-            setOrder({ ...order, days: 0 })
+            setOrder(prev => ({ ...prev, days: 0 }));
         }
-        setOrder({ ...order, rentalType: e.target.value })
+        handleChange(e);
+    }
+
+    const handleChange = (e) => {
+        setOrder(prev => ({ ...prev, [e.target.name]: e.target.value }));
     }
 
     const handleSubmit = async (e) => {
@@ -41,7 +43,7 @@ export default function BookOrderForm({ bookId }) {
                 url: PLACE_ORDER_URL + bookId,
                 data: JSON.stringify(order)
             });
-            navigate("/orders/", { replace: true });
+            navigate('/orders/', { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setError('No response from server');
@@ -58,20 +60,20 @@ export default function BookOrderForm({ bookId }) {
     return (
         <form className="round-bordered-subject order-options-container" onSubmit={handleSubmit}>
             <p><FormattedMessage id="rentalType" />:</p>
-            <input type="radio" id="out-of-library" value="OUT_OF_LIBRARY"
+            <input type="radio" id="out-of-library" name="rentalType" value="OUT_OF_LIBRARY"
                 onChange={(e) => handleTypeChange(e, false)}
                 checked={order?.rentalType === "OUT_OF_LIBRARY"} />
             <label htmlFor="out-of-library"><FormattedMessage id="OUT_OF_LIBRARY" /></label>
-            <input type="radio" id="to-reading-hall" value="TO_READING_HALL"
+            <input type="radio" id="to-reading-hall" name="rentalType" value="TO_READING_HALL"
                 onChange={(e) => handleTypeChange(e, true)}
                 checked={order?.rentalType === "TO_READING_HALL"} />
             <label htmlFor="to-reading-hall"><FormattedMessage id="TO_READING_HALL" /></label>
             <p><FormattedMessage id="days" />:</p>
-            <input type="radio" id="7" name="days" value="7" onChange={handleDaysChange} checked={order?.days === "7"} />
+            <input type="radio" id="7" name="days" value="7" onChange={handleChange} checked={order?.days === "7"} />
             <label htmlFor="7">7</label>
-            <input type="radio" id="14" name="days" value="14" onChange={handleDaysChange} checked={order?.days === "14"} />
+            <input type="radio" id="14" name="days" value="14" onChange={handleChange} checked={order?.days === "14"} />
             <label htmlFor="14">14</label>
-            <input type="radio" id="21" name="days" value="21" onChange={handleDaysChange} checked={order?.days === "21"} />
+            <input type="radio" id="21" name="days" value="21" onChange={handleChange} checked={order?.days === "21"} />
             <label htmlFor="21">21</label>
             {error &&
                 <div className="error-message">{error}</div>
