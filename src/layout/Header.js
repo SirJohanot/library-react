@@ -19,6 +19,10 @@ export default function Header({ setCurrentLocale }) {
         navigate('/sign-in', { replace: true });
     }
 
+    const handleLocaleChange = (e) => {
+        setCurrentLocale(e.target.value);
+    }
+
     return (
         <header>
             <div className="container">
@@ -27,7 +31,7 @@ export default function Header({ setCurrentLocale }) {
                 <h1 className="right-header-buttons">
                     {authentication?.login &&
                         <div className="sign-out-button">
-                            <button type="button" onClick={(e) => { handleSignOut() }}>
+                            <button type="button" onClick={(e) => handleSignOut()}>
                                 <img src={signoutSymbol} alt="Sign out symbol" />
                             </button>
                         </div>
@@ -37,9 +41,9 @@ export default function Header({ setCurrentLocale }) {
                             <img src={languageSymbol} alt="Globe symbol" />
                         </button>
                         <div className="dropdown-content">
-                            <button type="button" value={LOCALES.ENGLISH} onClick={(e) => { setCurrentLocale(e.target.value) }}><FormattedMessage id="englishCode" /></button>
-                            <button type="button" value={LOCALES.RUSSIAN} onClick={(e) => { setCurrentLocale(e.target.value) }}><FormattedMessage id="russianCode" /></button>
-                            <button type="button" value={LOCALES.BELARUSIAN} onClick={(e) => { setCurrentLocale(e.target.value) }}><FormattedMessage id="belarusianCode" /></button>
+                            <button type="button" value={LOCALES.ENGLISH} onClick={handleLocaleChange}><FormattedMessage id="englishCode" /></button>
+                            <button type="button" value={LOCALES.RUSSIAN} onClick={handleLocaleChange}><FormattedMessage id="russianCode" /></button>
+                            <button type="button" value={LOCALES.BELARUSIAN} onClick={handleLocaleChange}><FormattedMessage id="belarusianCode" /></button>
                         </div>
                     </div>
                 </h1>
