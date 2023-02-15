@@ -35,7 +35,6 @@ export default function SignIn() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setCredentials(prev => ({ ...prev, password: '' }));
         try {
             const response = await axios.request({
                 method: SIGN_IN_METHOD,
@@ -66,17 +65,15 @@ export default function SignIn() {
 
             navigate(from, { replace: true });
         } catch (err) {
+            setCredentials(prev => ({ ...prev, password: '' }));
             if (!err?.response) {
-                setError('No response from server');
+                setError('noResponse');
             } else switch (err.response?.status) {
-                case 400:
-                    setError('Missing login or password');
-                    break;
                 case 401:
-                    setError('Invalid credentials');
+                    setError('invalidCredentials');
                     break;
                 default:
-                    setError('Authentication failed');
+                    setError('authenticationFailed');
             }
         }
     }
@@ -88,10 +85,29 @@ export default function SignIn() {
     return (
         <section id="main-content">
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
-                <input type="text" id="login" name="login" value={credentials?.login} onChange={handleChange} ref={loginRef} placeholder={intl.formatMessage({ id: 'loginLocale' })} required />
-                <input type="password" id="password" name="password" value={credentials?.password} onChange={handleChange} placeholder={intl.formatMessage({ id: 'passwordLocale' })} required />
+                <input
+                    style={credentials?.login ? {} : { borderColor: '#c0250e' }}
+                    type="text"
+                    id="login"
+                    name="login"
+                    value={credentials?.login}
+                    onChange={handleChange}
+                    ref={loginRef}
+                    placeholder={intl.formatMessage({ id: 'loginLocale' })}
+                    required
+                />
+                <input
+                    style={credentials?.password ? {} : { borderColor: '#c0250e' }}
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={credentials?.password}
+                    onChange={handleChange}
+                    placeholder={intl.formatMessage({ id: 'passwordLocale' })}
+                    required
+                />
                 {error &&
-                    <div className="error-message">{error}</div>
+                    <div className="error-message"><FormattedMessage id={error} /></div>
                 }
                 <button type="submit"><FormattedMessage id="signInLocale" /></button>
                 <Link to="/sign-up">
