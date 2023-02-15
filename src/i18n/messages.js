@@ -20,7 +20,7 @@ export const messages = {
         loginLocale: 'Login',
         passwordLocale: 'Password',
         signInLocale: 'Sign In',
-        error: 'Invalid credentials',
+        invalidCredentials: 'Invalid credentials',
         signUp: 'Sign Up',
         confirmPassword: 'Confirm password',
         errorTitle: 'An error occurred | Library',
@@ -69,7 +69,9 @@ export const messages = {
         false: 'no',
         insufficientPrivileges: 'You lack the sufficient privileges to view this page',
         goBack: 'Go Back',
-        missingPage: 'The page you\'re looking for does not exist'
+        missingPage: 'The page you\'re looking for does not exist',
+        authencitcationFailed: 'Authentication failed',
+        noResponse: 'No response from server'
     },
     [LOCALES.RUSSIAN]: {
         appName: 'Библиотека',
@@ -90,7 +92,7 @@ export const messages = {
         loginLocale: 'Логин',
         passwordLocale: 'Пароль',
         signInLocale: 'Войти',
-        error: 'Недействительные учетные данные',
+        invalidCredentials: 'Недействительные учетные данные',
         signUp: 'Зарегистрироваться',
         confirmPassword: 'Подтвердите пароль',
         errorTitle: 'Произошла ошибка | Библиотека',
@@ -139,7 +141,9 @@ export const messages = {
         false: 'нет',
         insufficientPrivileges: 'У вас недостаточно прав для просмотра данной страницы',
         goBack: 'Назад',
-        missingPage: 'Страница не найдена'
+        missingPage: 'Страница не найдена',
+        authencitcationFailed: 'Не удалось войти',
+        noResponse: 'Сервер не отвечает'
     },
     [LOCALES.BELARUSIAN]: {
         appName: 'Бібліятэка',
@@ -160,7 +164,7 @@ export const messages = {
         loginLocale: 'Лагін',
         passwordLocale: 'Пароль',
         signInLocale: 'Увайсці',
-        error: 'Несапраўдныя ўліковыя дадзеныя',
+        invalidCredentials: 'Несапраўдныя ўліковыя дадзеныя',
         signUp: 'Зарэгістравацца',
         confirmPassword: 'Пацвердзіце пароль',
         errorTitle: 'Адбылася памылка | Бібліятэка',
@@ -209,6 +213,8 @@ export const messages = {
         false: 'не',
         insufficientPrivileges: 'У вас недастаткова правоў для прагляду гэтай старонкі',
         goBack: 'Назад',
-        missingPage: 'Старонка не знойдзена'
+        missingPage: 'Старонка не знойдзена',
+        authencitcationFailed: 'Не ўдалося ўвайсці',
+        noResponse: 'Сервер не адказвае'
     }
 }
