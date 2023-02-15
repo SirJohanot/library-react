@@ -69,11 +69,31 @@ export default function EditUser() {
                 <form id="user-changes" className="round-bordered-subject block-container" onSubmit={handleSubmit}>
                     <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
                     <label for="first-name"><FormattedMessage id="firstName" />:</label>
-                    <input type="text" id="first-name" name="firstName" value={user?.firstName} onChange={handleChange} required />
+                    <input
+                        type="text"
+                        id="first-name"
+                        name="firstName"
+                        value={user?.firstName}
+                        onChange={handleChange}
+                        required
+                    />
                     <label for="last-name"><FormattedMessage id="lastName" />:</label>
-                    <input type="text" id="last-name" name="lastName" value={user?.lastName} onChange={handleChange} required />
+                    <input
+                        type="text"
+                        id="last-name"
+                        name="lastName"
+                        value={user?.lastName}
+                        onChange={handleChange}
+                        required
+                    />
                     <label for="role"><FormattedMessage id="role" />:</label>
-                    <select id="role" name="role" value={user?.role} onChange={handleChange} required>
+                    <select
+                        id="role"
+                        name="role"
+                        value={user?.role}
+                        onChange={handleChange}
+                        required
+                    >
                         <option value="READER">
                             <FormattedMessage id="READER" />
                         </option>

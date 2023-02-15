@@ -57,11 +57,52 @@ export default function SignUp() {
     return (
         <section id="main-content">
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
-                <input type="text" id="login" name="login" value={signUpCredentials?.login} onChange={handleChange} ref={loginRef} placeholder={intl.formatMessage({ id: 'loginLocale' })} required />
-                <input type="password" id="password" name="password" value={signUpCredentials?.password} onChange={handleChange} placeholder={intl.formatMessage({ id: 'passwordLocale' })} required />
-                <input type="password" id="confirmed-password" name="confirmedPassword" value={signUpCredentials?.confirmedPassword} onChange={handleChange} placeholder={intl.formatMessage({ id: 'confirmPassword' })} required />
-                <input type="text" id="first-name" name="firstName" value={signUpCredentials?.firstName} onChange={handleChange} placeholder={intl.formatMessage({ id: 'firstName' })} required />
-                <input type="text" id="last-name" name="lastName" value={signUpCredentials?.lastName} onChange={handleChange} placeholder={intl.formatMessage({ id: 'lastName' })} required />
+                <input
+                    type="text"
+                    id="login"
+                    name="login"
+                    value={signUpCredentials?.login}
+                    onChange={handleChange}
+                    ref={loginRef}
+                    placeholder={intl.formatMessage({ id: 'loginLocale' })}
+                    required
+                />
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={signUpCredentials?.password}
+                    onChange={handleChange}
+                    placeholder={intl.formatMessage({ id: 'passwordLocale' })}
+                    required
+                />
+                <input
+                    type="password"
+                    id="confirmed-password"
+                    name="confirmedPassword"
+                    value={signUpCredentials?.confirmedPassword}
+                    onChange={handleChange}
+                    placeholder={intl.formatMessage({ id: 'confirmPassword' })}
+                    required
+                />
+                <input
+                    type="text"
+                    id="first-name"
+                    name="firstName"
+                    value={signUpCredentials?.firstName}
+                    onChange={handleChange}
+                    placeholder={intl.formatMessage({ id: 'firstName' })}
+                    required
+                />
+                <input
+                    type="text"
+                    id="last-name"
+                    name="lastName"
+                    value={signUpCredentials?.lastName}
+                    onChange={handleChange}
+                    placeholder={intl.formatMessage({ id: 'lastName' })}
+                    required
+                />
                 {error &&
                     <div className="error-message">{error}</div>
                 }
