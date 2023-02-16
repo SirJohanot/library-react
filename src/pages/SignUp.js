@@ -1,13 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useIntl } from 'react-intl';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
-import SignUpButton from '../components/ui/SignUpButton';
+import { isHumanName } from '../utility/validator';
 
 const SIGN_UP_METHOD = 'post';
 const SIGN_UP_URL = '/users';
 
 export default function SignUp() {
     const intl = useIntl();
+
+    const navigate = useNavigate();
 
     const loginRef = useRef();
 
@@ -18,14 +21,81 @@ export default function SignUp() {
         firstName: '',
         lastName: ''
     });
-    const [error, setError] = useState('');
+    const [errors, setErrors] = useState({
+        login: '',
+        password: '',
+        confirmedPassword: '',
+        firstName: '',
+        lastName: '',
+        other: ''
+    });
 
     useEffect(() => {
         loginRef.current.focus();
     }, []);
 
+    const isBlank = useCallback(
+        (key) => {
+            if (!signUpCredentials[key]) {
+                setErrors(prev => ({ ...prev, [key]: 'fieldRequired' }));
+                return true;
+            }
+            return false;
+        }, [signUpCredentials]);
+
+    const isNotAWord = useCallback(
+        (key) => {
+            if (!isHumanName(signUpCredentials[key])) {
+                setErrors(prev => ({ ...prev, [key]: 'alphabetical' }));
+                return true;
+            }
+            return false;
+        }, [signUpCredentials]);
+
     useEffect(() => {
-        setError('');
+        if (isBlank('login')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, login: '' }));
+    }, [signUpCredentials?.login, isBlank]);
+
+    useEffect(() => {
+        if (isBlank('password')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, password: '' }));
+    }, [signUpCredentials?.password, isBlank]);
+
+    useEffect(() => {
+        if (signUpCredentials?.password !== signUpCredentials?.confirmedPassword) {
+            setErrors(prev => ({ ...prev, confirmedPassword: 'passwordsDoNotMatch' }));
+        } else {
+            setErrors(prev => ({ ...prev, confirmedPassword: '' }));
+        }
+    }, [signUpCredentials?.password, signUpCredentials?.confirmedPassword]);
+
+    useEffect(() => {
+        if (isBlank('firstName')) {
+            return;
+        }
+        if (isNotAWord('firstName')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, firstName: '' }));
+    }, [signUpCredentials?.firstName, isBlank, isNotAWord]);
+
+    useEffect(() => {
+        if (isBlank('lastName')) {
+            return;
+        }
+        if (isNotAWord('lastName')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, lastName: '' }));
+    }, [signUpCredentials?.lastName, isBlank, isNotAWord]);
+
+    useEffect(() => {
+        setErrors(prev => ({ ...prev, other: '' }));
     }, [signUpCredentials]);
 
     const handleSubmit = async (e) => {
@@ -37,15 +107,16 @@ export default function SignUp() {
                 url: SIGN_UP_URL,
                 data: JSON.stringify(signUpCredentials)
             });
+            navigate('/sign-in', { replace: true });
         } catch (err) {
             if (!err?.response) {
-                setError('No response from server');
+                setErrors(prev => ({ ...prev, other: 'noResponse' }));
             } else switch (err.response?.status) {
                 case 400:
-                    setError(err.response?.data?.error);
+                    setErrors(prev => ({ ...prev, other: err.response?.data?.error }));
                     break;
                 default:
-                    setError('Registration failed');
+                    setErrors(prev => ({ ...prev, other: 'regitrationFailed' }));
             }
         }
     }
@@ -58,6 +129,7 @@ export default function SignUp() {
         <section id="main-content">
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
                 <input
+                    style={errors?.login ? { borderColor: '#c0250e' } : {}}
                     type="text"
                     id="login"
                     name="login"
@@ -67,7 +139,11 @@ export default function SignUp() {
                     placeholder={intl.formatMessage({ id: 'loginLocale' })}
                     required
                 />
+                {errors?.login &&
+                    <div style={{ color: 'red' }}><FormattedMessage id={errors?.login} /></div>
+                }
                 <input
+                    style={errors?.password ? { borderColor: '#c0250e' } : {}}
                     type="password"
                     id="password"
                     name="password"
@@ -76,7 +152,11 @@ export default function SignUp() {
                     placeholder={intl.formatMessage({ id: 'passwordLocale' })}
                     required
                 />
+                {errors?.password &&
+                    <div style={{ color: 'red' }}><FormattedMessage id={errors?.password} /></div>
+                }
                 <input
+                    style={errors?.confirmedPassword ? { borderColor: '#c0250e' } : {}}
                     type="password"
                     id="confirmed-password"
                     name="confirmedPassword"
@@ -85,7 +165,11 @@ export default function SignUp() {
                     placeholder={intl.formatMessage({ id: 'confirmPassword' })}
                     required
                 />
+                {errors?.confirmedPassword &&
+                    <div style={{ color: 'red' }}><FormattedMessage id={errors?.confirmedPassword} /></div>
+                }
                 <input
+                    style={errors?.firstName ? { borderColor: '#c0250e' } : {}}
                     type="text"
                     id="first-name"
                     name="firstName"
@@ -94,7 +178,11 @@ export default function SignUp() {
                     placeholder={intl.formatMessage({ id: 'firstName' })}
                     required
                 />
+                {errors?.firstName &&
+                    <div style={{ color: 'red' }}><FormattedMessage id={errors?.firstName} /></div>
+                }
                 <input
+                    style={errors?.lastName ? { borderColor: '#c0250e' } : {}}
                     type="text"
                     id="last-name"
                     name="lastName"
@@ -103,11 +191,34 @@ export default function SignUp() {
                     placeholder={intl.formatMessage({ id: 'lastName' })}
                     required
                 />
-                {error &&
-                    <div className="error-message">{error}</div>
+                {errors?.lastName &&
+                    <div style={{ color: 'red' }}><FormattedMessage id={errors?.lastName} /></div>
                 }
-                <SignUpButton />
+                {errors?.other &&
+                    <div className="error-message"><FormattedMessage id={errors?.other} /></div>
+                }
+                <button
+                    disabled={
+                        errors?.login
+                        || errors?.password
+                        || errors?.confirmedPassword
+                        || errors?.firstName
+                        || errors?.lastName
+                    }
+                    style={
+                        (errors?.login
+                            || errors?.password
+                            || errors?.confirmedPassword
+                            || errors?.firstName
+                            || errors?.lastName) ?
+                            {
+                                pointerEvents: 'none',
+                                opacity: 0.5
+                            }
+                            : {}
+                    }
+                ><FormattedMessage id="signUp" /></button>
             </form>
-        </section>
+        </section >
     );
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
-import SignUpButton from '../components/ui/SignUpButton';
 import useAuthentication from '../hooks/useAuthentication';
 
 const SIGN_IN_URL = '/users/auth';
@@ -111,7 +110,7 @@ export default function SignIn() {
                 }
                 <button type="submit"><FormattedMessage id="signInLocale" /></button>
                 <Link to="/sign-up">
-                    <SignUpButton />
+                    <button type="button"><FormattedMessage id="signUp" /></button>
                 </Link>
             </form>
         </section>
