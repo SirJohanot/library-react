@@ -71,7 +71,11 @@ export const messages = {
         goBack: 'Go Back',
         missingPage: 'The page you\'re looking for does not exist',
         authencitcationFailed: 'Authentication failed',
-        noResponse: 'No response from server'
+        noResponse: 'No response from server',
+        registrationFailed: 'Registartion failed',
+        fieldRequired: 'This field is required',
+        passwordsDoNotMatch: 'Passwords do not match',
+        alphabetical: 'This field must start with an alphabetical character'
     },
     [LOCALES.RUSSIAN]: {
         appName: 'Библиотека',
@@ -143,7 +147,11 @@ export const messages = {
         goBack: 'Назад',
         missingPage: 'Страница не найдена',
         authencitcationFailed: 'Не удалось войти',
-        noResponse: 'Сервер не отвечает'
+        noResponse: 'Сервер не отвечает',
+        registrationFailed: 'Не удалось зарегистрировать аккаунт',
+        fieldRequired: 'Это поле обязательно',
+        passwordsDoNotMatch: 'Пароли не совпадают',
+        alphabetical: 'Это поле должно начинаться с буквы'
     },
     [LOCALES.BELARUSIAN]: {
         appName: 'Бібліятэка',
@@ -215,6 +223,10 @@ export const messages = {
         goBack: 'Назад',
         missingPage: 'Старонка не знойдзена',
         authencitcationFailed: 'Не ўдалося ўвайсці',
-        noResponse: 'Сервер не адказвае'
+        noResponse: 'Сервер не адказвае',
+        registrationFailed: 'Не атрымалася зарэгістраваць акаўнт',
+        fieldRequired: 'Гэта поле абавязкова',
+        passwordsDoNotMatch: 'Паролі не супадаюць',
+        alphabetical: 'Гэтае поле павінна пачынацца з літары'
     }
 }
