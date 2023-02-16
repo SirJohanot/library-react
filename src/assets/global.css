@@ -30,7 +30,7 @@ input[type="submit"] {
   background-color: #0a80d7;
   border-radius: 6px;
   cursor: pointer;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid white;
   font-size: 14px;
 }
 
@@ -39,14 +39,35 @@ input[type="submit"]:hover {
   background-color: #076591;
 }
 
+button[disabled],
+input[type="submit"][disabled] {
+  cursor: not-allowed;
+  opacity: .65;
+}
+
+form input,
+form button {
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
 .container {
   width: 95%;
   margin: auto;
 }
 
+.field-error {
+  color: red;
+}
+
 .error-message {
   text-align: center;
   color: red;
+}
+
+.red-border {
+  border-color: red;
 }
 
 .red {
@@ -231,7 +252,6 @@ nav * {
   line-height: 20px;
   display: block;
   margin: 14px auto;
-  border: 1px solid #30363d;
 }
 
 .login-form input[type="text"],
