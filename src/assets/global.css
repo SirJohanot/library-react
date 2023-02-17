@@ -368,11 +368,15 @@ nav * {
   width: 100%;
 }
 
+#user-changes>label {
+  margin-top: 14px;
+}
+
 #user-changes>input,
 #user-changes>select {
   padding: 5px 12px;
   line-height: 20px;
-  margin: 14px 0;
+  margin: 14px 0 0 0;
   border: 1px solid #30363d;
   border-radius: 6px;
   color: #000000;
