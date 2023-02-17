@@ -139,7 +139,7 @@ export default function SignUp() {
         <section id="main-content">
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
                 <input
-                    className={errors?.login && 'red-border'}
+                    className={errors?.login ? 'red-border' : ''}
                     type="text"
                     id="login"
                     name="login"
@@ -153,7 +153,7 @@ export default function SignUp() {
                     <div className="field-error"><FormattedMessage id={errors?.login} /></div>
                 }
                 <input
-                    className={errors?.password && 'red-border'}
+                    className={errors?.password ? 'red-border' : ''}
                     type="password"
                     id="password"
                     name="password"
@@ -166,7 +166,7 @@ export default function SignUp() {
                     <div className="field-error"><FormattedMessage id={errors?.password} /></div>
                 }
                 <input
-                    className={errors?.confirmedPassword && 'red-border'}
+                    className={errors?.confirmedPassword ? 'red-border' : ''}
                     type="password"
                     id="confirmed-password"
                     name="confirmedPassword"
@@ -179,7 +179,7 @@ export default function SignUp() {
                     <div className="field-error"><FormattedMessage id={errors?.confirmedPassword} /></div>
                 }
                 <input
-                    className={errors?.firstName && 'red-border'}
+                    className={errors?.firstName ? 'red-border' : ''}
                     type="text"
                     id="first-name"
                     name="firstName"
@@ -192,7 +192,7 @@ export default function SignUp() {
                     <div className="field-error"><FormattedMessage id={errors?.firstName} /></div>
                 }
                 <input
-                    className={errors?.lastName && 'red-border'}
+                    className={errors?.lastName ? 'red-border' : ''}
                     type="text"
                     id="last-name"
                     name="lastName"
@@ -207,9 +207,7 @@ export default function SignUp() {
                 {errors?.other &&
                     <div className="error-message"><FormattedMessage id={errors?.other} /></div>
                 }
-                <button
-                    disabled={formhasErrors()}
-                ><FormattedMessage id="signUp" /></button>
+                <button disabled={formhasErrors()}><FormattedMessage id="signUp" /></button>
             </form>
         </section >
     );

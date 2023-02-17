@@ -85,7 +85,7 @@ export default function SignIn() {
         <section id="main-content">
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
                 <input
-                    className={!credentials?.login && 'red-border'}
+                    className={!credentials?.login ? 'red-border' : ''}
                     type="text"
                     id="login"
                     name="login"
@@ -96,7 +96,7 @@ export default function SignIn() {
                     required
                 />
                 <input
-                    className={!credentials?.password && 'red-border'}
+                    className={!credentials?.password ? 'red-border' : ''}
                     type="password"
                     id="password"
                     name="password"
