@@ -75,7 +75,8 @@ export const messages = {
         registrationFailed: 'Registartion failed',
         fieldRequired: 'This field is required',
         passwordsDoNotMatch: 'Passwords do not match',
-        alphabetical: 'This field must start with an alphabetical character'
+        alphabetical: 'This field must start with an alphabetical character',
+        failure: 'Failure'
     },
     [LOCALES.RUSSIAN]: {
         appName: 'Библиотека',
@@ -151,7 +152,8 @@ export const messages = {
         registrationFailed: 'Не удалось зарегистрировать аккаунт',
         fieldRequired: 'Это поле обязательно',
         passwordsDoNotMatch: 'Пароли не совпадают',
-        alphabetical: 'Это поле должно начинаться с буквы'
+        alphabetical: 'Это поле должно начинаться с буквы',
+        failure: 'Неудача'
     },
     [LOCALES.BELARUSIAN]: {
         appName: 'Бібліятэка',
@@ -227,6 +229,7 @@ export const messages = {
         registrationFailed: 'Не атрымалася зарэгістраваць акаўнт',
         fieldRequired: 'Гэта поле абавязкова',
         passwordsDoNotMatch: 'Паролі не супадаюць',
-        alphabetical: 'Гэтае поле павінна пачынацца з літары'
+        alphabetical: 'Гэтае поле павінна пачынацца з літары',
+        failure: 'Няўдача'
     }
 }
