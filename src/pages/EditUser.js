@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import CancelButton from '../components/ui/CancelButton';
+import { isHumanName } from '../utility/validator';
 
 const GET_USER_METHOD = 'get';
 const GET_USER_URL = '/users/';
@@ -20,7 +21,11 @@ export default function EditUser() {
         lastName: '',
         role: ''
     });
-    const [error, setError] = useState('');
+    const [errors, setErrors] = useState({
+        firstName: '',
+        lastName: '',
+        other: ''
+    });
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -34,8 +39,46 @@ export default function EditUser() {
     }, [login]);
 
     useEffect(() => {
-        setError('');
+        setErrors(prev => ({ ...prev, other: '' }));
     }, [user]);
+
+    const isBlank = useCallback(
+        (key) => {
+            if (!user[key]) {
+                setErrors(prev => ({ ...prev, [key]: 'fieldRequired' }));
+                return true;
+            }
+            return false;
+        }, [user]);
+
+    const isNotAWord = useCallback(
+        (key) => {
+            if (!isHumanName(user[key])) {
+                setErrors(prev => ({ ...prev, [key]: 'alphabetical' }));
+                return true;
+            }
+            return false;
+        }, [user]);
+
+    useEffect(() => {
+        if (isBlank('firstName')) {
+            return;
+        }
+        if (isNotAWord('firstName')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, firstName: '' }));
+    }, [user?.firstName, isBlank, isNotAWord]);
+
+    useEffect(() => {
+        if (isBlank('lastName')) {
+            return;
+        }
+        if (isNotAWord('lastName')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, lastName: '' }));
+    }, [user?.lastName, isBlank, isNotAWord]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,15 +91,22 @@ export default function EditUser() {
             navigate(`/user/${login}`, { replace: true });
         } catch (err) {
             if (!err?.response) {
-                setError('No response from server');
+                setErrors(prev => ({ ...prev, other: 'noResponse' }));
             } else switch (err.response?.status) {
                 case 400:
-                    setError(err.response?.data?.error);
+                    setErrors(prev => ({ ...prev, other: err.response?.data?.error }));
                     break;
                 default:
-                    setError('Could not edit user');
+                    setErrors(prev => ({ ...prev, other: 'failure' }));
             }
         }
+    }
+
+    const formhasErrors = () => {
+        return (
+            errors?.firstName
+            || errors?.lastName
+        );
     }
 
     const handleChange = (e) => {
@@ -68,8 +118,9 @@ export default function EditUser() {
             <div id="main-content-centered-element">
                 <form id="user-changes" className="round-bordered-subject block-container" onSubmit={handleSubmit}>
                     <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
-                    <label for="first-name"><FormattedMessage id="firstName" />:</label>
+                    <label htmlFor="first-name"><FormattedMessage id="firstName" />:</label>
                     <input
+                        className={errors?.firstName ? 'red-border' : ''}
                         type="text"
                         id="first-name"
                         name="firstName"
@@ -77,8 +128,12 @@ export default function EditUser() {
                         onChange={handleChange}
                         required
                     />
-                    <label for="last-name"><FormattedMessage id="lastName" />:</label>
+                    {errors?.firstName &&
+                        <div className="field-error"><FormattedMessage id={errors?.firstName} /></div>
+                    }
+                    <label htmlFor="last-name"><FormattedMessage id="lastName" />:</label>
                     <input
+                        className={errors?.lastName ? 'red-border' : ''}
                         type="text"
                         id="last-name"
                         name="lastName"
@@ -86,7 +141,10 @@ export default function EditUser() {
                         onChange={handleChange}
                         required
                     />
-                    <label for="role"><FormattedMessage id="role" />:</label>
+                    {errors?.lastName &&
+                        <div className="field-error"><FormattedMessage id={errors?.lastName} /></div>
+                    }
+                    <label htmlFor="role"><FormattedMessage id="role" />:</label>
                     <select
                         id="role"
                         name="role"
@@ -101,15 +159,15 @@ export default function EditUser() {
                             <FormattedMessage id="LIBRARIAN" />
                         </option>
                     </select>
-                    {error &&
-                        <div className="error-message">{error}</div>
+                    {errors?.other &&
+                        <div className="error-message">{errors?.other}</div>
                     }
                 </form>
                 <div className="buttons-container">
                     <Link to={`/user/${login}`}>
                         <CancelButton />
                     </Link>
-                    <button type="submit" form="user-changes" className="green"><FormattedMessage id="commitChanges" /></button>
+                    <button type="submit" form="user-changes" className="green" disabled={formhasErrors()}><FormattedMessage id="commitChanges" /></button>
                 </div>
             </div>
         </section>
