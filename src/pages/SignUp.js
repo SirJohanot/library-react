@@ -34,37 +34,28 @@ export default function SignUp() {
         loginRef.current.focus();
     }, []);
 
-    const isBlank = useCallback(
-        (key) => {
-            if (!signUpCredentials[key]) {
-                setErrors(prev => ({ ...prev, [key]: 'fieldRequired' }));
-                return true;
-            }
-            return false;
-        }, [signUpCredentials]);
-
-    const isNotAWord = useCallback(
-        (key) => {
-            if (!isHumanName(signUpCredentials[key])) {
-                setErrors(prev => ({ ...prev, [key]: 'alphabetical' }));
+    const validateField = useCallback(
+        (key, validateAgainst, errorMessage) => {
+            if (!validateAgainst(signUpCredentials[key])) {
+                setErrors(prev => ({ ...prev, [key]: errorMessage }));
                 return true;
             }
             return false;
         }, [signUpCredentials]);
 
     useEffect(() => {
-        if (isBlank('login')) {
+        if (validateField('login', (login) => login, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, login: '' }));
-    }, [signUpCredentials?.login, isBlank]);
+    }, [signUpCredentials?.login, validateField]);
 
     useEffect(() => {
-        if (isBlank('password')) {
+        if (validateField('password', (password) => password, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, password: '' }));
-    }, [signUpCredentials?.password, isBlank]);
+    }, [signUpCredentials?.password, validateField]);
 
     useEffect(() => {
         if (signUpCredentials?.password !== signUpCredentials?.confirmedPassword) {
@@ -75,24 +66,24 @@ export default function SignUp() {
     }, [signUpCredentials?.password, signUpCredentials?.confirmedPassword]);
 
     useEffect(() => {
-        if (isBlank('firstName')) {
+        if (validateField('firstName', (firstName) => firstName, 'fieldRequired')) {
             return;
         }
-        if (isNotAWord('firstName')) {
+        if (validateField('firstName', isHumanName, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, firstName: '' }));
-    }, [signUpCredentials?.firstName, isBlank, isNotAWord]);
+    }, [signUpCredentials?.firstName, validateField]);
 
     useEffect(() => {
-        if (isBlank('lastName')) {
+        if (validateField('lastName', (lastName) => lastName, 'fieldRequired')) {
             return;
         }
-        if (isNotAWord('lastName')) {
+        if (validateField('lastName', isHumanName, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, lastName: '' }));
-    }, [signUpCredentials?.lastName, isBlank, isNotAWord]);
+    }, [signUpCredentials?.lastName, validateField]);
 
     useEffect(() => {
         setErrors(prev => ({ ...prev, other: '' }));
@@ -121,7 +112,7 @@ export default function SignUp() {
         }
     }
 
-    const formhasErrors = () => {
+    const formHasErrors = () => {
         return (
             errors?.login
             || errors?.password
@@ -207,7 +198,7 @@ export default function SignUp() {
                 {errors?.other &&
                     <div className="error-message"><FormattedMessage id={errors?.other} /></div>
                 }
-                <button disabled={formhasErrors()}><FormattedMessage id="signUp" /></button>
+                <button disabled={formHasErrors()}><FormattedMessage id="signUp" /></button>
             </form>
         </section >
     );

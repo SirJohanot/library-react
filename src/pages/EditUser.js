@@ -42,43 +42,34 @@ export default function EditUser() {
         setErrors(prev => ({ ...prev, other: '' }));
     }, [user]);
 
-    const isBlank = useCallback(
-        (key) => {
-            if (!user[key]) {
-                setErrors(prev => ({ ...prev, [key]: 'fieldRequired' }));
-                return true;
-            }
-            return false;
-        }, [user]);
-
-    const isNotAWord = useCallback(
-        (key) => {
-            if (!isHumanName(user[key])) {
-                setErrors(prev => ({ ...prev, [key]: 'alphabetical' }));
+    const validateField = useCallback(
+        (key, validateAgainst, errorMessage) => {
+            if (!validateAgainst(user[key])) {
+                setErrors(prev => ({ ...prev, [key]: errorMessage }));
                 return true;
             }
             return false;
         }, [user]);
 
     useEffect(() => {
-        if (isBlank('firstName')) {
+        if (validateField('firstName', (firstName) => firstName, 'fieldRequired')) {
             return;
         }
-        if (isNotAWord('firstName')) {
+        if (validateField('firstName', isHumanName, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, firstName: '' }));
-    }, [user?.firstName, isBlank, isNotAWord]);
+    }, [user?.firstName, validateField]);
 
     useEffect(() => {
-        if (isBlank('lastName')) {
+        if (validateField('lastName', (lastName) => lastName, 'fieldRequired')) {
             return;
         }
-        if (isNotAWord('lastName')) {
+        if (validateField('lastName', isHumanName, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, lastName: '' }));
-    }, [user?.lastName, isBlank, isNotAWord]);
+    }, [user?.lastName, validateField]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -102,7 +93,7 @@ export default function EditUser() {
         }
     }
 
-    const formhasErrors = () => {
+    const formHasErrors = () => {
         return (
             errors?.firstName
             || errors?.lastName
@@ -116,7 +107,7 @@ export default function EditUser() {
     return (
         <section id="main-content">
             <div id="main-content-centered-element">
-                <form id="user-changes" className="round-bordered-subject block-container" onSubmit={handleSubmit}>
+                <form id="user-changes" className="round-bordered-subject block-container changes" onSubmit={handleSubmit}>
                     <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
                     <label htmlFor="first-name"><FormattedMessage id="firstName" />:</label>
                     <input
@@ -167,7 +158,7 @@ export default function EditUser() {
                     <Link to={`/user/${login}`}>
                         <CancelButton />
                     </Link>
-                    <button type="submit" form="user-changes" className="green" disabled={formhasErrors()}><FormattedMessage id="commitChanges" /></button>
+                    <button type="submit" form="user-changes" className="green" disabled={formHasErrors()}><FormattedMessage id="commitChanges" /></button>
                 </div>
             </div>
         </section>
