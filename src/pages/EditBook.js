@@ -25,6 +25,7 @@ export default function EditBook() {
         amount: 1
     });
     const [error, setError] = useState('');
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -60,13 +61,13 @@ export default function EditBook() {
             navigate(`/book/${id}`, { replace: true });
         } catch (err) {
             if (!err?.response) {
-                setError('No response from server');
+                setError('noResopnse');
             } else switch (err.response?.status) {
                 case 400:
                     setError(err.response?.data?.error);
                     break;
                 default:
-                    setError('Could not edit book');
+                    setError('failure');
             }
         }
     }
@@ -74,12 +75,12 @@ export default function EditBook() {
     return (
         <section id="main-content">
             <div id="main-content-centered-element">
-                <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} />
+                <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} setDisabled={setDisabled} />
                 <div className="buttons-container">
                     <Link to={`/book/${id}`}>
                         <CancelButton />
                     </Link>
-                    <button type="submit" form="book-changes" className="green"><FormattedMessage id="commitChanges" /></button>
+                    <button type="submit" form="book-changes" className="green" disabled={disabled}><FormattedMessage id="commitChanges" /></button>
                 </div>
             </div>
         </section>

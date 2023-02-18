@@ -20,6 +20,7 @@ export default function AddBook() {
         amount: 1
     });
     const [error, setError] = useState('');
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         setError('');
@@ -36,13 +37,13 @@ export default function AddBook() {
             navigate('/books/', { replace: true });
         } catch (err) {
             if (!err?.response) {
-                setError('No response from server');
+                setError('noResponse');
             } else switch (err.response?.status) {
                 case 400:
                     setError(err.response?.data?.error);
                     break;
                 default:
-                    setError('Could not add book');
+                    setError('failure');
             }
         }
     }
@@ -50,12 +51,12 @@ export default function AddBook() {
     return (
         <section id="main-content">
             <div id="main-content-centered-element">
-                <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} />
+                <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} setDisabled={setDisabled} />
                 <div className="buttons-container">
                     <Link to="/books/">
                         <CancelButton />
                     </Link>
-                    <button type="submit" form="book-changes" className="green"><FormattedMessage id="add" /></button>
+                    <button type="submit" form="book-changes" className="green" disabled={disabled}><FormattedMessage id="add" /></button>
                 </div>
             </div>
         </section>
