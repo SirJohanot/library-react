@@ -329,54 +329,34 @@ nav * {
   min-height: 45px;
 }
 
-/* Edit book page */
-#book-changes {
+/* Subject change forms */
+.changes {
   padding: 15px;
 }
 
-#book-changes>label,
-#book-changes>input {
+.changes>label,
+.changes>input {
   display: block;
 }
 
-#book-changes>input[type="text"] {
+.changes>input[type="text"] {
   width: 100%;
 }
 
-#book-changes>input {
-  padding: 5px 12px;
-  line-height: 20px;
-  margin: 14px 0;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  color: #000000;
-  background-color: #ffffff;
-}
-
-/* Edit user page */
-#user-changes {
-  padding: 15px;
-}
-
-#user-changes>label,
-#user-changes>input {
-  display: block;
-  width: 100%;
-}
-
-#user-changes>input[type="text"] {
-  width: 100%;
-}
-
-#user-changes>label {
+.changes>label {
   margin-top: 14px;
+  margin-bottom: 7px;
 }
 
-#user-changes>input,
-#user-changes>select {
+.changes>label:first-child {
+  margin-top: 0px;
+}
+
+.changes>input,
+.changes>select {
   padding: 5px 12px;
   line-height: 20px;
-  margin: 14px 0 0 0;
+  margin: 0;
   border: 1px solid #30363d;
   border-radius: 6px;
   color: #000000;
