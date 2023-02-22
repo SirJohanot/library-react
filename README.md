@@ -11,8 +11,13 @@ A front-end application for the library-spring project, built with React JS.
 
 ## Installation
 
-1. Download and unpack `build.zip`
-2. Deploy the application using `serve -s build` (you have to have Node Package Manager installed, along with the serve command: `npm install -g serve`)
+1. Download and unzip `build.zip`
+2. Deploy the application using `serve -s build`
+
+## Requirements
+
+- [Node.js](https://nodejs.org/en/)
+- [Serve](https://www.npmjs.com/package/serve)
 
 ## Notes
 
