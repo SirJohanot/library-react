@@ -2,7 +2,7 @@
 
 <p align="center">
     <img alt="License" src="https://img.shields.io/github/license/SirJohanot/library-react">
-    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SirJohanot/library-react?display_name=tag">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SirJohanot/library-react">
 </p>
 
 ## About
