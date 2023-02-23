@@ -3,9 +3,20 @@
 }
 
 html,
+body,
+#root,
+#main-content {
+  min-height: 100vh;
+}
+
 body {
   padding: 0;
   margin: 0;
+}
+
+#root,
+#main-content {
+  height: 100%
 }
 
 body {
@@ -168,6 +179,36 @@ nav * {
   font-size: 24px;
 }
 
+/* Footer */
+footer {
+  background-color: #171e21;
+  padding: 25px 15px;
+}
+
+footer select {
+  display: block;
+  margin: auto;
+  background-color: #3c879c;
+  color: #161e21;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  transition: color .3s ease, background .3s ease, box-shadow .3s ease;
+  padding: 5px;
+}
+
+footer select:hover {
+  background-color: #5ff5ff;
+}
+
+footer select option {
+  background-color: #171e21;
+  color: #aab3b6;
+  padding: 5px;
+  border: 0;
+  outline: 0;
+}
+
 /* Logout Button */
 .sign-out-button {
   margin: 10px;
@@ -181,39 +222,6 @@ nav * {
 .sign-out-button button {
   padding: 10px;
   margin: 0;
-}
-
-/* Language change */
-#language-change {
-  margin: 10px;
-  display: inline-block;
-  position: relative;
-}
-
-#language-change>button {
-  margin: 0;
-}
-
-.dropdown-content {
-  display: none;
-  z-index: 1;
-  position: absolute;
-}
-
-#language-change:hover {
-  background-color: #02273b;
-}
-
-#language-change:hover .dropdown-content {
-  display: block;
-  width: 100%;
-}
-
-#language-change:hover .dropdown-content button {
-  display: block;
-  margin: 0;
-  width: 100%;
-  min-height: 30px;
 }
 
 /* Pagination */
