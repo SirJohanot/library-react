@@ -28,6 +28,17 @@ body {
   background-color: #ffffff;
 }
 
+html::-webkit-scrollbar {
+  background: #071013;
+  width: 10px
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #44575f;
+  border: 1px solid #000;
+  border-radius: 5px
+}
+
 /* Global */
 a {
   text-decoration: none;
