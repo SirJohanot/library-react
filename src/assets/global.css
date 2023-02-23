@@ -4,8 +4,7 @@
 
 html,
 body,
-#root,
-#main-content {
+#root {
   min-height: 100vh;
 }
 
@@ -14,9 +13,14 @@ body {
   margin: 0;
 }
 
-#root,
-#main-content {
-  height: 100%
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#root>#main-content {
+  flex-grow: 1;
 }
 
 body {
@@ -95,13 +99,6 @@ form button {
   padding: 10px;
   border-radius: 25px;
   background-color: #bdbdc2;
-}
-
-#main-content {
-  display: block;
-  width: 100%;
-  padding: 0;
-  height: 100%;
 }
 
 #main-content-centered-element {
