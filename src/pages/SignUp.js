@@ -127,7 +127,7 @@ export default function SignUp() {
     }
 
     return (
-        <section id="main-content">
+        <section id="main-content" style={{ marginTop: '68px' }}>
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
                 <input
                     className={errors?.login ? 'red-border' : ''}

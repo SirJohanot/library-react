@@ -82,7 +82,7 @@ export default function SignIn() {
     }
 
     return (
-        <section id="main-content">
+        <section id="main-content" style={{ marginTop: '68px' }}>
             <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
                 <input
                     className={!credentials?.login ? 'red-border' : ''}
