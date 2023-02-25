@@ -26,7 +26,7 @@ export default function Header() {
                 {authentication?.login &&
                     <>
                         <li>
-                            <div class="category centered">
+                            <div className="category centered">
                                 <Link className="link" to="/books/">
                                     <FormattedMessage id="books" />
                                 </Link>
@@ -34,7 +34,7 @@ export default function Header() {
                         </li>
                         {authentication?.roles?.find((role) => role === 'READER') &&
                             <li>
-                                <div class="category centered">
+                                <div className="category centered">
                                     <Link className="link" to="/orders/">
                                         <FormattedMessage id="myOrders" />
                                     </Link>
@@ -43,7 +43,7 @@ export default function Header() {
                         }
                         {authentication?.roles?.find((role) => role === 'LIBRARIAN') &&
                             <li>
-                                <div class="category centered">
+                                <div className="category centered">
                                     <Link className="link" to="/orders/">
                                         <FormattedMessage id="orders" />
                                     </Link>
@@ -53,14 +53,14 @@ export default function Header() {
                         {authentication?.roles?.find((role) => role === 'ADMIN') &&
                             <>
                                 <li>
-                                    <div class="category centered">
+                                    <div className="category centered">
                                         <Link className="link" to="/add-book">
                                             <FormattedMessage id="addABook" />
                                         </Link>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="category centered">
+                                    <div className="category centered">
                                         <Link className="link" to="/users/">
                                             <FormattedMessage id="users" />
                                         </Link>
