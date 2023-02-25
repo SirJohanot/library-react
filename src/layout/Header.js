@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import logo from '../assets/white_book_symbol.png';
 import useAuthentication from '../hooks/useAuthentication';
@@ -25,6 +25,50 @@ export default function Header() {
             <ul className="menu">
                 {authentication?.login &&
                     <>
+                        <li>
+                            <div class="category centered">
+                                <Link className="link" to="/books/">
+                                    <FormattedMessage id="books" />
+                                </Link>
+                            </div>
+                        </li>
+                        {authentication?.roles?.find((role) => role === 'READER') &&
+                            <li>
+                                <div class="category centered">
+                                    <Link className="link" to="/orders/">
+                                        <FormattedMessage id="myOrders" />
+                                    </Link>
+                                </div>
+                            </li>
+                        }
+                        {authentication?.roles?.find((role) => role === 'LIBRARIAN') &&
+                            <li>
+                                <div class="category centered">
+                                    <Link className="link" to="/orders/">
+                                        <FormattedMessage id="orders" />
+                                    </Link>
+                                </div>
+                            </li>
+                        }
+                        {authentication?.roles?.find((role) => role === 'ADMIN') &&
+                            <>
+                                <li>
+                                    <div class="category centered">
+                                        <Link className="link" to="/add-book">
+                                            <FormattedMessage id="addABook" />
+                                        </Link>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="category centered">
+                                        <Link className="link" to="/users/">
+                                            <FormattedMessage id="users" />
+                                        </Link>
+                                    </div>
+                                </li>
+                            </>
+                        }
+                        <li className="separator" ></li>
                         <li>
                             <div className="category">
                                 <div className="centered">
