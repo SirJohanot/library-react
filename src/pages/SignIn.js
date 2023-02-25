@@ -64,7 +64,6 @@ export default function SignIn() {
 
             navigate(from, { replace: true });
         } catch (err) {
-            setCredentials(prev => ({ ...prev, password: '' }));
             if (!err?.response) {
                 setError('noResponse');
             } else switch (err.response?.status) {
@@ -82,37 +81,40 @@ export default function SignIn() {
     }
 
     return (
-        <section id="main-content" style={{ marginTop: '68px' }}>
-            <form className="login-form round-bordered-subject" autoComplete="on" onSubmit={handleSubmit}>
-                <input
-                    className={!credentials?.login ? 'red-border' : ''}
-                    type="text"
-                    id="login"
-                    name="login"
-                    value={credentials?.login}
-                    onChange={handleChange}
-                    ref={loginRef}
-                    placeholder={intl.formatMessage({ id: 'loginLocale' })}
-                    required
-                />
-                <input
-                    className={!credentials?.password ? 'red-border' : ''}
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={credentials?.password}
-                    onChange={handleChange}
-                    placeholder={intl.formatMessage({ id: 'passwordLocale' })}
-                    required
-                />
-                {error &&
-                    <div className="error-message"><FormattedMessage id={error} /></div>
-                }
-                <button type="submit"><FormattedMessage id="signInLocale" /></button>
-                <Link to="/sign-up">
-                    <button type="button"><FormattedMessage id="signUp" /></button>
-                </Link>
-            </form>
+        <section id="main-content">
+            <div id="main-content-centered-element">
+                <form className="form" autoComplete="on" onSubmit={handleSubmit}>
+                    <input
+                        className={!credentials?.login ? 'red-border' : ''}
+                        type="text"
+                        id="login"
+                        name="login"
+                        value={credentials?.login}
+                        onChange={handleChange}
+                        ref={loginRef}
+                        placeholder={intl.formatMessage({ id: 'loginLocale' })}
+                        required
+                    />
+                    <input
+                        className={!credentials?.password ? 'red-border' : ''}
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={credentials?.password}
+                        onChange={handleChange}
+                        placeholder={intl.formatMessage({ id: 'passwordLocale' })}
+                        required
+                    />
+                    {error &&
+                        <div className="error-message"><FormattedMessage id={error} /></div>
+                    }
+                    <button type="submit" className="btn"><FormattedMessage id="signInLocale" /></button>
+                    <div className="b-outline"></div>
+                    <Link to="/sign-up" className="link dotted-link">
+                        <FormattedMessage id="signUp" />
+                    </Link>
+                </form>
+            </div>
         </section>
     )
 }
