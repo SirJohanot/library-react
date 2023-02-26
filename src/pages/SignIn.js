@@ -108,11 +108,15 @@ export default function SignIn() {
                     {error &&
                         <div className="error-message"><FormattedMessage id={error} /></div>
                     }
-                    <button type="submit" className="btn"><FormattedMessage id="signInLocale" /></button>
+                    <div className="centered">
+                        <button type="submit" className="btn"><FormattedMessage id="signInLocale" /></button>
+                    </div>
                     <div className="b-outline"></div>
-                    <Link to="/sign-up" className="link dotted-link">
-                        <FormattedMessage id="signUp" />
-                    </Link>
+                    <div className="centered">
+                        <Link to="/sign-up" className="link dotted-link">
+                            <FormattedMessage id="signUp" />
+                        </Link>
+                    </div>
                 </form>
             </div>
         </section>

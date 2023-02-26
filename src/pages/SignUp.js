@@ -199,7 +199,9 @@ export default function SignUp() {
                     {errors?.other &&
                         <div className="error-message"><FormattedMessage id={errors?.other} /></div>
                     }
-                    <button className="btn" disabled={formHasErrors()}><FormattedMessage id="signUp" /></button>
+                    <div className="centered">
+                        <button className="btn" disabled={formHasErrors()}><FormattedMessage id="signUp" /></button>
+                    </div>
                 </form>
             </div>
         </section >
