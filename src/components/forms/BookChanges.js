@@ -77,7 +77,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
     }
 
     return (
-        <form id="book-changes" className="round-bordered-subject block-container changes" onSubmit={handleSubmit}>
+        <form id="book-changes" className="form" onSubmit={handleSubmit}>
             <label htmlFor="title"><FormattedMessage id="bookTitle" />:</label>
             <input
                 className={errors?.title ? 'red-border' : ''}
@@ -155,7 +155,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                 required
             />
             {error &&
-                <div className="error-message">{error}</div>
+                <div className="error-message"><FormattedMessage id={error} /></div>
             }
         </form>
     );
