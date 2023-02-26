@@ -13,6 +13,7 @@
   --color_input_border: #213138;
   --color_link_active: #1bb194;
   --color_border_light: #203137;
+  --color_message: #c5c7c8;
 }
 
 * {
@@ -156,11 +157,6 @@ a>button {
 .b-outline {
   border-bottom: 1px solid var(--color_border_light);
   width: 100%;
-}
-
-.container {
-  width: 95%;
-  margin: auto;
 }
 
 .field-error {
@@ -329,6 +325,12 @@ footer select option {
 .main-page-message {
   text-align: center;
   margin-top: 30px;
+  background-color: var(--color_background_light);
+  color: var(--color_message);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /* Books, Users, Orders Page */

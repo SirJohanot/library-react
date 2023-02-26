@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <section id="main-content">
             <div id="main-content-centered-element">
-                <div className="container round-bordered-subject main-page-message">
+                <div className="main-page-message">
                     <h1><FormattedMessage id="greetingsMessage" />, {authentication?.login}</h1>
                 </div>
             </div>
