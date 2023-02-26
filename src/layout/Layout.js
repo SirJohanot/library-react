@@ -7,7 +7,9 @@ export default function Layout({ setCurrentLocale }) {
     return (
         <>
             <Header />
-            <Outlet />
+            <section id="main-content">
+                <Outlet />
+            </section>
             <Footer setCurrentLocale={setCurrentLocale} />
         </>
     );

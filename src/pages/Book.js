@@ -46,23 +46,21 @@ export default function Book() {
     }
 
     return (
-        <section id="main-content">
-            <div id="main-content-centered-element">
-                <div className="round-bordered-subject block-container">
-                    <BookParameters book={book} />
-                </div>
-                {(authentication?.roles.includes('READER') && book?.amount > 0) &&
-                    <BookOrderForm bookId={book?.id} />
-                }
-                {authentication?.roles.includes('ADMIN') &&
-                    <div className="buttons-container">
-                        <button className="red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
-                        <Link to={`/book/${id}/edit`}>
-                            <button><FormattedMessage id="edit" /></button>
-                        </Link>
-                    </div>
-                }
+        <>
+            <div className="round-bordered-subject block-container">
+                <BookParameters book={book} />
             </div>
-        </section>
+            {(authentication?.roles.includes('READER') && book?.amount > 0) &&
+                <BookOrderForm bookId={book?.id} />
+            }
+            {authentication?.roles.includes('ADMIN') &&
+                <div className="buttons-container">
+                    <button className="red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
+                    <Link to={`/book/${id}/edit`}>
+                        <button><FormattedMessage id="edit" /></button>
+                    </Link>
+                </div>
+            }
+        </>
     )
 }

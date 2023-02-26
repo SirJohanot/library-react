@@ -23,17 +23,15 @@ export default function Users() {
     }, []);
 
     return (
-        <section id="main-content">
-            <div id="main-content-centered-element">
-                {displayedUsers.map((user) =>
-                    <Link to={`/user/${user.login}`} key={user.id}>
-                        <button className="round-bordered-subject block-container">
-                            <UserParameters user={user} />
-                        </button>
-                    </Link>
-                )}
-                <PaginationBar items={users} setDisplayedItems={setDisplayedUsers} maxItemsPerPage={5} initialPage={1} />
-            </div>
-        </section>
+        <>
+            {displayedUsers.map((user) =>
+                <Link to={`/user/${user.login}`} key={user.id}>
+                    <button className="round-bordered-subject block-container">
+                        <UserParameters user={user} />
+                    </button>
+                </Link>
+            )}
+            <PaginationBar items={users} setDisplayedItems={setDisplayedUsers} maxItemsPerPage={5} initialPage={1} />
+        </>
     );
 }

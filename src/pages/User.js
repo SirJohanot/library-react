@@ -42,19 +42,17 @@ export default function User() {
     }
 
     return (
-        <section id="main-content">
-            <div id="main-content-centered-element">
-                <div className="round-bordered-subject block-container">
-                    <UserParameters user={user} />
-                </div>
-                {user?.role !== 'ADMIN' &&
-                    <div className="buttons-container">
-                        <button className="red" onClick={handleBlockButton}><FormattedMessage id={user?.blocked ? "unblock" : "block"} /></button>
-                        <Link to={`/user/${login}/edit`}>
-                            <button><FormattedMessage id="edit" /></button>
-                        </Link>
-                    </div>}
+        <>
+            <div className="round-bordered-subject block-container">
+                <UserParameters user={user} />
             </div>
-        </section>
+            {user?.role !== 'ADMIN' &&
+                <div className="buttons-container">
+                    <button className="red" onClick={handleBlockButton}><FormattedMessage id={user?.blocked ? "unblock" : "block"} /></button>
+                    <Link to={`/user/${login}/edit`}>
+                        <button><FormattedMessage id="edit" /></button>
+                    </Link>
+                </div>}
+        </>
     );
 }

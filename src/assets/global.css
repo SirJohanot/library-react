@@ -46,12 +46,15 @@ body {
 #root>#main-content {
   flex-grow: 1;
   margin-top: 68px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#main-content-centered-element {
+#main-content>* {
   width: 45%;
-  padding: 5px;
-  margin: auto;
 }
 
 body {

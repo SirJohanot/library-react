@@ -23,17 +23,15 @@ export default function Orders() {
     }, []);
 
     return (
-        <section id="main-content">
-            <div id="main-content-centered-element">
-                {displayedOrders.map((order) =>
-                    <Link to={`/order/${order.id}`} key={order.id}>
-                        <button className="round-bordered-subject block-container">
-                            <OrderParameters order={order} />
-                        </button>
-                    </Link>
-                )}
-                <PaginationBar items={orders} setDisplayedItems={setDisplayedOrders} maxItemsPerPage={5} initialPage={1} />
-            </div>
-        </section>
+        <>
+            {displayedOrders.map((order) =>
+                <Link to={`/order/${order.id}`} key={order.id}>
+                    <button className="round-bordered-subject block-container">
+                        <OrderParameters order={order} />
+                    </button>
+                </Link>
+            )}
+            <PaginationBar items={orders} setDisplayedItems={setDisplayedOrders} maxItemsPerPage={5} initialPage={1} />
+        </>
     );
 }

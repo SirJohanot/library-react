@@ -105,62 +105,60 @@ export default function EditUser() {
     }
 
     return (
-        <section id="main-content">
-            <div id="main-content-centered-element">
-                <form id="user-changes" className="round-bordered-subject block-container changes" onSubmit={handleSubmit}>
-                    <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
-                    <label htmlFor="first-name"><FormattedMessage id="firstName" />:</label>
-                    <input
-                        className={errors?.firstName ? 'red-border' : ''}
-                        type="text"
-                        id="first-name"
-                        name="firstName"
-                        value={user?.firstName}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors?.firstName &&
-                        <div className="field-error"><FormattedMessage id={errors?.firstName} /></div>
-                    }
-                    <label htmlFor="last-name"><FormattedMessage id="lastName" />:</label>
-                    <input
-                        className={errors?.lastName ? 'red-border' : ''}
-                        type="text"
-                        id="last-name"
-                        name="lastName"
-                        value={user?.lastName}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors?.lastName &&
-                        <div className="field-error"><FormattedMessage id={errors?.lastName} /></div>
-                    }
-                    <label htmlFor="role"><FormattedMessage id="role" />:</label>
-                    <select
-                        id="role"
-                        name="role"
-                        value={user?.role}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value="READER">
-                            <FormattedMessage id="READER" />
-                        </option>
-                        <option value="LIBRARIAN">
-                            <FormattedMessage id="LIBRARIAN" />
-                        </option>
-                    </select>
-                    {errors?.other &&
-                        <div className="error-message">{errors?.other}</div>
-                    }
-                </form>
-                <div className="buttons-container">
-                    <Link to={`/user/${login}`}>
-                        <CancelButton />
-                    </Link>
-                    <button type="submit" form="user-changes" className="green" disabled={formHasErrors()}><FormattedMessage id="commitChanges" /></button>
-                </div>
+        <>
+            <form id="user-changes" className="round-bordered-subject block-container changes" onSubmit={handleSubmit}>
+                <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
+                <label htmlFor="first-name"><FormattedMessage id="firstName" />:</label>
+                <input
+                    className={errors?.firstName ? 'red-border' : ''}
+                    type="text"
+                    id="first-name"
+                    name="firstName"
+                    value={user?.firstName}
+                    onChange={handleChange}
+                    required
+                />
+                {errors?.firstName &&
+                    <div className="field-error"><FormattedMessage id={errors?.firstName} /></div>
+                }
+                <label htmlFor="last-name"><FormattedMessage id="lastName" />:</label>
+                <input
+                    className={errors?.lastName ? 'red-border' : ''}
+                    type="text"
+                    id="last-name"
+                    name="lastName"
+                    value={user?.lastName}
+                    onChange={handleChange}
+                    required
+                />
+                {errors?.lastName &&
+                    <div className="field-error"><FormattedMessage id={errors?.lastName} /></div>
+                }
+                <label htmlFor="role"><FormattedMessage id="role" />:</label>
+                <select
+                    id="role"
+                    name="role"
+                    value={user?.role}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="READER">
+                        <FormattedMessage id="READER" />
+                    </option>
+                    <option value="LIBRARIAN">
+                        <FormattedMessage id="LIBRARIAN" />
+                    </option>
+                </select>
+                {errors?.other &&
+                    <div className="error-message">{errors?.other}</div>
+                }
+            </form>
+            <div className="buttons-container">
+                <Link to={`/user/${login}`}>
+                    <CancelButton />
+                </Link>
+                <button type="submit" form="user-changes" disabled={formHasErrors()}><FormattedMessage id="commitChanges" /></button>
             </div>
-        </section>
+        </>
     )
 }

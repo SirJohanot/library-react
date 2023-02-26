@@ -23,18 +23,18 @@ export default function Books() {
     }, []);
 
     return (
-        <section id="main-content">
-            <div id="main-content-centered-element">
-                {displayedBooks.map((book) =>
+        <>
+            {
+                displayedBooks.map((book) =>
                     !book.deleted &&
                     <Link to={`/book/${book.id}`} key={book.id}>
                         <button className="round-bordered-subject block-container">
                             <BookParameters book={book} />
                         </button>
                     </Link>
-                )}
-                <PaginationBar items={books} setDisplayedItems={setDisplayedBooks} maxItemsPerPage={5} initialPage={1} />
-            </div>
-        </section>
+                )
+            }
+            <PaginationBar items={books} setDisplayedItems={setDisplayedBooks} maxItemsPerPage={5} initialPage={1} />
+        </>
     );
 }

@@ -127,83 +127,79 @@ export default function SignUp() {
     }
 
     return (
-        <section id="main-content">
-            <div id="main-content-centered-element">
-                <form className="form" autoComplete="on" onSubmit={handleSubmit}>
-                    <input
-                        className={errors?.login ? 'red-border' : ''}
-                        type="text"
-                        id="login"
-                        name="login"
-                        value={signUpCredentials?.login}
-                        onChange={handleChange}
-                        ref={loginRef}
-                        placeholder={intl.formatMessage({ id: 'loginLocale' })}
-                        required
-                    />
-                    {errors?.login &&
-                        <div className="field-error"><FormattedMessage id={errors?.login} /></div>
-                    }
-                    <input
-                        className={errors?.password ? 'red-border' : ''}
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={signUpCredentials?.password}
-                        onChange={handleChange}
-                        placeholder={intl.formatMessage({ id: 'passwordLocale' })}
-                        required
-                    />
-                    {errors?.password &&
-                        <div className="field-error"><FormattedMessage id={errors?.password} /></div>
-                    }
-                    <input
-                        className={errors?.confirmedPassword ? 'red-border' : ''}
-                        type="password"
-                        id="confirmed-password"
-                        name="confirmedPassword"
-                        value={signUpCredentials?.confirmedPassword}
-                        onChange={handleChange}
-                        placeholder={intl.formatMessage({ id: 'confirmPassword' })}
-                        required
-                    />
-                    {errors?.confirmedPassword &&
-                        <div className="field-error"><FormattedMessage id={errors?.confirmedPassword} /></div>
-                    }
-                    <input
-                        className={errors?.firstName ? 'red-border' : ''}
-                        type="text"
-                        id="first-name"
-                        name="firstName"
-                        value={signUpCredentials?.firstName}
-                        onChange={handleChange}
-                        placeholder={intl.formatMessage({ id: 'firstName' })}
-                        required
-                    />
-                    {errors?.firstName &&
-                        <div className="field-error"><FormattedMessage id={errors?.firstName} /></div>
-                    }
-                    <input
-                        className={errors?.lastName ? 'red-border' : ''}
-                        type="text"
-                        id="last-name"
-                        name="lastName"
-                        value={signUpCredentials?.lastName}
-                        onChange={handleChange}
-                        placeholder={intl.formatMessage({ id: 'lastName' })}
-                        required
-                    />
-                    {errors?.lastName &&
-                        <div className="field-error"><FormattedMessage id={errors?.lastName} /></div>
-                    }
-                    {errors?.other &&
-                        <div className="error-message"><FormattedMessage id={errors?.other} /></div>
-                    }
-                    <div className="centered">
-                        <button className="btn" disabled={formHasErrors()}><FormattedMessage id="signUp" /></button>
-                    </div>
-                </form>
+        <form className="form" autoComplete="on" onSubmit={handleSubmit}>
+            <input
+                className={errors?.login ? 'red-border' : ''}
+                type="text"
+                id="login"
+                name="login"
+                value={signUpCredentials?.login}
+                onChange={handleChange}
+                ref={loginRef}
+                placeholder={intl.formatMessage({ id: 'loginLocale' })}
+                required
+            />
+            {errors?.login &&
+                <div className="field-error"><FormattedMessage id={errors?.login} /></div>
+            }
+            <input
+                className={errors?.password ? 'red-border' : ''}
+                type="password"
+                id="password"
+                name="password"
+                value={signUpCredentials?.password}
+                onChange={handleChange}
+                placeholder={intl.formatMessage({ id: 'passwordLocale' })}
+                required
+            />
+            {errors?.password &&
+                <div className="field-error"><FormattedMessage id={errors?.password} /></div>
+            }
+            <input
+                className={errors?.confirmedPassword ? 'red-border' : ''}
+                type="password"
+                id="confirmed-password"
+                name="confirmedPassword"
+                value={signUpCredentials?.confirmedPassword}
+                onChange={handleChange}
+                placeholder={intl.formatMessage({ id: 'confirmPassword' })}
+                required
+            />
+            {errors?.confirmedPassword &&
+                <div className="field-error"><FormattedMessage id={errors?.confirmedPassword} /></div>
+            }
+            <input
+                className={errors?.firstName ? 'red-border' : ''}
+                type="text"
+                id="first-name"
+                name="firstName"
+                value={signUpCredentials?.firstName}
+                onChange={handleChange}
+                placeholder={intl.formatMessage({ id: 'firstName' })}
+                required
+            />
+            {errors?.firstName &&
+                <div className="field-error"><FormattedMessage id={errors?.firstName} /></div>
+            }
+            <input
+                className={errors?.lastName ? 'red-border' : ''}
+                type="text"
+                id="last-name"
+                name="lastName"
+                value={signUpCredentials?.lastName}
+                onChange={handleChange}
+                placeholder={intl.formatMessage({ id: 'lastName' })}
+                required
+            />
+            {errors?.lastName &&
+                <div className="field-error"><FormattedMessage id={errors?.lastName} /></div>
+            }
+            {errors?.other &&
+                <div className="error-message"><FormattedMessage id={errors?.other} /></div>
+            }
+            <div className="centered">
+                <button className="btn" disabled={formHasErrors()}><FormattedMessage id="signUp" /></button>
             </div>
-        </section >
+        </form>
     );
 }

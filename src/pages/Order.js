@@ -45,22 +45,20 @@ export default function Order() {
     }
 
     return (
-        <section id="main-content">
-            <div id="main-content-centered-element">
-                <div className="round-bordered-subject block-container">
-                    <OrderParameters order={order} />
-                </div>
-                {(authentication?.roles?.includes('LIBRARIAN') && order?.state === 'PLACED') &&
-                    <div className="buttons-container">
-                        <button className="red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
-                        <button className="green" onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
-                    </div>}
-                {authentication?.roles?.includes('READER') &&
-                    <div className="buttons-container">
-                        {order?.state === 'APPROVED' && <button onClick={() => handleStateChange('collect')}><FormattedMessage id="collectOrder" /></button>}
-                        {order?.state === 'BOOK_TAKEN' && <button onClick={() => handleStateChange('return')}><FormattedMessage id="returnOrder" /></button>}
-                    </div>}
+        <>
+            <div className="round-bordered-subject block-container">
+                <OrderParameters order={order} />
             </div>
-        </section>
+            {(authentication?.roles?.includes('LIBRARIAN') && order?.state === 'PLACED') &&
+                <div className="buttons-container">
+                    <button className="red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
+                    <button onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
+                </div>}
+            {authentication?.roles?.includes('READER') &&
+                <div className="buttons-container">
+                    {order?.state === 'APPROVED' && <button onClick={() => handleStateChange('collect')}><FormattedMessage id="collectOrder" /></button>}
+                    {order?.state === 'BOOK_TAKEN' && <button onClick={() => handleStateChange('return')}><FormattedMessage id="returnOrder" /></button>}
+                </div>}
+        </>
     );
 }
