@@ -75,12 +75,21 @@ export default function EditBook() {
     return (
         <section id="main-content">
             <div id="main-content-centered-element">
-                <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} setDisabled={setDisabled} />
-                <div className="buttons-container">
-                    <Link to={`/book/${id}`}>
-                        <CancelButton />
-                    </Link>
-                    <button type="submit" form="book-changes" className="green" disabled={disabled}><FormattedMessage id="commitChanges" /></button>
+                <div className="form-content">
+                    <div className="form-header">
+                        <h2 className="col"><FormattedMessage id="edit" /></h2>
+                        <div className="col-auto centered">
+                            <Link to={`/book/${id}`}>
+                                <CancelButton />
+                            </Link>
+                        </div>
+                    </div>
+                    <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} setDisabled={setDisabled} />
+                    <div className="form-actions">
+                        <div className="col-50">
+                            <button type="submit" form="book-changes" className="btn" disabled={disabled}><FormattedMessage id="commitChanges" /></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
