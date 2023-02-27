@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { Link, useNavigate } from 'react-router-dom';
+import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import BookChanges from '../components/forms/BookChanges';
-import CancelButton from '../components/ui/CancelButton';
+import FormWrapper from '../components/forms/FormWrapper';
 
 const ADD_BOOK_METHOD = 'post';
 const ADD_BOOK_URL = '/books';
 
 export default function AddBook() {
+    const intl = useIntl();
+
     const navigate = useNavigate();
 
     const [book, setBook] = useState({
@@ -49,21 +51,8 @@ export default function AddBook() {
     }
 
     return (
-        <div className="form-content">
-            <div className="form-header">
-                <h2 className="col"><FormattedMessage id="addABook" /></h2>
-                <div className="col-auto centered">
-                    <Link to="/books/">
-                        <CancelButton />
-                    </Link>
-                </div>
-            </div>
+        <FormWrapper formName={intl.formatMessage({ id: 'addABook' })} formId="book-changes" cancelPath="/books/" submitDisabled={disabled} submitName={intl.formatMessage({ id: 'add' })} >
             <BookChanges book={book} setBook={setBook} handleSubmit={handleSubmit} error={error} setDisabled={setDisabled} />
-            <div className="form-actions">
-                <div className="col-50">
-                    <button type="submit" form="book-changes" className="btn" disabled={disabled}><FormattedMessage id="add" /></button>
-                </div>
-            </div>
-        </div>
+        </FormWrapper>
     );
 }
