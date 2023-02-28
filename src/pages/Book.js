@@ -3,6 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import BookOrderForm from '../components/forms/BookOrderForm';
+import FormWrapper from '../components/forms/FormWrapper';
 import BookParameters from '../components/view/BookParameters';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -51,7 +52,9 @@ export default function Book() {
                 <BookParameters book={book} />
             </div>
             {(authentication?.roles.includes('READER') && book?.amount > 0) &&
-                <BookOrderForm bookId={book?.id} />
+                <FormWrapper formName={intl.formatMessage({ id: 'order' })} formId="order-book" cancelPath="/books/" submitDisabled={false} submitName={intl.formatMessage({ id: 'order' })}>
+                    <BookOrderForm bookId={book?.id} />
+                </FormWrapper>
             }
             {authentication?.roles.includes('ADMIN') &&
                 <div className="buttons-container">
