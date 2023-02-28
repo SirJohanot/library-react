@@ -51,6 +51,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 #main-content>* {
@@ -181,7 +182,6 @@ html::-webkit-scrollbar-thumb {
 }
 
 .form input {
-  width: 100%;
   padding: 0.45rem 0.75rem 0.3rem;
   color: var(--color_input_text);
   background-color: var(--color_input_background);
