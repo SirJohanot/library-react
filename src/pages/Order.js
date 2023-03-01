@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
+import LoadingBars from '../components/ui/LoadingBars';
 import OrderParameters from '../components/view/OrderParameters';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -18,7 +19,7 @@ export default function Order() {
 
     const navigate = useNavigate();
 
-    const [order, setOrder] = useState({});
+    const [order, setOrder] = useState();
 
     const fetchOrder = useCallback(async () => {
         const response = await axios.request({
@@ -45,20 +46,24 @@ export default function Order() {
     }
 
     return (
-        <>
-            <div className="round-bordered-subject block-container">
-                <OrderParameters order={order} />
-            </div>
-            {(authentication?.roles?.includes('LIBRARIAN') && order?.state === 'PLACED') &&
-                <div className="buttons-container">
-                    <button className="red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
-                    <button onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
-                </div>}
-            {authentication?.roles?.includes('READER') &&
-                <div className="buttons-container">
-                    {order?.state === 'APPROVED' && <button onClick={() => handleStateChange('collect')}><FormattedMessage id="collectOrder" /></button>}
-                    {order?.state === 'BOOK_TAKEN' && <button onClick={() => handleStateChange('return')}><FormattedMessage id="returnOrder" /></button>}
-                </div>}
+        <>{order ?
+            <>
+                <div className="round-bordered-subject block-container">
+                    <OrderParameters order={order} />
+                </div>
+                {(authentication?.roles?.includes('LIBRARIAN') && order?.state === 'PLACED') &&
+                    <div className="buttons-container">
+                        <button className="red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
+                        <button onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
+                    </div>}
+                {authentication?.roles?.includes('READER') &&
+                    <div className="buttons-container">
+                        {order?.state === 'APPROVED' && <button onClick={() => handleStateChange('collect')}><FormattedMessage id="collectOrder" /></button>}
+                        {order?.state === 'BOOK_TAKEN' && <button onClick={() => handleStateChange('return')}><FormattedMessage id="returnOrder" /></button>}
+                    </div>}
+            </>
+            : <LoadingBars />
+        }
         </>
     );
 }

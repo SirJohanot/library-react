@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
+import LoadingBars from '../components/ui/LoadingBars';
 import PaginationBar from '../components/ui/PaginationBar';
 import UserParameters from '../components/view/UserParameters';
 
@@ -8,7 +9,7 @@ const GET_USERS_METHOD = 'get';
 const GET_USERS_URL = '/users';
 
 export default function Users() {
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState();
     const [displayedUsers, setDisplayedUsers] = useState([]);
 
     useEffect(() => {
@@ -24,14 +25,19 @@ export default function Users() {
 
     return (
         <>
-            {displayedUsers.map((user) =>
-                <Link to={`/user/${user.login}`} key={user.id}>
-                    <button className="round-bordered-subject block-container">
-                        <UserParameters user={user} />
-                    </button>
-                </Link>
-            )}
-            <PaginationBar items={users} setDisplayedItems={setDisplayedUsers} maxItemsPerPage={5} initialPage={1} />
+            {users ?
+                <>
+                    {displayedUsers.map((user) =>
+                        <Link to={`/user/${user.login}`} key={user.id}>
+                            <button className="round-bordered-subject block-container">
+                                <UserParameters user={user} />
+                            </button>
+                        </Link>
+                    )}
+                    <PaginationBar items={users} setDisplayedItems={setDisplayedUsers} maxItemsPerPage={5} initialPage={1} />
+                </>
+                : <LoadingBars />
+            }
         </>
     );
 }

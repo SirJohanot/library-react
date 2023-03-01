@@ -3,6 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import FormWrapper from '../components/forms/FormWrapper';
+import LoadingBars from '../components/ui/LoadingBars';
 import { isHumanName } from '../utility/validator';
 
 const GET_USER_METHOD = 'get';
@@ -108,55 +109,60 @@ export default function EditUser() {
 
     return (
         <>
-            <FormWrapper formName={intl.formatMessage({ id: 'edit' })} formId="user-changes" cancelPath={`/user/${login}`} submitDisabled={formHasErrors()} submitName={intl.formatMessage({ id: 'commitChanges' })}>
-                <form id="user-changes" className="form" onSubmit={handleSubmit}>
-                    <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
-                    <label htmlFor="first-name"><FormattedMessage id="firstName" />:</label>
-                    <input
-                        className={errors?.firstName ? 'red-border' : ''}
-                        type="text"
-                        id="first-name"
-                        name="firstName"
-                        value={user?.firstName}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors?.firstName &&
-                        <div className="field-error"><FormattedMessage id={errors?.firstName} /></div>
-                    }
-                    <label htmlFor="last-name"><FormattedMessage id="lastName" />:</label>
-                    <input
-                        className={errors?.lastName ? 'red-border' : ''}
-                        type="text"
-                        id="last-name"
-                        name="lastName"
-                        value={user?.lastName}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors?.lastName &&
-                        <div className="field-error"><FormattedMessage id={errors?.lastName} /></div>
-                    }
-                    <label htmlFor="role"><FormattedMessage id="role" />:</label>
-                    <select
-                        id="role"
-                        name="role"
-                        value={user?.role}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value="READER">
-                            <FormattedMessage id="READER" />
-                        </option>
-                        <option value="LIBRARIAN">
-                            <FormattedMessage id="LIBRARIAN" />
-                        </option>
-                    </select>
-                    {errors?.other &&
-                        <div className="error-message">{errors?.other}</div>
-                    }
-                </form>
-            </FormWrapper>
+            {user?.role ?
+                <>
+                    <FormWrapper formName={intl.formatMessage({ id: 'edit' })} formId="user-changes" cancelPath={`/user/${login}`} submitDisabled={formHasErrors()} submitName={intl.formatMessage({ id: 'commitChanges' })}>
+                        <form id="user-changes" className="form" onSubmit={handleSubmit}>
+                            <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
+                            <label htmlFor="first-name"><FormattedMessage id="firstName" />:</label>
+                            <input
+                                className={errors?.firstName ? 'red-border' : ''}
+                                type="text"
+                                id="first-name"
+                                name="firstName"
+                                value={user?.firstName}
+                                onChange={handleChange}
+                                required
+                            />
+                            {errors?.firstName &&
+                                <div className="field-error"><FormattedMessage id={errors?.firstName} /></div>
+                            }
+                            <label htmlFor="last-name"><FormattedMessage id="lastName" />:</label>
+                            <input
+                                className={errors?.lastName ? 'red-border' : ''}
+                                type="text"
+                                id="last-name"
+                                name="lastName"
+                                value={user?.lastName}
+                                onChange={handleChange}
+                                required
+                            />
+                            {errors?.lastName &&
+                                <div className="field-error"><FormattedMessage id={errors?.lastName} /></div>
+                            }
+                            <label htmlFor="role"><FormattedMessage id="role" />:</label>
+                            <select
+                                id="role"
+                                name="role"
+                                value={user?.role}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="READER">
+                                    <FormattedMessage id="READER" />
+                                </option>
+                                <option value="LIBRARIAN">
+                                    <FormattedMessage id="LIBRARIAN" />
+                                </option>
+                            </select>
+                            {errors?.other &&
+                                <div className="error-message">{errors?.other}</div>
+                            }
+                        </form>
+                    </FormWrapper>
+                </>
+                : <LoadingBars />
+            }
         </>
     )
 }

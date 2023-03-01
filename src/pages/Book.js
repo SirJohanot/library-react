@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import BookOrderForm from '../components/forms/BookOrderForm';
 import FormWrapper from '../components/forms/FormWrapper';
+import LoadingBars from '../components/ui/LoadingBars';
 import BookParameters from '../components/view/BookParameters';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -22,7 +23,7 @@ export default function Book() {
 
     const navigate = useNavigate();
 
-    const [book, setBook] = useState({});
+    const [book, setBook] = useState();
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -48,21 +49,26 @@ export default function Book() {
 
     return (
         <>
-            <div className="round-bordered-subject block-container">
-                <BookParameters book={book} />
-            </div>
-            {(authentication?.roles.includes('READER') && book?.amount > 0) &&
-                <FormWrapper formName={intl.formatMessage({ id: 'order' })} formId="order-book" cancelPath="/books/" submitDisabled={false} submitName={intl.formatMessage({ id: 'order' })}>
-                    <BookOrderForm bookId={book?.id} />
-                </FormWrapper>
-            }
-            {authentication?.roles.includes('ADMIN') &&
-                <div className="buttons-container">
-                    <button className="red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
-                    <Link to={`/book/${id}/edit`}>
-                        <button><FormattedMessage id="edit" /></button>
-                    </Link>
-                </div>
+            {book ?
+                <>
+                    <div className="round-bordered-subject block-container">
+                        <BookParameters book={book} />
+                    </div>
+                    {(authentication?.roles.includes('READER') && book?.amount > 0) &&
+                        <FormWrapper formName={intl.formatMessage({ id: 'order' })} formId="order-book" cancelPath="/books/" submitDisabled={false} submitName={intl.formatMessage({ id: 'order' })}>
+                            <BookOrderForm bookId={book?.id} />
+                        </FormWrapper>
+                    }
+                    {authentication?.roles.includes('ADMIN') &&
+                        <div className="buttons-container">
+                            <button className="red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
+                            <Link to={`/book/${id}/edit`}>
+                                <button><FormattedMessage id="edit" /></button>
+                            </Link>
+                        </div>
+                    }
+                </>
+                : <LoadingBars />
             }
         </>
     )

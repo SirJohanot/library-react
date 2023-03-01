@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useParams } from 'react-router-dom';
 import axios from '../api/axios';
+import LoadingBars from '../components/ui/LoadingBars';
 import UserParameters from '../components/view/UserParameters';
 
 const GET_USER_METHOD = 'get';
@@ -14,7 +15,7 @@ export default function User() {
 
     const { login } = useParams();
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState();
 
     const fetchUser = useCallback(async () => {
         const response = await axios.request({
@@ -43,16 +44,22 @@ export default function User() {
 
     return (
         <>
-            <div className="round-bordered-subject block-container">
-                <UserParameters user={user} />
-            </div>
-            {user?.role !== 'ADMIN' &&
-                <div className="buttons-container">
-                    <button className="red" onClick={handleBlockButton}><FormattedMessage id={user?.blocked ? "unblock" : "block"} /></button>
-                    <Link to={`/user/${login}/edit`}>
-                        <button><FormattedMessage id="edit" /></button>
-                    </Link>
-                </div>}
+            {user ?
+                <>
+                    <div className="round-bordered-subject block-container">
+                        <UserParameters user={user} />
+                    </div>
+                    {user?.role !== 'ADMIN' &&
+                        <div className="buttons-container">
+                            <button className="red" onClick={handleBlockButton}><FormattedMessage id={user?.blocked ? "unblock" : "block"} /></button>
+                            <Link to={`/user/${login}/edit`}>
+                                <button><FormattedMessage id="edit" /></button>
+                            </Link>
+                        </div>
+                    }
+                </>
+                : <LoadingBars />
+            }
         </>
     );
 }
