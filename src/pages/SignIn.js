@@ -81,7 +81,7 @@ export default function SignIn() {
     }
 
     return (
-        <div class="centered">
+        <div className="centered">
             <form className="form smaller-form" autoComplete="on" onSubmit={handleSubmit}>
                 <input
                     className={!credentials?.login ? 'red-border' : ''}

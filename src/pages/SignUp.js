@@ -127,7 +127,7 @@ export default function SignUp() {
     }
 
     return (
-        <div class="centered">
+        <div className="centered">
             <form className="form smaller-form" autoComplete="on" onSubmit={handleSubmit}>
                 <input
                     className={errors?.login ? 'red-border' : ''}
