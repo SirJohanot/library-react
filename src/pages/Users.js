@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
 import LoadingBars from '../components/ui/LoadingBars';
 import PaginationBar from '../components/ui/PaginationBar';
-import UserParameters from '../components/view/UserParameters';
 
 const GET_USERS_METHOD = 'get';
 const GET_USERS_URL = '/users';
@@ -27,14 +27,41 @@ export default function Users() {
         <>
             {users ?
                 <>
-                    {displayedUsers.map((user) =>
-                        <Link to={`/user/${user.login}`} key={user.id}>
-                            <button className="round-bordered-subject block-container">
-                                <UserParameters user={user} />
-                            </button>
-                        </Link>
-                    )}
-                    <PaginationBar items={users} setDisplayedItems={setDisplayedUsers} maxItemsPerPage={5} initialPage={1} />
+                    <div>
+                        <div className="list-header">
+                            <div className="cell">
+                                <span><FormattedMessage id="loginLocale" /></span>
+                            </div>
+                            <div className="cell">
+                                <span><FormattedMessage id="firstName" /></span>
+                            </div>
+                            <div className="cell">
+                                <span><FormattedMessage id="lastName" /></span>
+                            </div>
+                            <div className="cell">
+                                <span><FormattedMessage id="role" /></span>
+                            </div>
+                        </div>
+                        <div className="items-list">
+                            {displayedUsers.map((user) =>
+                                <div className="row" key={user.id}>
+                                    <Link to={`/user/${user.login}`} className="cell link">
+                                        <span>{user?.login}</span>
+                                    </Link>
+                                    <div className="cell">
+                                        <span>{user?.firstName}</span>
+                                    </div>
+                                    <div className="cell">
+                                        <span>{user?.lastName}</span>
+                                    </div>
+                                    <div className="cell">
+                                        <span><FormattedMessage id={user?.role} /></span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    <PaginationBar items={users} setDisplayedItems={setDisplayedUsers} maxItemsPerPage={10} initialPage={1} />
                 </>
                 : <LoadingBars />
             }
