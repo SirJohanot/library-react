@@ -81,40 +81,42 @@ export default function SignIn() {
     }
 
     return (
-        <form className="form" autoComplete="on" onSubmit={handleSubmit}>
-            <input
-                className={!credentials?.login ? 'red-border' : ''}
-                type="text"
-                id="login"
-                name="login"
-                value={credentials?.login}
-                onChange={handleChange}
-                ref={loginRef}
-                placeholder={intl.formatMessage({ id: 'loginLocale' })}
-                required
-            />
-            <input
-                className={!credentials?.password ? 'red-border' : ''}
-                type="password"
-                id="password"
-                name="password"
-                value={credentials?.password}
-                onChange={handleChange}
-                placeholder={intl.formatMessage({ id: 'passwordLocale' })}
-                required
-            />
-            {error &&
-                <div className="error-message"><FormattedMessage id={error} /></div>
-            }
-            <div className="centered">
-                <button type="submit" className="btn"><FormattedMessage id="signInLocale" /></button>
-            </div>
-            <div className="b-outline"></div>
-            <div className="centered">
-                <Link to="/sign-up" className="link dotted-link">
-                    <FormattedMessage id="signUp" />
-                </Link>
-            </div>
-        </form>
+        <div class="centered">
+            <form className="form smaller-form" autoComplete="on" onSubmit={handleSubmit}>
+                <input
+                    className={!credentials?.login ? 'red-border' : ''}
+                    type="text"
+                    id="login"
+                    name="login"
+                    value={credentials?.login}
+                    onChange={handleChange}
+                    ref={loginRef}
+                    placeholder={intl.formatMessage({ id: 'loginLocale' })}
+                    required
+                />
+                <input
+                    className={!credentials?.password ? 'red-border' : ''}
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={credentials?.password}
+                    onChange={handleChange}
+                    placeholder={intl.formatMessage({ id: 'passwordLocale' })}
+                    required
+                />
+                {error &&
+                    <div className="error-message"><FormattedMessage id={error} /></div>
+                }
+                <div className="centered">
+                    <button type="submit" className="btn"><FormattedMessage id="signInLocale" /></button>
+                </div>
+                <div className="b-outline"></div>
+                <div className="centered">
+                    <Link to="/sign-up" className="link dotted-link">
+                        <FormattedMessage id="signUp" />
+                    </Link>
+                </div>
+            </form>
+        </div>
     )
 }
