@@ -440,20 +440,21 @@ footer select option {
   background-color: var(--color_background);
 }
 
-/* Books, Users, Orders Page */
-.block-container {
+/* Entity Page */
+.entity-container {
   height: max-content;
   width: 100%;
-  margin: 8px auto;
+  padding: 16px 16px;
+  background-color: var(--color_background_light);
 }
 
-.block-container h1,
-.block-container p {
+.entity-container h1,
+.entity-container p {
   overflow: auto;
   margin: 10px auto;
 }
 
-.block-container h1 {
+.entity-container h1 {
   display: block;
   text-align: center;
   font-weight: bold;
@@ -461,33 +462,20 @@ footer select option {
   margin: 10px auto;
 }
 
-.block-container .block-parameters {
-  display: block;
-  width: 100%;
-}
-
-.block-parameters * {
-  display: block;
-  text-align: left;
-  font-size: 18px;
-  width: 100%;
-}
-
 .buttons-container {
   width: 100%;
+  padding: 16px;
+  border-top: 1px solid var(--color_border);
+  background-color: var(--color_background_light);
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin: 10px auto;
-}
-
-.buttons-container * {
-  min-width: 25%;
-  min-height: 60px;
-  font-size: 20px;
+  justify-content: space-around;
 }
 
 .buttons-container>* {
-  margin: 10px auto;
+  flex-grow: 1;
+  max-width: 25%;
 }
 
 .order-options-container {
