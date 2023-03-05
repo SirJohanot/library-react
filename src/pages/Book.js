@@ -48,10 +48,10 @@ export default function Book() {
     }
 
     return (
-        <>
+        <div>
             {book ?
                 <>
-                    <div className="round-bordered-subject block-container">
+                    <div className="entity-container">
                         <BookParameters book={book} />
                     </div>
                     {(authentication?.roles.includes('READER') && book?.amount > 0) &&
@@ -61,15 +61,15 @@ export default function Book() {
                     }
                     {authentication?.roles.includes('ADMIN') &&
                         <div className="buttons-container">
-                            <button className="red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
-                            <Link to={`/book/${id}/edit`}>
-                                <button><FormattedMessage id="edit" /></button>
+                            <button className="btn red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
+                            <Link to={`/book/${id}/edit`} className="btn">
+                                <FormattedMessage id="edit" />
                             </Link>
                         </div>
                     }
                 </>
                 : <LoadingBars />
             }
-        </>
+        </div>
     )
 }
