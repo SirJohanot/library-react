@@ -48,9 +48,9 @@ export default function Book() {
     }
 
     return (
-        <div>
+        <>
             {book ?
-                <>
+                <div>
                     <div className="entity-container">
                         <BookParameters book={book} />
                     </div>
@@ -67,9 +67,9 @@ export default function Book() {
                             </Link>
                         </div>
                     }
-                </>
+                </div>
                 : <LoadingBars />
             }
-        </div>
+        </>
     )
 }
