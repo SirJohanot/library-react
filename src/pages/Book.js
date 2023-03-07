@@ -50,24 +50,26 @@ export default function Book() {
     return (
         <>
             {book ?
-                <div>
-                    <div className="entity-container">
-                        <BookParameters book={book} />
+                <>
+                    <div>
+                        <div className="entity-container">
+                            <BookParameters book={book} />
+                        </div>
+                        {authentication?.roles.includes('ADMIN') &&
+                            <div className="buttons-container">
+                                <button className="btn red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
+                                <Link to={`/book/${id}/edit`} className="btn">
+                                    <FormattedMessage id="edit" />
+                                </Link>
+                            </div>
+                        }
                     </div>
                     {(authentication?.roles.includes('READER') && book?.amount > 0) &&
                         <FormWrapper formName={intl.formatMessage({ id: 'order' })} formId="order-book" cancelPath="/books/" submitDisabled={false} submitName={intl.formatMessage({ id: 'order' })}>
                             <BookOrderForm bookId={book?.id} />
                         </FormWrapper>
                     }
-                    {authentication?.roles.includes('ADMIN') &&
-                        <div className="buttons-container">
-                            <button className="btn red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
-                            <Link to={`/book/${id}/edit`} className="btn">
-                                <FormattedMessage id="edit" />
-                            </Link>
-                        </div>
-                    }
-                </div>
+                </>
                 : <LoadingBars />
             }
         </>
