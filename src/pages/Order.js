@@ -3,7 +3,9 @@ import { FormattedMessage } from 'react-intl';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import LoadingBars from '../components/ui/LoadingBars';
+import BookParameters from '../components/view/BookParameters';
 import OrderParameters from '../components/view/OrderParameters';
+import UserParameters from '../components/view/UserParameters';
 import useAuthentication from '../hooks/useAuthentication';
 
 const GET_ORDER_METHOD = 'get';
@@ -48,19 +50,29 @@ export default function Order() {
     return (
         <>{order ?
             <>
-                <div className="round-bordered-subject block-container">
-                    <OrderParameters order={order} />
+                <div className="entity-container">
+                    <BookParameters book={order?.book} />
                 </div>
-                {(authentication?.roles?.includes('LIBRARIAN') && order?.state === 'PLACED') &&
-                    <div className="buttons-container">
-                        <button className="red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
-                        <button onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
-                    </div>}
-                {authentication?.roles?.includes('READER') &&
-                    <div className="buttons-container">
-                        {order?.state === 'APPROVED' && <button onClick={() => handleStateChange('collect')}><FormattedMessage id="collectOrder" /></button>}
-                        {order?.state === 'BOOK_TAKEN' && <button onClick={() => handleStateChange('return')}><FormattedMessage id="returnOrder" /></button>}
-                    </div>}
+                {order?.user?.login !== authentication?.login &&
+                    <div className="entity-container">
+                        <UserParameters user={order?.user} />
+                    </div>
+                }
+                <div>
+                    <div className="entity-container">
+                        <OrderParameters order={order} />
+                    </div>
+                    {(authentication?.roles?.includes('LIBRARIAN') && order?.state === 'PLACED') &&
+                        <div className="buttons-container">
+                            <button className="btn red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
+                            <button className="btn" onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
+                        </div>}
+                    {(authentication?.roles?.includes('READER') && (order?.state === 'APPROVED' || order?.state === 'BOOK_TAKEN')) &&
+                        <div className="buttons-container">
+                            {order?.state === 'APPROVED' && <button className="btn" onClick={() => handleStateChange('collect')}><FormattedMessage id="collectOrder" /></button>}
+                            {order?.state === 'BOOK_TAKEN' && <button className="btn" onClick={() => handleStateChange('return')}><FormattedMessage id="returnOrder" /></button>}
+                        </div>}
+                </div>
             </>
             : <LoadingBars />
         }
