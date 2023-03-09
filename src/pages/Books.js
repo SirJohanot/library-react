@@ -35,7 +35,7 @@ export default function Books() {
             || book.publisher.name.toLowerCase().includes(keyword)
             || book.publishmentYear.toString().includes(keyword)
             || book.amount.toString().includes(keyword)
-        )
+        );
     }, []);
 
     return (
