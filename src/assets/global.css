@@ -352,12 +352,12 @@ footer select option {
 
 /* Search field */
 .search-field {
-  padding: 0.45rem 0.75rem 0.3rem;
-  color: var(--color_input_text);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background-color: var(--color_input_background);
-  font-size: 14px;
-  line-height: 1.5;
-  border: 0;
   border: 1px solid var(--color_input_border);
   border-radius: 0.15rem;
   background-clip: border-box;
@@ -365,9 +365,38 @@ footer select option {
   box-shadow: inset 0 0 5px 0 rgb(var(--color_input_inner_shadow)/10%);
 }
 
-.search-field:focus {
+.search-field:focus-within {
   border-color: var(--color_link_active);
   outline: 0;
+}
+
+.search-field>input {
+  flex-grow: 1;
+  color: var(--color_input_text);
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0.45rem 0.75rem 0.3rem;
+  background: 0;
+  border: 0;
+  height: 100%;
+}
+
+.search-field>input:focus {
+  border: 0;
+  outline: 0;
+}
+
+.search-field>.btn {
+  height: 100%;
+  flex-grow: 0;
+  background: 0;
+  color: var(--color_input_text);
+  border-left: 1px solid var(--color_input_text);
+}
+
+.search-field>.btn:hover {
+  color: var(--color_link_red_hover);
+  border-left: 1px solid var(--color_link_red_hover);
 }
 
 /* Pagination */
