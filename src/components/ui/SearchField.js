@@ -17,14 +17,19 @@ export default function SearchField({ items, setSearchedItems, itemFitsSearch })
     }, [searchLine, items, setSearchedItems, itemFitsSearch]);
 
     return (
-        <input
-            className="search-field"
-            type="text"
-            id="search"
-            name="search"
-            value={searchLine}
-            onChange={(e) => setSearchLine(e.target.value)}
-            placeholder={intl.formatMessage({ id: 'search' })}
-        />
+        <div className="search-field">
+            <input
+                type="text"
+                id="search"
+                name="search"
+                value={searchLine}
+                onChange={(e) => setSearchLine(e.target.value)}
+                placeholder={intl.formatMessage({ id: 'search' })}
+                autoComplete="off"
+            />
+            {searchLine &&
+                <button className="btn" onClick={() => setSearchLine('')}>X</button>
+            }
+        </div>
     );
 }
