@@ -1,10 +1,11 @@
 import moment from 'moment/moment';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
 import LoadingBars from '../components/ui/LoadingBars';
 import PaginationBar from '../components/ui/PaginationBar';
+import SearchField from '../components/ui/SearchField';
 
 const GET_ORDERS_METHOD = 'get';
 const GET_ORDERS_URL = '/orders';
@@ -13,6 +14,7 @@ export default function Orders() {
     const intl = useIntl();
 
     const [orders, setOrders] = useState();
+    const [searchedOrders, setSearchedOrders] = useState([]);
     const [displayedOrders, setDisplayedOrders] = useState([]);
 
     useEffect(() => {
@@ -26,9 +28,24 @@ export default function Orders() {
         fetchOrders();
     }, []);
 
+    const orderFitsSearch = useCallback((order, line) => {
+        const lowercaseLine = line.toLowerCase();
+        const lowercaseLineKeywords = lowercaseLine.split(' ');
+        return lowercaseLineKeywords.every(keyword =>
+            order.book.title.toLowerCase().includes(keyword)
+            || order.user.login.toLowerCase().includes(keyword)
+            || order.rentalType.toLowerCase().includes(keyword)
+            || order.startDate.toString().toLowerCase().includes(keyword)
+            || order.endDate.toString().toLowerCase().includes(keyword)
+            || order.returnDate?.toString()?.toLowerCase()?.includes(keyword)
+            || order.state.toLowerCase().includes(keyword)
+        );
+    }, []);
+
     return (
         <>{orders ?
             <>
+                <SearchField items={orders} setSearchedItems={setSearchedOrders} itemFitsSearch={orderFitsSearch} />
                 <div>
                     <div className="list-header">
                         <div className="cell">
@@ -81,7 +98,7 @@ export default function Orders() {
                         )}
                     </div>
                 </div>
-                <PaginationBar items={orders} setDisplayedItems={setDisplayedOrders} maxItemsPerPage={5} initialPage={1} />
+                <PaginationBar items={searchedOrders} setDisplayedItems={setDisplayedOrders} maxItemsPerPage={5} initialPage={1} />
             </>
             : <LoadingBars />
         }
