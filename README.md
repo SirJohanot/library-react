@@ -11,17 +11,15 @@ A front-end application for the library-spring project, built with React JS.
 
 ## Installation
 
-1. Download and unzip `build.zip`
-2. Deploy the application using `serve -s build`
+1. Download and unzip the source code
+2. Specify the `REACT_APP_API_URL` in the [.env](/.env) file with the URL of the deployed [library-spring](https://github.com/SirJohanot/library-spring) API (if left unspecified, the app will assume the following url: `http://localhost:8080`)
+3. Run `npm run build` to build the app
+4. Run `serve -s build` to deploy the app
 
 ## Requirements
 
 - [Node.js](https://nodejs.org/en/)
 - [Serve](https://www.npmjs.com/package/serve)
-
-## Notes
-
-- The application will assume that the `library-spring` REST API is deployed to the `8080` port, which is the default port
 
 ## Developers
 
