@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { Route, Routes } from 'react-router-dom';
-import './assets/global.css';
+import './assets/css/global.css';
 import RequireAthentication from './components/authentication/RequireAuthentication';
 import { LOCALES } from './i18n/locales';
 import { messages } from './i18n/messages';

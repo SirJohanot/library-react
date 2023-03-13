@@ -258,6 +258,15 @@ header {
   box-shadow: 0 0 10px -1px #071013;
 }
 
+header .logotype {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+header .logotype svg,
 header .logotype img {
   height: 50px;
   width: 50px;
