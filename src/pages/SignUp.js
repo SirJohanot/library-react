@@ -32,7 +32,8 @@ export default function SignUp() {
 
     useEffect(() => {
         loginRef.current.focus();
-    }, []);
+        document.title = `${intl.formatMessage({ id: 'signUp' })} | ${intl.formatMessage({ id: 'appName' })}`;
+    }, [intl]);
 
     const validateField = useCallback(
         (key, validateAgainst, errorMessage) => {

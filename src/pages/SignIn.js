@@ -26,7 +26,8 @@ export default function SignIn() {
 
     useEffect(() => {
         loginRef.current.focus();
-    }, []);
+        document.title = `${intl.formatMessage({ id: 'signInLocale' })} | ${intl.formatMessage({ id: 'appName' })}`;
+    }, [intl]);
 
     useEffect(() => {
         setError('');

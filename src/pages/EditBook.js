@@ -38,9 +38,10 @@ export default function EditBook() {
                 publishmentYear: resultBook?.publishmentYear,
                 amount: resultBook?.amount
             });
+            document.title = `${intl.formatMessage({ id: 'edit' })} ${resultBook?.title} | ${intl.formatMessage({ id: 'appName' })}`;
         }
         fetchBook();
-    }, [id])
+    }, [id, intl])
 
     useEffect(() => {
         setError('');

@@ -25,6 +25,10 @@ export default function AddBook() {
     const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
+        document.title = `${intl.formatMessage({ id: 'addABook' })} | ${intl.formatMessage({ id: 'appName' })}`;
+    }, [intl]);
+
+    useEffect(() => {
         setError('');
     }, [book]);
 

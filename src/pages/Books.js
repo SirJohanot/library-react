@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
 import LoadingBars from '../components/ui/LoadingBars';
@@ -10,6 +10,8 @@ const GET_BOOKS_METHOD = 'get';
 const GET_BOOKS_URL = 'books';
 
 export default function Books() {
+    const intl = useIntl();
+
     const [books, setBooks] = useState();
     const [searchedBooks, setSearchedBooks] = useState([]);
     const [displayedBooks, setDisplayedBooks] = useState([]);
@@ -23,7 +25,8 @@ export default function Books() {
             setBooks(response?.data);
         }
         fetchBooks();
-    }, []);
+        document.title = `${intl.formatMessage({ id: 'books' })} | ${intl.formatMessage({ id: 'appName' })}`;
+    }, [intl]);
 
     const bookFitsSearch = useCallback((book, line) => {
         const lowercaseLine = line.toLowerCase();

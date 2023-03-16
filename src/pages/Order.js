@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import LoadingBars from '../components/ui/LoadingBars';
@@ -15,6 +15,8 @@ const CHANGE_ORDER_STATE_METHOD = 'patch';
 const CHANGE_ORDER_STATE_URL = '/orders/';
 
 export default function Order() {
+    const intl = useIntl();
+
     const { authentication } = useAuthentication();
 
     const { id } = useParams();
@@ -29,7 +31,8 @@ export default function Order() {
             url: GET_ORDER_URL + id
         });
         setOrder(response?.data);
-    }, [id]);
+        document.title = `${intl.formatMessage({ id: 'orders' })}: ${response?.data?.book?.title} | ${intl.formatMessage({ id: 'appName' })}`;
+    }, [id, intl]);
 
     useEffect(() => {
         try {

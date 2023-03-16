@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
 import LoadingBars from '../components/ui/LoadingBars';
@@ -10,6 +10,8 @@ const GET_USERS_METHOD = 'get';
 const GET_USERS_URL = '/users';
 
 export default function Users() {
+    const intl = useIntl();
+
     const [users, setUsers] = useState();
     const [searchedUsers, setSearchedUsers] = useState([]);
     const [displayedUsers, setDisplayedUsers] = useState([]);
@@ -23,7 +25,8 @@ export default function Users() {
             setUsers(response?.data);
         }
         fetchUsers();
-    }, []);
+        document.title = `${intl.formatMessage({ id: 'users' })} | ${intl.formatMessage({ id: 'appName' })}`;
+    }, [intl]);
 
     const userFitsSearch = useCallback((user, line) => {
         const lowercaseLine = line.toLowerCase();

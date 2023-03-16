@@ -23,7 +23,8 @@ export default function User() {
             url: GET_USER_URL + login
         });
         setUser(response?.data);
-    }, [login]);
+        document.title = `${response?.data?.login} | ${intl.formatMessage({ id: 'appName' })}`
+    }, [login, intl]);
 
     useEffect(() => {
         fetchUser();

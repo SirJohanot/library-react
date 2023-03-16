@@ -37,9 +37,10 @@ export default function EditUser() {
                 url: GET_USER_URL + login
             });
             setUser(response?.data);
+            document.title = `${intl.formatMessage({ id: 'edit' })} ${response?.data?.login} | ${intl.formatMessage({ id: 'appName' })}`;
         }
         fetchUser();
-    }, [login]);
+    }, [login, intl]);
 
     useEffect(() => {
         setErrors(prev => ({ ...prev, other: '' }));

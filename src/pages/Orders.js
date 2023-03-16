@@ -26,7 +26,8 @@ export default function Orders() {
             setOrders(response?.data);
         }
         fetchOrders();
-    }, []);
+        document.title = `${intl.formatMessage({ id: 'orders' })} | ${intl.formatMessage({ id: 'appName' })}`;
+    }, [intl]);
 
     const orderFitsSearch = useCallback((order, line) => {
         const lowercaseLine = line.toLowerCase();

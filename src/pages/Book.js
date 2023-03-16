@@ -34,7 +34,11 @@ export default function Book() {
             setBook(response?.data);
         }
         fetchBook();
-    }, [id])
+    }, [id]);
+
+    useEffect(() => {
+        document.title = `${book?.title} | ${intl.formatMessage({ id: 'appName' })}`;
+    }, [book, intl]);
 
     const handleDelete = async () => {
         if (!window.confirm(intl.formatMessage({ id: 'deleteConfirmation' }))) {
