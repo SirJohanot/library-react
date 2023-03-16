@@ -10,6 +10,6 @@ export default function GoBackButton() {
     }
 
     return (
-        <button type="button" onClick={(e) => handleGoBack()}><FormattedMessage id="goBack" /></button>
+        <button type="button" className="btn" onClick={(e) => handleGoBack()}><FormattedMessage id="goBack" /></button>
     );
 }
