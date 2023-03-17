@@ -1,6 +1,6 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import CancelButton from '../ui/CancelButton.js';
 
 export default function FormWrapper({ formName, formId, cancelPath, submitDisabled, submitName, children }) {
     return (
@@ -8,8 +8,8 @@ export default function FormWrapper({ formName, formId, cancelPath, submitDisabl
             <div className="form-header">
                 <h2 className="col">{formName}</h2>
                 <div className="col-auto centered">
-                    <Link to={cancelPath}>
-                        <CancelButton />
+                    <Link to={cancelPath} className="btn red">
+                        <FormattedMessage id="cancel" />
                     </Link>
                 </div>
             </div>
