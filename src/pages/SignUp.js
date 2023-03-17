@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import { isHumanName } from '../utility/validator';
 
@@ -201,6 +201,13 @@ export default function SignUp() {
                 }
                 <div className="centered">
                     <button className="btn" disabled={formHasErrors()}><FormattedMessage id="signUp" /></button>
+                </div>
+                <div className="b-outline"></div>
+                <div>
+                    <span>{intl.formatMessage({ id: "alreadyHaveAnAccount" }) + " "}</span>
+                    <Link to="/sign-in" className="link dotted-link">
+                        <FormattedMessage id="signInLocale" />
+                    </Link>
                 </div>
             </form>
         </div>

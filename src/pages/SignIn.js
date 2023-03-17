@@ -112,7 +112,8 @@ export default function SignIn() {
                     <button type="submit" className="btn"><FormattedMessage id="signInLocale" /></button>
                 </div>
                 <div className="b-outline"></div>
-                <div className="centered">
+                <div>
+                    <span>{intl.formatMessage({ id: "dontHaveAnAccount" }) + " "}</span>
                     <Link to="/sign-up" className="link dotted-link">
                         <FormattedMessage id="signUp" />
                     </Link>

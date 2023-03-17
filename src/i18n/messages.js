@@ -75,7 +75,9 @@ export const messages = {
         fieldRequired: 'This field is required',
         passwordsDoNotMatch: 'Passwords do not match',
         alphabetical: 'This field must start with an alphabetical character',
-        failure: 'Failure'
+        failure: 'Failure',
+        dontHaveAnAccount: 'Don\'t have an account?',
+        alreadyHaveAnAccount: 'Already have an account?'
     },
     [LOCALES.RUSSIAN]: {
         appName: 'Библиотека',
@@ -151,7 +153,9 @@ export const messages = {
         fieldRequired: 'Это поле обязательно',
         passwordsDoNotMatch: 'Пароли не совпадают',
         alphabetical: 'Это поле должно начинаться с буквы',
-        failure: 'Неудача'
+        failure: 'Неудача',
+        dontHaveAnAccount: 'Нету аккаунта?',
+        alreadyHaveAnAccount: 'Уже есть аккаунт?'
     },
     [LOCALES.BELARUSIAN]: {
         appName: 'Бібліятэка',
@@ -227,6 +231,8 @@ export const messages = {
         fieldRequired: 'Гэта поле абавязкова',
         passwordsDoNotMatch: 'Паролі не супадаюць',
         alphabetical: 'Гэтае поле павінна пачынацца з літары',
-        failure: 'Няўдача'
+        failure: 'Няўдача',
+        dontHaveAnAccount: 'Няма акаўнта?',
+        alreadyHaveAnAccount: 'Ужо ёсць акаўнт?'
     }
 }
