@@ -16,6 +16,13 @@ A front-end application for the library-spring project, built with React JS.
 3. Run `npm run build` to build the app
 4. Run `serve -s build` to deploy the app
 
+## Screenshots
+
+![Screenshot](./screenshots/screenshot-1.png)
+![Screenshot](./screenshots/screenshot-2.png)
+![Screenshot](./screenshots/screenshot-3.png)
+![Screenshot](./screenshots/screenshot-4.png)
+
 ## Requirements
 
 - [Node.js](https://nodejs.org/en/)
