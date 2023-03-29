@@ -59,12 +59,10 @@ export default function EditBook() {
         } catch (err) {
             if (!err?.response) {
                 setError('noResopnse');
-            } else switch (err.response?.status) {
-                case 400:
-                    setError(err.response?.data?.error);
-                    break;
-                default:
-                    setError('failure');
+            } else if (err.response?.status === 400) {
+                setError(err.response?.data?.error);
+            } else {
+                setError('failure');
             }
         }
     }

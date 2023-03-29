@@ -103,12 +103,10 @@ export default function SignUp() {
         } catch (err) {
             if (!err?.response) {
                 setErrors(prev => ({ ...prev, other: 'noResponse' }));
-            } else switch (err.response?.status) {
-                case 400:
-                    setErrors(prev => ({ ...prev, other: err.response?.data?.error }));
-                    break;
-                default:
-                    setErrors(prev => ({ ...prev, other: 'regitrationFailed' }));
+            } else if (err.response?.status === 400) {
+                setErrors(prev => ({ ...prev, other: err.response?.data?.error }));
+            } else {
+                setErrors(prev => ({ ...prev, other: 'regitrationFailed' }));
             }
         }
     }

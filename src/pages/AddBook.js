@@ -44,12 +44,10 @@ export default function AddBook() {
         } catch (err) {
             if (!err?.response) {
                 setError('noResponse');
-            } else switch (err.response?.status) {
-                case 400:
-                    setError(err.response?.data?.error);
-                    break;
-                default:
-                    setError('failure');
+            } else if (err.response?.status === 400) {
+                setError(err.response?.data?.error);
+            } else {
+                setError('failure');
             }
         }
     }

@@ -67,12 +67,10 @@ export default function SignIn() {
         } catch (err) {
             if (!err?.response) {
                 setError('noResponse');
-            } else switch (err.response?.status) {
-                case 401:
-                    setError('invalidCredentials');
-                    break;
-                default:
-                    setError('authenticationFailed');
+            } else if (err.response?.status === 401) {
+                setError('invalidCredentials');
+            } else {
+                setError('authenticationFailed');
             }
         }
     }

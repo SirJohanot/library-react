@@ -47,12 +47,10 @@ export default function BookOrderForm({ bookId }) {
         } catch (err) {
             if (!err?.response) {
                 setError('No response from server');
-            } else switch (err.response?.status) {
-                case 400:
-                    setError(err.response?.data?.error);
-                    break;
-                default:
-                    setError('Could not place the order');
+            } else if (err.response?.status === 400) {
+                setError(err.response?.data?.error);
+            } else {
+                setError('Could not place the order');
             }
         }
     }
