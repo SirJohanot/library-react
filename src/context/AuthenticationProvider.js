@@ -5,11 +5,11 @@ const AuthenticationContext = createContext({});
 export function AuthenticationProvider({ children }) {
     const [authentication, setAuthentication] = useState({});
 
-    const [authenticationMemo, setAuthenticationMemo] = useMemo(() => [authentication, setAuthentication],
+    const authenticationMemo = useMemo(() => { return { authentication, setAuthentication } },
         [authentication, setAuthentication]);
 
     return (
-        <AuthenticationContext.Provider value={{ authenticationMemo, setAuthenticationMemo }}>
+        <AuthenticationContext.Provider value={authenticationMemo}>
             {children}
         </AuthenticationContext.Provider>
     );
