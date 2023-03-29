@@ -7,14 +7,15 @@ export default function RequireAuthentication({ allowedRoles }) {
     const location = useLocation();
 
     return (
-        <>
-            {authentication?.roles?.find((role) => allowedRoles?.includes(role)) ?
-                <Outlet />
-                :
-                authentication?.login ?
+        authentication?.roles?.find((role) => allowedRoles?.includes(role)) ?
+            <Outlet />
+            :
+            <>
+                {authentication?.login ?
                     <Navigate to="/unauthorized" state={{ from: location }} replace />
                     :
-                    <Navigate to="/sign-in" state={{ from: location }} replace />}
-        </>
+                    <Navigate to="/sign-in" state={{ from: location }} replace />
+                }
+            </>
     );
 }
