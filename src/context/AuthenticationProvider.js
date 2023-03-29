@@ -1,12 +1,15 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 
 const AuthenticationContext = createContext({});
 
 export function AuthenticationProvider({ children }) {
     const [authentication, setAuthentication] = useState({});
 
+    const [authenticationMemo, setAuthenticationMemo] = useMemo(() => [authentication, setAuthentication],
+        [authentication, setAuthentication]);
+
     return (
-        <AuthenticationContext.Provider value={{ authentication, setAuthentication }}>
+        <AuthenticationContext.Provider value={{ authenticationMemo, setAuthenticationMemo }}>
             {children}
         </AuthenticationContext.Provider>
     );
