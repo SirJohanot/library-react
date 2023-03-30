@@ -18,10 +18,10 @@ A front-end application for the library-spring project, built with React JS.
 
 ## Screenshots
 
-![Screenshot](./screenshots/screenshot-1.png)
-![Screenshot](./screenshots/screenshot-2.png)
-![Screenshot](./screenshots/screenshot-3.png)
-![Screenshot](./screenshots/screenshot-4.png)
+![Screenshot](./docs/screenshots/screenshot-1.png)
+![Screenshot](./docs/screenshots/screenshot-3.png)
+![Screenshot](./docs/screenshots/screenshot-2.png)
+![Screenshot](./docs/screenshots/screenshot-4.png)
 
 ## Requirements
 
