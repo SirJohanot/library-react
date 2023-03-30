@@ -1,4 +1,6 @@
-*
-!src
-!public
-!package*.json
+docs
+node_modules
+.gitignore
+LICENSE.md
+README.md
+.env
