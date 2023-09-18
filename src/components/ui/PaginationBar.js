@@ -4,7 +4,7 @@ import { getClosestAcceptableTargetPage, getEntitiesOfPage, getNumberOfPagesToCo
 const PAGE_BUTTONS_NUMBER = 7;
 
 export default function PaginationBar({ items, setDisplayedItems, maxItemsPerPage, initialPage }) {
-    const maxPage = getNumberOfPagesToContainEntities(items, maxItemsPerPage);
+    const maxPage = Math.max(getNumberOfPagesToContainEntities(items, maxItemsPerPage), 1);
 
     const [currentPage, setCurrentPage] = useState(getClosestAcceptableTargetPage(items, initialPage, maxItemsPerPage));
     const [inputPage, setInputPage] = useState(currentPage);
