@@ -6,7 +6,7 @@ const PAGE_BUTTONS_NUMBER = 7;
 export default function PaginationBar({ items, setDisplayedItems, maxItemsPerPage, initialPage }) {
     const maxPage = Math.max(getNumberOfPagesToContainEntities(items, maxItemsPerPage), 1);
 
-    const [currentPage, setCurrentPage] = useState(getClosestAcceptableTargetPage(items, initialPage, maxItemsPerPage));
+    const [currentPage, setCurrentPage] = useState(Math.max(getClosestAcceptableTargetPage(items, initialPage, maxItemsPerPage), 1));
     const [inputPage, setInputPage] = useState(currentPage);
 
     useEffect(() => {
@@ -14,7 +14,7 @@ export default function PaginationBar({ items, setDisplayedItems, maxItemsPerPag
         setDisplayedItems(itemsOfPage);
     }, [currentPage, items, maxItemsPerPage, setDisplayedItems]);
 
-    useEffect(() => setCurrentPage(getClosestAcceptableTargetPage(items, initialPage, maxItemsPerPage)),
+    useEffect(() => setCurrentPage(Math.max(getClosestAcceptableTargetPage(items, initialPage, maxItemsPerPage), 1)),
         [items, maxItemsPerPage, initialPage]);
 
     useEffect(() => setInputPage(currentPage),
