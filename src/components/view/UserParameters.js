@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 export default function UserParameters({ user }) {
     return (
         <>
-            <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
+            <h1><span className="parameter-name"><FormattedMessage id="loginLocale" />:</span> {user?.login}</h1>
             <p><FormattedMessage id="firstName" />: {user?.firstName}</p>
             <p><FormattedMessage id="lastName" />: {user?.lastName}</p>
             <p>
