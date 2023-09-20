@@ -539,6 +539,10 @@ footer select option {
   margin: 10px auto;
 }
 
+.parameter-name {
+  color: var(--color_text);
+}
+
 .buttons-container {
   width: 100%;
   padding: 16px;
