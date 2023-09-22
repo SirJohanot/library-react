@@ -6,7 +6,7 @@ export default function UserParameters({ user }) {
         <>
             <h1><span className="parameter-name"><FormattedMessage id="loginLocale" />:</span> {user?.login}</h1>
             <p><span className="parameter-name"><FormattedMessage id="firstName" />:</span> {user?.firstName}</p>
-            <p><FormattedMessage id="lastName" />: {user?.lastName}</p>
+            <p><span className="parameter-name"><FormattedMessage id="lastName" />:</span> {user?.lastName}</p>
             <p>
                 <FormattedMessage id="role" />: {user?.role && <FormattedMessage id={user?.role} />}
             </p>
