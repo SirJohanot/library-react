@@ -8,7 +8,7 @@ export default function UserParameters({ user }) {
             <p><span className="parameter-name"><FormattedMessage id="firstName" />:</span> {user?.firstName}</p>
             <p><span className="parameter-name"><FormattedMessage id="lastName" />:</span> {user?.lastName}</p>
             <p>
-                <FormattedMessage id="role" />: {user?.role && <FormattedMessage id={user?.role} />}
+                <span className="parameter-name"><FormattedMessage id="role" />:</span> {user?.role && <FormattedMessage id={user?.role} />}
             </p>
             <p>
                 <FormattedMessage id="blocked" />: {typeof user?.blocked !== typeof undefined && <FormattedMessage id={user?.blocked?.toString()} />}
