@@ -8,7 +8,7 @@ export default function OrderParameters({ order }) {
     return (
         <>
             <h1>{`${order?.book?.title} | ${order?.user?.login}`}</h1>
-            <p><FormattedMessage id="startDate" />: {moment(order?.startDate).format(intl.formatMessage({ id: 'dateFormat' }))} </p>
+            <p><span className="parameter-name"><FormattedMessage id="startDate" />:</span> {moment(order?.startDate).format(intl.formatMessage({ id: 'dateFormat' }))} </p>
             <p><FormattedMessage id="endDate" />: {moment(order?.endDate).format(intl.formatMessage({ id: 'dateFormat' }))}</p>
             {order?.returnDate &&
                 <p><FormattedMessage id="returnDate" />: {moment(order?.returnDate).format(intl.formatMessage({ id: 'dateFormat' }))}</p>
