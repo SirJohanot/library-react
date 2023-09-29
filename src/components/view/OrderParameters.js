@@ -14,7 +14,7 @@ export default function OrderParameters({ order }) {
                 <p><span className="parameter-name"><FormattedMessage id="returnDate" />:</span> {moment(order?.returnDate).format(intl.formatMessage({ id: 'dateFormat' }))}</p>
             }
             <p><span className="parameter-name"><FormattedMessage id="rentalType" />:</span> {order?.rentalType && <FormattedMessage id={order?.rentalType} />}</p>
-            <p><FormattedMessage id="rentalState" />: {order?.state && <FormattedMessage id={order?.state} />}</p>
+            <p><span className="parameter-name"><FormattedMessage id="rentalState" />:</span> {order?.state && <FormattedMessage id={order?.state} />}</p>
         </>
     );
 }
