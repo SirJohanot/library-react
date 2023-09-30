@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 export default function BookParameters({ book }) {
     return (
         <>
-            <h1><FormattedMessage id="bookTitle" />: {book?.title}</h1>
+            <h1><span className="parameter-name"><FormattedMessage id="bookTitle" />:</span> {book?.title}</h1>
             <p><FormattedMessage id="authors" />: {book?.authors?.map(author => author.name).join(", ")}</p>
             <p><FormattedMessage id="genre" />: {book?.genre?.name}</p>
             <p><FormattedMessage id="publisher" />: {book?.publisher?.name}</p>
