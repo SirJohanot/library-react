@@ -5,7 +5,7 @@ import { LOCALES } from '../../../i18n/locales.js';
 import { messages } from '../../../i18n/messages.js';
 import UserParameters from '../UserParameters.js';
 
-describe('BookParameters', () => {
+describe('UserParameters', () => {
     const user = {
         login: 'Gohan',
         firstName: 'Gregory',
