@@ -19,3 +19,8 @@ it('isAWord returns true for a word', () => {
     const result = isAWord("Some Book");
     expect(result).toBeTruthy();
 });
+
+it('isAWord returns false for a non-word', () => {
+    const result = isAWord("'%$%^'");
+    expect(result).toBeFalsy();
+});
