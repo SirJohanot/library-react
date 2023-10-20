@@ -20,6 +20,11 @@ it('isAWord returns true for a word', () => {
     expect(result).toBeTruthy();
 });
 
+it('isAWord returns false for a blank string', () => {
+    const result = isAWord("");
+    expect(result).toBeFalsy();
+});
+
 it('isAWord returns false for a non-word', () => {
     const result = isAWord("'%$%^'");
     expect(result).toBeFalsy();
