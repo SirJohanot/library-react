@@ -1,4 +1,4 @@
-import { isAWord, isHumanName } from '../validator';
+import { isAWord, isHumanName, isHumanNames } from '../validator';
 
 it('isHumanName returns true for a human name', () => {
     const result = isHumanName("Lev Orlov");
@@ -27,5 +27,10 @@ it('isAWord returns false for a blank string', () => {
 
 it('isAWord returns false for a non-word', () => {
     const result = isAWord("'%$%^'");
+    expect(result).toBeFalsy();
+});
+
+it('isHumanNames returns false for a blank string', () => {
+    const result = isHumanNames("");
     expect(result).toBeFalsy();
 });
