@@ -34,3 +34,8 @@ it('isHumanNames returns false for a blank string', () => {
     const result = isHumanNames("");
     expect(result).toBeFalsy();
 });
+
+it('isHumanNames returns true for a two words', () => {
+    const result = isHumanNames("Leo Tolstoy, George Orwell");
+    expect(result).toBeTruthy();
+});
