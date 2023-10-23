@@ -30,12 +30,17 @@ it('isAWord returns false for a non-word', () => {
     expect(result).toBeFalsy();
 });
 
+it('isHumanNames returns true for a two names', () => {
+    const result = isHumanNames("Leo Tolstoy, George Orwell");
+    expect(result).toBeTruthy();
+});
+
 it('isHumanNames returns false for a blank string', () => {
     const result = isHumanNames("");
     expect(result).toBeFalsy();
 });
 
-it('isHumanNames returns true for a two words', () => {
-    const result = isHumanNames("Leo Tolstoy, George Orwell");
-    expect(result).toBeTruthy();
+it('isHumanNames returns false for two non-names', () => {
+    const result = isHumanNames("&^%*&$, &*^^%");
+    expect(result).toBeFalsy();
 });
