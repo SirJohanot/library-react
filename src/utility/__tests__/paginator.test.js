@@ -13,3 +13,10 @@ it('getNumberOfPagesToContainEntities returns three when there is enough entitie
     const result = getNumberOfPagesToContainEntities(entities, entitiesPerPage);
     expect(result).toBe(3);
 });
+
+it('getNumberOfPagesToContainEntities returns two when there is exactly enough entities for two full pages', () => {
+    const entities = ['entity1', 'entity2', 'entity3', 'entity4'];
+    const entitiesPerPage = 2;
+    const result = getNumberOfPagesToContainEntities(entities, entitiesPerPage);
+    expect(result).toBe(2);
+});
