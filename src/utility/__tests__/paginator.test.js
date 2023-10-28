@@ -1,4 +1,4 @@
-import { getNumberOfPagesToContainEntities } from "../paginator";
+import { getClosestAcceptableTargetPage, getNumberOfPagesToContainEntities } from "../paginator";
 
 it('getNumberOfPagesToContainEntities returns one when there are not enough entities for a full page', () => {
     const entities = ['entity1', 'entity2', 'entity3'];
@@ -26,4 +26,12 @@ it('getNumberOfPagesToContainEntities returns zero when there are no entities', 
     const entitiesPerPage = 10;
     const result = getNumberOfPagesToContainEntities(entities, entitiesPerPage);
     expect(result).toBe(0);
+});
+
+it('getClosestAcceptableTargetPage returns targetPage when the targetPage is in the acceptable range', () => {
+    const entitiesList = ['entity1', 'entity2', 'entity3', 'entity4', 'entity5'];
+    const targetPage = 2;
+    const entitiesPerPage = 2;
+    const result = getClosestAcceptableTargetPage(entitiesList, targetPage, entitiesPerPage);
+    expect(result).toBe(targetPage);
 });
