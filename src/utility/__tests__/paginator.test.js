@@ -35,3 +35,11 @@ it('getClosestAcceptableTargetPage returns targetPage when the targetPage is in 
     const result = getClosestAcceptableTargetPage(entitiesList, targetPage, entitiesPerPage);
     expect(result).toBe(targetPage);
 });
+
+it('getClosestAcceptableTargetPage returns one when the targetPage is negative', () => {
+    const entitiesList = ['entity1', 'entity2', 'entity3', 'entity4', 'entity5'];
+    const targetPage = -2;
+    const entitiesPerPage = 2;
+    const result = getClosestAcceptableTargetPage(entitiesList, targetPage, entitiesPerPage);
+    expect(result).toBe(1);
+});
