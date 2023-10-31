@@ -51,3 +51,11 @@ it('getClosestAcceptableTargetPage returns last page when the targetPage is grea
     const result = getClosestAcceptableTargetPage(entitiesList, targetPage, entitiesPerPage);
     expect(result).toBe(3);
 });
+
+it('getClosestAcceptableTargetPage returns zero when the entitiesList is empty', () => {
+    const entitiesList = [];
+    const targetPage = 2;
+    const entitiesPerPage = 5;
+    const result = getClosestAcceptableTargetPage(entitiesList, targetPage, entitiesPerPage);
+    expect(result).toBe(0);
+});
