@@ -67,3 +67,11 @@ it('getEntitiesOfPage returns entities of the page when the targetPage is within
     const result = getEntitiesOfPage(entitiesList, targetPage, entitiesPerPage);
     expect(result).toEqual(['entity4', 'entity5', 'entity6']);
 });
+
+it('getEntitiesOfPage returns entities of the first page when the targetPage is less than one', () => {
+    const entitiesList = ['entity1', 'entity2', 'entity3', 'entity4', 'entity5', 'entity6', 'entity7'];
+    const targetPage = -2;
+    const entitiesPerPage = 2;
+    const result = getEntitiesOfPage(entitiesList, targetPage, entitiesPerPage);
+    expect(result).toEqual(['entity1', 'entity2']);
+});
