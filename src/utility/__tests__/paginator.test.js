@@ -83,3 +83,11 @@ it('getEntitiesOfPage returns entities of the last page when the targetPage is g
     const result = getEntitiesOfPage(entitiesList, targetPage, entitiesPerPage);
     expect(result).toEqual(['entity7']);
 });
+
+it('getEntitiesOfPage returns empty list when the entitiesList is empty', () => {
+    const entitiesList = [];
+    const targetPage = 2;
+    const entitiesPerPage = 5;
+    const result = getEntitiesOfPage(entitiesList, targetPage, entitiesPerPage);
+    expect(result).toEqual([]);
+});
