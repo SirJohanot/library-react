@@ -5,6 +5,11 @@ it('isHumanName returns true for a human name', () => {
     expect(result).toBeTruthy();
 });
 
+it('isHumanName returns true for a human name with non-alphabetic characters', () => {
+    const result = isHumanName("Mary-Jane Smith");
+    expect(result).toBeTruthy();
+});
+
 it('isHumanName returns false for a blank string', () => {
     const result = isHumanName("");
     expect(result).toBeFalsy();
