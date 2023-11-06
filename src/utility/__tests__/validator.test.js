@@ -16,9 +16,15 @@ it('isHumanName returns false for a blank string', () => {
 });
 
 it('isHumanName returns false for a non-human name', () => {
+    const result = isHumanName("!@#$%^&*");
+    expect(result).toBeFalsy();
+});
+
+it('isHumanName returns false for a atring containing only non-alphabetic characters', () => {
     const result = isHumanName("|xX_GigaKiller_xX|");
     expect(result).toBeFalsy();
 });
+
 
 it('isAWord returns true for a word', () => {
     const result = isAWord("Some Book");
