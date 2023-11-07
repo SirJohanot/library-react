@@ -20,6 +20,11 @@ it('isHumanName returns false for a string containing only non-alphabetic charac
     expect(result).toBeFalsy();
 });
 
+it('isHumanName returns false for a human name that starts with non-alphabetic characters', () => {
+    const result = isHumanName("123 John");
+    expect(result).toBeFalsy();
+});
+
 it('isHumanName returns false for a non-human name', () => {
     const result = isHumanName("|xX_GigaKiller_xX|");
     expect(result).toBeFalsy();
