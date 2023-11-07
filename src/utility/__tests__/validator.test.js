@@ -15,12 +15,12 @@ it('isHumanName returns false for a blank string', () => {
     expect(result).toBeFalsy();
 });
 
-it('isHumanName returns false for a non-human name', () => {
+it('isHumanName returns false for a string containing only non-alphabetic characters', () => {
     const result = isHumanName("!@#$%^&*");
     expect(result).toBeFalsy();
 });
 
-it('isHumanName returns false for a atring containing only non-alphabetic characters', () => {
+it('isHumanName returns false for a non-human name', () => {
     const result = isHumanName("|xX_GigaKiller_xX|");
     expect(result).toBeFalsy();
 });
