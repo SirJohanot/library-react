@@ -36,6 +36,11 @@ it('isAWord returns true for a word', () => {
     expect(result).toBeTruthy();
 });
 
+it('isAWord returns true for a word the ends with non-alphabetic characters', () => {
+    const result = isAWord("Some Book 1984");
+    expect(result).toBeTruthy();
+});
+
 it('isAWord returns false for a blank string', () => {
     const result = isAWord("");
     expect(result).toBeFalsy();
