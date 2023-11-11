@@ -1,32 +1,32 @@
-import { isAWord, isHumanName, isHumanNames } from '../validator';
+import { isAHumanName, isAWord, isHumanNames } from '../validator';
 
-it('isHumanName returns true for a human name', () => {
-    const result = isHumanName("Lev Orlov");
+it('isAHumanName returns true for a human name', () => {
+    const result = isAHumanName("Lev Orlov");
     expect(result).toBeTruthy();
 });
 
-it('isHumanName returns true for a human name with non-alphabetic characters', () => {
-    const result = isHumanName("Mary-Jane Smith");
+it('isAHumanName returns true for a human name with non-alphabetic characters', () => {
+    const result = isAHumanName("Mary-Jane Smith");
     expect(result).toBeTruthy();
 });
 
-it('isHumanName returns false for a blank string', () => {
-    const result = isHumanName("");
+it('isAHumanName returns false for a blank string', () => {
+    const result = isAHumanName("");
     expect(result).toBeFalsy();
 });
 
-it('isHumanName returns false for a string containing only non-alphabetic characters', () => {
-    const result = isHumanName("!@#$%^&*");
+it('isAHumanName returns false for a string containing only non-alphabetic characters', () => {
+    const result = isAHumanName("!@#$%^&*");
     expect(result).toBeFalsy();
 });
 
-it('isHumanName returns false for a human name that starts with non-alphabetic characters', () => {
-    const result = isHumanName("123 John");
+it('isAHumanName returns false for a human name that starts with non-alphabetic characters', () => {
+    const result = isAHumanName("123 John");
     expect(result).toBeFalsy();
 });
 
-it('isHumanName returns false for a non-human name', () => {
-    const result = isHumanName("|xX_GigaKiller_xX|");
+it('isAHumanName returns false for a non-human name', () => {
+    const result = isAHumanName("|xX_GigaKiller_xX|");
     expect(result).toBeFalsy();
 });
 
@@ -61,17 +61,17 @@ it('isAWord returns false for a non-word', () => {
     expect(result).toBeFalsy();
 });
 
-it('isHumanNames returns true for a two names', () => {
+it('isAHumanNames returns true for a two names', () => {
     const result = isHumanNames("Leo Tolstoy, George Orwell");
     expect(result).toBeTruthy();
 });
 
-it('isHumanNames returns false for a blank string', () => {
+it('isAHumanNames returns false for a blank string', () => {
     const result = isHumanNames("");
     expect(result).toBeFalsy();
 });
 
-it('isHumanNames returns false for two non-names', () => {
+it('isAHumanNames returns false for two non-names', () => {
     const result = isHumanNames("&^%*&$, &*^^%");
     expect(result).toBeFalsy();
 });

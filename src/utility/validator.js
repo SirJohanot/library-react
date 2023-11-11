@@ -2,7 +2,7 @@ const humanNameRegex = /^\p{L}+.*$/u;
 const wordRegex = /^[\p{L}\w]+.*$/u;
 const humanNamesRegex = /^\p{L}+.*( *, +\p{L}+.*)*$/u;
 
-export function isHumanName(string) {
+export function isAHumanName(string) {
     return humanNameRegex.test(string);
 }
 
