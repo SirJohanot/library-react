@@ -61,6 +61,11 @@ it('isAWord returns false for a non-word', () => {
     expect(result).toBeFalsy();
 });
 
+it('isAHumanNames returns true for a single name', () => {
+    const result = isHumanNames("John Tolkien");
+    expect(result).toBeTruthy();
+});
+
 it('isAHumanNames returns true for a two names', () => {
     const result = isHumanNames("Leo Tolstoy, George Orwell");
     expect(result).toBeTruthy();
