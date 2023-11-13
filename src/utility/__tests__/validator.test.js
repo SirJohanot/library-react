@@ -71,6 +71,11 @@ it('isHumanNames returns true for a two names', () => {
     expect(result).toBeTruthy();
 });
 
+it('isHumanNames returns true for a single name with a non-alphabetic character', () => {
+    const result = isHumanNames("John Tolkien!");
+    expect(result).toBeTruthy();
+});
+
 it('isHumanNames returns false for a blank string', () => {
     const result = isHumanNames("");
     expect(result).toBeFalsy();
