@@ -1,8 +1,18 @@
+import { PropTypes } from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { isAWord, isHumanNames } from '../../utility/validator';
 
 export default function BookChanges({ book, setBook, handleSubmit, error, setDisabled }) {
+
+    BookChanges.propTypes = {
+        book: PropTypes.object.isRequired,
+        setBook: PropTypes.func.isRequired,
+        handleSubmit: PropTypes.func.isRequired,
+        error: PropTypes.string.isRequired,
+        setDisabled: PropTypes.func.isRequired,
+    };
+
     const titleRef = useRef();
 
     const [errors, setErrors] = useState({
