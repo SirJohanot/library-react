@@ -1,9 +1,15 @@
+import { PropTypes } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { getClosestAcceptableTargetPage, getEntitiesOfPage, getNumberOfPagesToContainEntities } from '../../utility/paginator';
 
 const PAGE_BUTTONS_NUMBER = 7;
 
 export default function PaginationBar({ items, setDisplayedItems, maxItemsPerPage, initialPage }) {
+
+    PaginationBar.propTypes = {
+        items: PropTypes.arrayOf(PropTypes.any).isRequired,
+    };
+
     const maxPage = Math.max(getNumberOfPagesToContainEntities(items, maxItemsPerPage), 1);
 
     const [currentPage, setCurrentPage] = useState(Math.max(getClosestAcceptableTargetPage(items, initialPage, maxItemsPerPage), 1));
