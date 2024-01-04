@@ -10,6 +10,7 @@ export default function PaginationBar({ items, setDisplayedItems, maxItemsPerPag
         items: PropTypes.arrayOf(PropTypes.any).isRequired,
         setDisplayedItems: PropTypes.func.isRequired,
         maxItemsPerPage: PropTypes.number.isRequired,
+        initialPage: PropTypes.number.isRequired,
     };
 
     const maxPage = Math.max(getNumberOfPagesToContainEntities(items, maxItemsPerPage), 1);
