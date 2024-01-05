@@ -1,7 +1,13 @@
+import { PropTypes } from "prop-types";
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 export default function SearchField({ items, setSearchedItems, itemFitsSearch }) {
+
+    SearchField.propTypes = {
+        items: PropTypes.arrayOf(PropTypes.any).isRequired,
+    };
+
     const intl = useIntl();
 
     const [searchLine, setSearchLine] = useState('');
