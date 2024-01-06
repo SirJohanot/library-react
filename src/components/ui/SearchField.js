@@ -6,6 +6,7 @@ export default function SearchField({ items, setSearchedItems, itemFitsSearch })
 
     SearchField.propTypes = {
         items: PropTypes.arrayOf(PropTypes.any).isRequired,
+        setSearchedItems: PropTypes.func.isRequired,
     };
 
     const intl = useIntl();
