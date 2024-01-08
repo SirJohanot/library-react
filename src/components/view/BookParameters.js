@@ -1,7 +1,13 @@
+import { PropTypes } from 'prop-types;';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 export default function BookParameters({ book }) {
+
+    BookParameters.propTypes = {
+        book: PropTypes.object.isRequired,
+    };
+
     return (
         <>
             <h1><span className="parameter-name"><FormattedMessage id="bookTitle" />:</span> {book?.title}</h1>
