@@ -1,8 +1,14 @@
 import moment from 'moment/moment';
+import { PropTypes } from 'prop-types;';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function OrderParameters({ order }) {
+
+    OrderParameters.propTypes = {
+        order: PropTypes.object.isRequired,
+    };
+
     const intl = useIntl();
 
     return (
