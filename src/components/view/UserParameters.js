@@ -1,7 +1,13 @@
+import { PropTypes } from 'prop-types;';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 export default function UserParameters({ user }) {
+
+    UserParameters.propTypes = {
+        user: PropTypes.object.isRequired,
+    };
+
     return (
         <>
             <h1><span className="parameter-name"><FormattedMessage id="loginLocale" />:</span> {user?.login}</h1>
