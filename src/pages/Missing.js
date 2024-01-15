@@ -10,15 +10,13 @@ export default function Missing() {
     }, [intl]);
 
     return (
-        <>
-            <div>
-                <div className="container round-bordered-subject main-page-message">
-                    <h1><FormattedMessage id="missingPage" /></h1>
-                </div>
-                <div className="buttons-container">
-                    <GoBackButton />
-                </div>
+        <div>
+            <div className="container round-bordered-subject main-page-message">
+                <h1><FormattedMessage id="missingPage" /></h1>
             </div>
-        </>
+            <div className="buttons-container">
+                <GoBackButton />
+            </div>
+        </div>
     );
 }
