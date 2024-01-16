@@ -11,15 +11,13 @@ export default function Unauthorized() {
 
 
     return (
-        <>
-            <div>
-                <div className="container round-bordered-subject main-page-message">
-                    <h1><FormattedMessage id="insufficientPrivileges" /></h1>
-                </div>
-                <div className="buttons-container">
-                    <GoBackButton />
-                </div>
+        <div>
+            <div className="container round-bordered-subject main-page-message">
+                <h1><FormattedMessage id="insufficientPrivileges" /></h1>
             </div>
-        </>
+            <div className="buttons-container">
+                <GoBackButton />
+            </div>
+        </div>
     );
 }
