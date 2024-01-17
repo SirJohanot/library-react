@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import FormWrapper from '../components/forms/FormWrapper';
 import LoadingBars from '../components/ui/LoadingBars';
-import { isHumanName } from '../utility/validator';
+import { isAHumanName } from '../utility/validator';
 
 const GET_USER_METHOD = 'get';
 const GET_USER_URL = '/users/';
@@ -59,7 +59,7 @@ export default function EditUser() {
         if (validateField('firstName', (firstName) => firstName, 'fieldRequired')) {
             return;
         }
-        if (validateField('firstName', isHumanName, 'fieldRequired')) {
+        if (validateField('firstName', isAHumanName, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, firstName: '' }));
@@ -69,7 +69,7 @@ export default function EditUser() {
         if (validateField('lastName', (lastName) => lastName, 'fieldRequired')) {
             return;
         }
-        if (validateField('lastName', isHumanName, 'fieldRequired')) {
+        if (validateField('lastName', isAHumanName, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, lastName: '' }));
