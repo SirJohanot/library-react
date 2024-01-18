@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
-import { isHumanName } from '../utility/validator';
+import { isAHumanName } from '../utility/validator';
 
 const SIGN_UP_METHOD = 'post';
 const SIGN_UP_URL = '/users';
@@ -70,7 +70,7 @@ export default function SignUp() {
         if (validateField('firstName', (firstName) => firstName, 'fieldRequired')) {
             return;
         }
-        if (validateField('firstName', isHumanName, 'fieldRequired')) {
+        if (validateField('firstName', isAHumanName, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, firstName: '' }));
@@ -80,7 +80,7 @@ export default function SignUp() {
         if (validateField('lastName', (lastName) => lastName, 'fieldRequired')) {
             return;
         }
-        if (validateField('lastName', isHumanName, 'fieldRequired')) {
+        if (validateField('lastName', isAHumanName, 'fieldRequired')) {
             return;
         }
         setErrors(prev => ({ ...prev, lastName: '' }));
