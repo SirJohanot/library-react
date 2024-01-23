@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types;';
+import { PropTypes } from 'prop-types';
 import React, { createContext, useMemo, useState } from 'react';
 
 const AuthenticationContext = createContext({});
