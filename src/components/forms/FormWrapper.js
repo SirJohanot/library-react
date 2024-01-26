@@ -10,7 +10,7 @@ export default function FormWrapper({ formName, formId, cancelPath, submitDisabl
         formId: PropTypes.string.isRequired,
         cancelPath: PropTypes.string.isRequired,
         submitDisabled: PropTypes.bool.isRequired,
-        submitName: PropTypes.func.isRequired,
+        submitName: PropTypes.string.isRequired,
         children: PropTypes.node.isRequired,
     };
 
