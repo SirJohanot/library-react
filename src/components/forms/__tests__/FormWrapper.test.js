@@ -10,6 +10,6 @@ describe('FormWrapper', () => {
     it('renders component correctly', () => {
         render(<BrowserRouter><IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><FormWrapper /></IntlProvider></BrowserRouter>);
 
-        expect(screen.getAllByRole('button')).toBeTruthy();
+        expect(screen.getByRole('button')).toBeInTheDocument;
     });
 });
