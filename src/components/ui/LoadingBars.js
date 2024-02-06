@@ -3,6 +3,6 @@ import ReactLoading from 'react-loading';
 
 export default function LoadingBars() {
     return (
-        <ReactLoading type="bars" />
+        <ReactLoading role="img" type="bars" />
     )
 }
