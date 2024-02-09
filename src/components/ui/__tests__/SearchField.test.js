@@ -11,4 +11,10 @@ describe('SearchField', () => {
 
         expect(screen.getByRole('textbox')).toBeInTheDocument;
     });
+
+    it('initial search line is empty', () => {
+        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField setSearchedItems={(items) => { }} /></IntlProvider>);
+
+        expect(screen.getByRole('textbox')).toHaveValue('');
+    });
 });
