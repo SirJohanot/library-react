@@ -28,4 +28,21 @@ describe('SearchField', () => {
 
         expect(searchInput).toHaveValue(testLine);
     });
+
+    it('clicking the clear button clears the searchLine', () => {
+        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField items={[]} setSearchedItems={(items) => { }} /></IntlProvider>);
+
+        const searchInput = screen.getByRole('textbox');
+        const testLine = 'testValue';
+
+        fireEvent.change(searchInput, { target: { value: testLine } });
+
+        expect(searchInput).toHaveValue(testLine);
+
+        const clearButton = screen.getByRole('button');
+
+        fireEvent.click(clearButton);
+
+        expect(searchInput).toHaveValue('');
+    });
 });
