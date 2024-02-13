@@ -60,4 +60,23 @@ describe('SearchField', () => {
 
         expect(setSearchedItems).toHaveBeenCalledWith(['banana', 'orange']);
     });
+
+    it('remove the filter after clearing the query', () => {
+
+        const items = ['apple', 'banana', 'orange', 'grapefruit'];
+        const setSearchedItems = jest.fn();
+        const itemFitsSearch = jest.fn((item, searchLine) => item.includes(searchLine));
+
+        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField items={items} setSearchedItems={setSearchedItems} itemFitsSearch={itemFitsSearch} /></IntlProvider>);
+
+        const searchInput = screen.getByRole('textbox');
+
+        fireEvent.change(searchInput, { target: { value: 'an' } });
+
+        expect(setSearchedItems).toHaveBeenCalledWith(['banana', 'orange']);
+
+        fireEvent.change(searchInput, { target: { value: '' } });
+
+        expect(setSearchedItems).toHaveBeenCalledWith(items);
+    });
 });
