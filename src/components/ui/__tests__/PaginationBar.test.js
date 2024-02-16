@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import PaginationBar from '../PaginationBar';
 
 describe('PaginationBar', () => {
@@ -23,5 +23,16 @@ describe('PaginationBar', () => {
         expect(previousPageButton).toBeInTheDocument();
         expect(nextPageButton).toBeInTheDocument();
         expect(lastPageButton).toBeInTheDocument();
+    });
+
+    it('clicking on a page button updates current page', () => {
+        render(<PaginationBar items={items} setDisplayedItems={setDisplayedItems} maxItemsPerPage={maxItemsPerPage} initialPage={initialPage} />);
+
+        const pageButton = screen.getByText(">");
+
+        fireEvent.click(pageButton);
+
+        expect(setDisplayedItems).toHaveBeenCalledTimes(2);
+        expect(setDisplayedItems).toHaveBeenCalledWith(['item4', 'item5', 'item6']);
     });
 });
