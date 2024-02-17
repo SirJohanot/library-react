@@ -25,7 +25,7 @@ describe('PaginationBar', () => {
         expect(lastPageButton).toBeInTheDocument();
     });
 
-    it('clicking on a page button updates current page', () => {
+    it('clicking on the next page button updates current page', () => {
         render(<PaginationBar items={items} setDisplayedItems={setDisplayedItems} maxItemsPerPage={maxItemsPerPage} initialPage={initialPage} />);
 
         const pageButton = screen.getByText(">");
@@ -34,5 +34,16 @@ describe('PaginationBar', () => {
 
         expect(setDisplayedItems).toHaveBeenCalledTimes(2);
         expect(setDisplayedItems).toHaveBeenCalledWith(['item4', 'item5', 'item6']);
+    });
+
+    it('clicking on the previous page button does not update current page when current page is 1', () => {
+        render(<PaginationBar items={items} setDisplayedItems={setDisplayedItems} maxItemsPerPage={maxItemsPerPage} initialPage={initialPage} />);
+
+        const pageButton = screen.getByText("<");
+
+        fireEvent.click(pageButton);
+
+        expect(setDisplayedItems).toHaveBeenCalledTimes(1);
+        expect(setDisplayedItems).toHaveBeenCalledWith(['item1', 'item2', 'item3']);
     });
 });
