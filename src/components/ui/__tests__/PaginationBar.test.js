@@ -48,13 +48,24 @@ describe('PaginationBar', () => {
     });
 
     it('clicking on the previous page button does not update current page when current page is 1', () => {
-        render(<PaginationBar items={items} setDisplayedItems={setDisplayedItems} maxItemsPerPage={maxItemsPerPage} initialPage={initialPage} />);
+        render(<PaginationBar items={items} setDisplayedItems={setDisplayedItems} maxItemsPerPage={maxItemsPerPage} initialPage={2} />);
 
         const pageButton = screen.getByText("<");
 
         fireEvent.click(pageButton);
 
-        expect(setDisplayedItems).toHaveBeenCalledTimes(1);
+        expect(setDisplayedItems).toHaveBeenCalledTimes(2);
+        expect(setDisplayedItems).toHaveBeenCalledWith(['item1', 'item2', 'item3']);
+    });
+
+    it('clicking on the first page button updates current page', () => {
+        render(<PaginationBar items={items} setDisplayedItems={setDisplayedItems} maxItemsPerPage={maxItemsPerPage} initialPage={2} />);
+
+        const firstPageButton = screen.getByText("|<");
+
+        fireEvent.click(firstPageButton);
+
+        expect(setDisplayedItems).toHaveBeenCalledTimes(2);
         expect(setDisplayedItems).toHaveBeenCalledWith(['item1', 'item2', 'item3']);
     });
 });
