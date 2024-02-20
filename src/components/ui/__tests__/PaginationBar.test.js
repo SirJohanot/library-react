@@ -68,4 +68,15 @@ describe('PaginationBar', () => {
         expect(setDisplayedItems).toHaveBeenCalledTimes(2);
         expect(setDisplayedItems).toHaveBeenCalledWith(['item1', 'item2', 'item3']);
     });
+
+    it('clicking on the last page button updates current page', () => {
+        render(<PaginationBar items={items} setDisplayedItems={setDisplayedItems} maxItemsPerPage={maxItemsPerPage} initialPage={2} />);
+
+        const lastPageButton = screen.getByText(">|");
+
+        fireEvent.click(lastPageButton);
+
+        expect(setDisplayedItems).toHaveBeenCalledTimes(2);
+        expect(setDisplayedItems).toHaveBeenCalledWith(['item10']);
+    });
 });
