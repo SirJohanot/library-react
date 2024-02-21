@@ -79,4 +79,16 @@ describe('PaginationBar', () => {
         expect(setDisplayedItems).toHaveBeenCalledTimes(2);
         expect(setDisplayedItems).toHaveBeenCalledWith(['item10']);
     });
+
+    it('inputting page number and submitting updates current page', () => {
+        render(<PaginationBar items={items} setDisplayedItems={setDisplayedItems} maxItemsPerPage={maxItemsPerPage} initialPage={initialPage} />);
+
+        const inputPage = screen.getByRole('spinbutton');
+
+        fireEvent.change(inputPage, { target: { value: '3' } });
+        fireEvent.submit(inputPage);
+
+        expect(setDisplayedItems).toHaveBeenCalledTimes(2);
+        expect(setDisplayedItems).toHaveBeenCalledWith(['item7', 'item8', 'item9']);
+    });
 });
