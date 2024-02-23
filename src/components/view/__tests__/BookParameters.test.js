@@ -33,4 +33,21 @@ describe('BookParameters', () => {
         expect(inStockElement).toBeInTheDocument();
     });
 
+    it('displays correct book information', () => {
+        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><BookParameters book={book} /></IntlProvider>);
+
+        const titleValue = screen.getByText("Title:").nextSibling.nextSibling.textContent;
+        const authorsValue = screen.getByText("Author(s):").nextSibling.nextSibling.textContent;
+        const genreValue = screen.getByText("Genre:").nextSibling.nextSibling.textContent;
+        const publisherValue = screen.getByText("Publisher:").nextSibling.nextSibling.textContent;
+        const publishmentYearValue = screen.getByText("Publishment year:").nextSibling.nextSibling.textContent;
+        const inStockValue = screen.getByText("In stock:").nextSibling.nextSibling.textContent;
+
+        expect(titleValue).toBe('Book Title');
+        expect(authorsValue).toBe('Author 1, Author 2');
+        expect(genreValue).toBe('Genre');
+        expect(publisherValue).toBe('Publisher');
+        expect(publishmentYearValue).toBe('2022');
+        expect(inStockValue).toBe('10');
+    });
 });
