@@ -50,4 +50,22 @@ describe('BookParameters', () => {
         expect(publishmentYearValue).toBe('2022');
         expect(inStockValue).toBe('10');
     });
+
+    it('uses FormattedMessage component for parameter names', () => {
+        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><BookParameters book={book} /></IntlProvider>);
+
+        const titleElement = screen.getByText('Title:');
+        const authorsElement = screen.getByText('Author(s):');
+        const genreElement = screen.getByText('Genre:');
+        const publisherElement = screen.getByText('Publisher:');
+        const publishmentYearElement = screen.getByText('Publishment year:');
+        const inStockElement = screen.getByText('In stock:');
+
+        expect(titleElement).toContainHTML('<FormattedMessage');
+        expect(authorsElement).toContainHTML('<FormattedMessage');
+        expect(genreElement).toContainHTML('<FormattedMessage');
+        expect(publisherElement).toContainHTML('<FormattedMessage');
+        expect(publishmentYearElement).toContainHTML('<FormattedMessage');
+        expect(inStockElement).toContainHTML('<FormattedMessage');
+    });
 });
