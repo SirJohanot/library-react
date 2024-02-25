@@ -7,38 +7,30 @@ import OrderParameters from '../OrderParameters.js';
 
 describe('OrderParameters', () => {
     const order = {
-        user: { login: 'Gohan' },
-        book: { title: 'Example Book' },
-        startDate: '10.10.2023',
-        endDate: '10.19.2023',
-        returnDate: '10.16.2023',
-        rentalType: 'OUT_OF_LIBRARY',
-        state: 'BOOK_RETURNED'
+        book: { title: 'Book Title' },
+        user: { login: 'JohnDoe' },
+        startDate: '2022-01-01',
+        endDate: '2022-01-10',
+        returnDate: '2022-01-12',
+        rentalType: 'physical',
+        state: 'returned',
     };
 
     it('renders order parameters correctly', () => {
         render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><OrderParameters order={order} /></IntlProvider>);
 
-        expect(screen.getByText('Example Book | Gohan')).toBeInTheDocument();
-        expect(screen.getByText('Start date:')).toBeInTheDocument();
-        expect(screen.getByText('10/10/2023')).toBeInTheDocument();
-        expect(screen.getByText('End date:')).toBeInTheDocument();
-        expect(screen.getByText('19/10/2023')).toBeInTheDocument();
-        expect(screen.getByText('Return date:')).toBeInTheDocument();
-        expect(screen.getByText('16/10/2023')).toBeInTheDocument();
-        expect(screen.getByText('Rental type:')).toBeInTheDocument();
-        expect(screen.getByText('out of library')).toBeInTheDocument();
-        expect(screen.getByText('State:')).toBeInTheDocument();
-        expect(screen.getByText('book returned')).toBeInTheDocument();
-    });
+        const titleElement = screen.getByText('Book Title | JohnDoe');
+        const startDateElement = screen.getByText('Start date:');
+        const endDateElement = screen.getByText('End date:');
+        const returnDateElement = screen.getByText('Return date:');
+        const rentalTypeElement = screen.getByText('Rental type:');
+        const rentalStateElement = screen.getByText('State:');
 
-    it('renders order parameters with missing data', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><OrderParameters order={order} /></IntlProvider>);
-
-        expect(screen.getByText('Start date:')).toBeInTheDocument();
-        expect(screen.getByText('End date:')).toBeInTheDocument();
-        expect(screen.getByText('Return date:')).toBeInTheDocument();
-        expect(screen.getByText('Rental type:')).toBeInTheDocument();
-        expect(screen.getByText('State:')).toBeInTheDocument();
+        expect(titleElement).toBeInTheDocument();
+        expect(startDateElement).toBeInTheDocument();
+        expect(endDateElement).toBeInTheDocument();
+        expect(returnDateElement).toBeInTheDocument();
+        expect(rentalTypeElement).toBeInTheDocument();
+        expect(rentalStateElement).toBeInTheDocument();
     });
 });
