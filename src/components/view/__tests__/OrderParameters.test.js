@@ -50,4 +50,20 @@ describe('OrderParameters', () => {
         expect(rentalTypeValue).toBe('out of library');
         expect(rentalStateValue).toBe('book returned');
     });
+
+    it('uses FormattedMessage component for parameter names', () => {
+        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><OrderParameters order={order} /></IntlProvider>);
+
+        const startDateElement = screen.getByText('Start date:');
+        const endDateElement = screen.getByText('End date:');
+        const returnDateElement = screen.getByText('Return date:');
+        const rentalTypeElement = screen.getByText('Rental type:');
+        const rentalStateElement = screen.getByText('State:');
+
+        expect(startDateElement).toContainHTML('<FormattedMessage');
+        expect(endDateElement).toContainHTML('<FormattedMessage');
+        expect(returnDateElement).toContainHTML('<FormattedMessage');
+        expect(rentalTypeElement).toContainHTML('<FormattedMessage');
+        expect(rentalStateElement).toContainHTML('<FormattedMessage');
+    });
 });
