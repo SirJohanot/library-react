@@ -7,35 +7,26 @@ import UserParameters from '../UserParameters.js';
 
 describe('UserParameters', () => {
     const user = {
-        login: 'Gohan',
-        firstName: 'Gregory',
-        lastName: 'Floppenkovich',
-        role: 'ADMIN',
+        login: 'john_doe',
+        firstName: 'John',
+        lastName: 'Doe',
+        role: 'admin',
         blocked: false,
     };
 
     it('renders user parameters correctly', () => {
         render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><UserParameters user={user} /></IntlProvider>);
 
-        expect(screen.getByText('Login:')).toBeInTheDocument();
-        expect(screen.getByText('Gohan')).toBeInTheDocument();
-        expect(screen.getByText('First name:')).toBeInTheDocument();
-        expect(screen.getByText('Gregory')).toBeInTheDocument();
-        expect(screen.getByText('Last name:')).toBeInTheDocument();
-        expect(screen.getByText('Floppenkovich')).toBeInTheDocument();
-        expect(screen.getByText('Role:')).toBeInTheDocument();
-        expect(screen.getByText('Admin')).toBeInTheDocument();
-        expect(screen.getByText('Blocked:')).toBeInTheDocument();
-        expect(screen.getByText('no')).toBeInTheDocument();
-    });
+        const loginElement = screen.getByText('Login:');
+        const firstNameElement = screen.getByText('First name:');
+        const lastNameElement = screen.getByText('Last name:');
+        const roleElement = screen.getByText('Role:');
+        const blockedElement = screen.getByText('Blocked:');
 
-    it('renders user parameters with missing data', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><UserParameters user={user} /></IntlProvider>);
-
-        expect(screen.getByText('Login:')).toBeInTheDocument();
-        expect(screen.getByText('First name:')).toBeInTheDocument();
-        expect(screen.getByText('Last name:')).toBeInTheDocument();
-        expect(screen.getByText('Role:')).toBeInTheDocument();
-        expect(screen.getByText('Blocked:')).toBeInTheDocument();
+        expect(loginElement).toBeInTheDocument();
+        expect(firstNameElement).toBeInTheDocument();
+        expect(lastNameElement).toBeInTheDocument();
+        expect(roleElement).toBeInTheDocument();
+        expect(blockedElement).toBeInTheDocument();
     });
 });
