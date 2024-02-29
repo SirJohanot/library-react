@@ -29,4 +29,20 @@ describe('UserParameters', () => {
         expect(roleElement).toBeInTheDocument();
         expect(blockedElement).toBeInTheDocument();
     });
+
+    it('displays correct user information', () => {
+        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><UserParameters user={user} /></IntlProvider>);
+
+        const loginValue = screen.getByText("Login:").nextSibling.nextSibling.textContent;
+        const firstNameValue = screen.getByText("First name:").nextSibling.nextSibling.textContent;
+        const lastNameValue = screen.getByText("Last name:").nextSibling.nextSibling.textContent;
+        const roleValue = screen.getByText("Role:").nextSibling.nextSibling.textContent;
+        const blockedValue = screen.getByText("Blocked:").nextSibling.nextSibling.textContent;
+
+        expect(loginValue).toBe('john_doe');
+        expect(firstNameValue).toBe('John');
+        expect(lastNameValue).toBe('Doe');
+        expect(roleValue).toBe('admin');
+        expect(blockedValue).toBe('no');
+    });
 });
