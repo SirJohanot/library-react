@@ -45,4 +45,20 @@ describe('UserParameters', () => {
         expect(roleValue).toBe('admin');
         expect(blockedValue).toBe('no');
     });
+
+    it('uses FormattedMessage component for parameter names', () => {
+        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><UserParameters user={user} /></IntlProvider>);
+
+        const loginElement = screen.getByText('Login:');
+        const firstNameElement = screen.getByText('First name:');
+        const lastNameElement = screen.getByText('Last name:');
+        const roleElement = screen.getByText('Role:');
+        const blockedElement = screen.getByText('Blocked:');
+
+        expect(loginElement).toContainHTML('<FormattedMessage');
+        expect(firstNameElement).toContainHTML('<FormattedMessage');
+        expect(lastNameElement).toContainHTML('<FormattedMessage');
+        expect(roleElement).toContainHTML('<FormattedMessage');
+        expect(blockedElement).toContainHTML('<FormattedMessage');
+    });
 });
