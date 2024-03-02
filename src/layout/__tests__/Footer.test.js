@@ -3,9 +3,15 @@ import React from 'react';
 import Footer from '../Footer.js';
 
 describe('Footer', () => {
-    it('renders footer correctly', () => {
-        render(<Footer />);
+    it('renders language options correctly', () => {
+        render(<Footer setCurrentLocale={() => { }} />);
 
-        expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+        const englishOption = screen.getByText('English');
+        const russianOption = screen.getByText('Русский');
+        const belarusianOption = screen.getByText('Беларуская');
+
+        expect(englishOption).toBeInTheDocument();
+        expect(russianOption).toBeInTheDocument();
+        expect(belarusianOption).toBeInTheDocument();
     });
 });
