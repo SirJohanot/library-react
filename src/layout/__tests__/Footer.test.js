@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import Footer from '../Footer.js';
 
@@ -13,5 +13,15 @@ describe('Footer', () => {
         expect(englishOption).toBeInTheDocument();
         expect(russianOption).toBeInTheDocument();
         expect(belarusianOption).toBeInTheDocument();
+    });
+
+    it('calls setCurrentLocale with the selected locale', () => {
+        const setCurrentLocaleMock = jest.fn();
+        render(<Footer setCurrentLocale={setCurrentLocaleMock} />);
+
+        const selectElement = screen.getByRole('combobox');
+        fireEvent.change(selectElement, { target: { value: 'ru' } });
+
+        expect(setCurrentLocaleMock).toHaveBeenCalledWith('ru');
     });
 });
