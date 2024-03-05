@@ -2,27 +2,27 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
+import useAuthentication from '../../hooks/useAuthentication';
 import { LOCALES } from '../../i18n/locales';
-import { messages } from '../../i18n/messages';
+import { messages } from '../../i18n/messages.js';
 import Header from '../Header';
 
-jest.mock('../../hooks/useAuthentication', () => ({
-    __esModule: true,
-    default: () => ({
-        authentication: {
-            login: 'john_doe',
-            roles: ['READER'],
-        },
-        setAuthentication: jest.fn(),
-    }),
-}));
+jest.mock('../../hooks/useAuthentication', () => jest.fn());
 
 describe('Header', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
-    it('renders header correctly when user is authenticated as a reader', () => {
+    test('renders header correctly when user is authenticated as a reader', () => {
+        useAuthentication.mockReturnValue({
+            authentication: {
+                login: 'john_doe',
+                roles: ['READER'],
+            },
+            setAuthentication: jest.fn(),
+        });
+
         render(
             <IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}>
                 <MemoryRouter>
