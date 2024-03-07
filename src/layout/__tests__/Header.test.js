@@ -75,4 +75,34 @@ describe('Header', () => {
         expect(profileLoginElement).toBeInTheDocument();
         expect(signOutButton).toBeInTheDocument();
     });
+
+    it('renders header correctly when user is authenticated as an admin', () => {
+        useAuthentication.mockReturnValue({
+            authentication: {
+                login: 'admin_user',
+                roles: ['ADMIN'],
+            },
+            setAuthentication: jest.fn(),
+        });
+
+        render(
+            <IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}>
+                <MemoryRouter>
+                    <Header />
+                </MemoryRouter>
+            </IntlProvider>
+        );
+
+        const booksLink = screen.getByText('Books');
+        const addBookLink = screen.getByText('Add a Book');
+        const usersLink = screen.getByText('Users');
+        const profileLoginElement = screen.getByText('admin_user');
+        const signOutButton = screen.getByRole('button');
+
+        expect(booksLink).toBeInTheDocument();
+        expect(addBookLink).toBeInTheDocument();
+        expect(usersLink).toBeInTheDocument();
+        expect(profileLoginElement).toBeInTheDocument();
+        expect(signOutButton).toBeInTheDocument();
+    });
 });
