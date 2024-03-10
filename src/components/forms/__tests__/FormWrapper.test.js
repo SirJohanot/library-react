@@ -1,15 +1,48 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { IntlProvider } from 'react-intl';
-import { BrowserRouter } from 'react-router-dom';
-import { LOCALES } from '../../../i18n/locales.js';
-import { messages } from '../../../i18n/messages.js';
 import FormWrapper from '../FormWrapper.js';
 
-describe('FormWrapper', () => {
-    it('renders component correctly', () => {
-        render(<BrowserRouter><IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><FormWrapper /></IntlProvider></BrowserRouter>);
+jest.mock('react-router-dom', () => ({
+    Link: (props) => {
+        return <a href={props.to}>Cancel</a>
+    }
+}));
 
-        expect(screen.getByRole('button')).toBeInTheDocument;
+describe('FormWrapper', () => {
+    it('renders the form wrapper with form name, cancel link, and submit button', () => {
+        const mockFormName = 'Add a Book';
+        const mockFormId = 'book-form';
+        const mockCancelPath = '/books';
+        const mockSubmitDisabled = false;
+        const mockSubmitName = 'Submit';
+
+        render(
+            <FormWrapper
+                formName={mockFormName}
+                formId={mockFormId}
+                cancelPath={mockCancelPath}
+                submitDisabled={mockSubmitDisabled}
+                submitName={mockSubmitName}
+            >
+                <div data-testid="child-component">Child Component</div>
+            </FormWrapper>
+        );
+
+        const formNameElement = screen.getByText(mockFormName);
+        expect(formNameElement).toBeInTheDocument();
+
+        const cancelLink = screen.getByText('Cancel');
+        expect(cancelLink).toBeInTheDocument();
+        expect(cancelLink).toHaveAttribute('href', mockCancelPath);
+
+        const submitButton = screen.getByRole('button', { name: mockSubmitName });
+        expect(submitButton).toBeInTheDocument();
+        expect(submitButton).toHaveAttribute('type', 'submit');
+        expect(submitButton).toHaveAttribute('form', mockFormId);
+        expect(submitButton).not.toBeDisabled();
+
+        const childComponent = screen.getByTestId('child-component');
+        expect(childComponent).toBeInTheDocument();
     });
+
 });
