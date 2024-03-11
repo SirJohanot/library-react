@@ -45,4 +45,27 @@ describe('FormWrapper', () => {
         expect(childComponent).toBeInTheDocument();
     });
 
+    it('disables submit button when submitDisabled prop is true', () => {
+        const mockFormName = 'Add a Book';
+        const mockFormId = 'book-form';
+        const mockCancelPath = '/books';
+        const mockSubmitDisabled = true;
+        const mockSubmitName = 'Submit';
+
+        render(
+            <FormWrapper
+                formName={mockFormName}
+                formId={mockFormId}
+                cancelPath={mockCancelPath}
+                submitDisabled={mockSubmitDisabled}
+                submitName={mockSubmitName}
+            >
+                <div data-testid="child-component">Child Component</div>
+            </FormWrapper>
+        );
+
+        const submitButton = screen.getByRole('button', { name: mockSubmitName });
+        expect(submitButton).toBeDisabled();
+    });
+
 });
