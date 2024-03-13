@@ -28,4 +28,19 @@ describe('BookChanges', () => {
         expect(screen.getByLabelText('publishmentYear:')).toBeInTheDocument();
         expect(screen.getByLabelText('inStock:')).toBeInTheDocument();
     });
+
+    it('displays error messages for invalid input', () => {
+        const noTitleBook = {
+            title: '',
+            authors: 'John Doe',
+            genre: 'Fiction',
+            publisher: 'Publisher Name',
+            publishmentYear: '2022',
+            amount: '10',
+        };
+
+        render(<BookChanges book={noTitleBook} setBook={() => { }} handleSubmit={() => { }} error="" setDisabled={() => { }} />);
+
+        expect(screen.getByText('fieldRequired')).toBeInTheDocument();
+    });
 });
