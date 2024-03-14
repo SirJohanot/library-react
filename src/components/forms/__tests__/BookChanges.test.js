@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import BookChanges from '../BookChanges.js';
 
@@ -42,5 +42,14 @@ describe('BookChanges', () => {
         render(<BookChanges book={noTitleBook} setBook={() => { }} handleSubmit={() => { }} error="" setDisabled={() => { }} />);
 
         expect(screen.getByText('fieldRequired')).toBeInTheDocument();
+    });
+
+    it('calls the setBook function when input values change', () => {
+        const setBookMock = jest.fn();
+        render(<BookChanges book={mockBook} setBook={setBookMock} handleSubmit={() => { }} error="" setDisabled={() => { }} />);
+
+        fireEvent.change(screen.getByLabelText('bookTitle:'), { target: { value: 'New Title' } });
+
+        expect(setBookMock).toHaveBeenCalledTimes(1);
     });
 });
