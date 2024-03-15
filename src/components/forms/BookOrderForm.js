@@ -92,7 +92,7 @@ export default function BookOrderForm({ bookId }) {
                     name="days"
                     value="7"
                     onChange={handleChange}
-                    checked={order?.days === "7"}
+                    checked={order?.days.toString() === "7"}
                 />
                 <label htmlFor="7">7</label>
                 <input
@@ -101,7 +101,7 @@ export default function BookOrderForm({ bookId }) {
                     name="days"
                     value="14"
                     onChange={handleChange}
-                    checked={order?.days === "14"}
+                    checked={order?.days.toString() === "14"}
                 />
                 <label htmlFor="14">14</label>
                 <input
@@ -110,7 +110,7 @@ export default function BookOrderForm({ bookId }) {
                     name="days"
                     value="21"
                     onChange={handleChange}
-                    checked={order?.days === "21"}
+                    checked={order?.days.toString() === "21"}
                 />
                 <label htmlFor="21">21</label>
             </div>
