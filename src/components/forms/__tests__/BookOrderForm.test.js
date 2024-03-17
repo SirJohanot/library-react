@@ -1,8 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { IntlProvider } from 'react-intl';
-import { LOCALES } from '../../../i18n/locales.js';
-import { messages } from '../../../i18n/messages.js';
 import BookOrderForm from '../BookOrderForm.js';
 
 jest.mock('react-router-dom', () => ({
@@ -13,23 +10,29 @@ jest.mock('../../../api/axios', () => ({
     request: jest.fn(),
 }));
 
+jest.mock('react-intl', () => ({
+    FormattedMessage: (props) => {
+        return <>{props.id}</>
+    }
+}));
+
 describe('BookOrderForm', () => {
     const mockBookId = 123;
 
     it('renders the form with initial values', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><BookOrderForm bookId={mockBookId} /></IntlProvider>);
+        render(<BookOrderForm bookId={mockBookId} />);
 
-        expect(screen.getByText('Rental type:')).toBeInTheDocument();
+        expect(screen.getByText('rentalType:')).toBeInTheDocument();
 
-        const outOfLibraryRadio = screen.getByLabelText('out of library');
+        const outOfLibraryRadio = screen.getByLabelText('OUT_OF_LIBRARY');
         expect(outOfLibraryRadio).toBeInTheDocument();
         expect(outOfLibraryRadio).toBeChecked();
 
-        const toReadingHallRadio = screen.getByLabelText('to reading hall');
+        const toReadingHallRadio = screen.getByLabelText('TO_READING_HALL');
         expect(toReadingHallRadio).toBeInTheDocument();
         expect(toReadingHallRadio).not.toBeChecked();
 
-        expect(screen.getByText('Days:')).toBeInTheDocument();
+        expect(screen.getByText('days:')).toBeInTheDocument();
 
         const radio7 = screen.getByLabelText('7');
         expect(radio7).toBeInTheDocument();
@@ -43,4 +46,5 @@ describe('BookOrderForm', () => {
         expect(radio21).toBeInTheDocument();
         expect(radio21).not.toBeChecked();
     });
+
 });
