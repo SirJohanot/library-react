@@ -62,7 +62,7 @@ export default function BookOrderForm({ bookId }) {
     }
 
     return (
-        <form id="order-book" className="form" onSubmit={handleSubmit}>
+        <form data-testid="order-book" id="order-book" className="form" onSubmit={handleSubmit}>
             <p><FormattedMessage id="rentalType" />:</p>
             <div>
                 <input
