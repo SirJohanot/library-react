@@ -98,4 +98,18 @@ describe('BookOrderForm', () => {
         });
     });
 
+    it('displays error message when order placement fails', async () => {
+        const errorMessage = 'The server encountered an error';
+        axios.request.mockRejectedValueOnce({ response: { status: 400, data: { error: errorMessage } } });
+
+        render(<BookOrderForm bookId={mockBookId} />);
+
+        const form = screen.getByTestId('order-book');
+        fireEvent.submit(form);
+
+        await waitFor(() => {
+            expect(screen.getByText(errorMessage)).toBeInTheDocument();
+        });
+    });
+
 });
