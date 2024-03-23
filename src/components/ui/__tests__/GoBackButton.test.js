@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import GoBackButton from '../GoBackButton.js';
 
 jest.mock('react-intl', () => ({
@@ -9,9 +8,15 @@ jest.mock('react-intl', () => ({
     }
 }));
 
+const mockNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+    useNavigate: () => mockNavigate,
+}));
+
 describe('GoBackButton', () => {
     it('renders button correctly', () => {
-        render(<BrowserRouter><GoBackButton /></BrowserRouter>);
+        render(<GoBackButton />);
 
         expect(screen.getByText('goBack')).toBeInTheDocument();
     });
