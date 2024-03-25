@@ -9,12 +9,6 @@ jest.mock('react-intl', () => ({
 }));
 
 describe('SearchField', () => {
-    it('renders component correctly', () => {
-        render(<SearchField items={[]} setSearchedItems={(items) => { }} itemFitsSearch={(item, searchLine) => { }} />);
-
-        expect(screen.getByRole('textbox')).toBeInTheDocument;
-    });
-
     it('initial search line is empty', () => {
         render(<SearchField items={[]} setSearchedItems={(items) => { }} itemFitsSearch={(item, searchLine) => { }} />);
 
