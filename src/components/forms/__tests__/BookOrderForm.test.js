@@ -14,9 +14,7 @@ jest.mock('../../../api/axios', () => ({
 }));
 
 jest.mock('react-intl', () => ({
-    FormattedMessage: (props) => {
-        return <>{props.id}</>
-    }
+    FormattedMessage: (props) => <>{props.id}</>
 }));
 
 describe('BookOrderForm', () => {
