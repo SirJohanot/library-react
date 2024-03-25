@@ -1,25 +1,28 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { IntlProvider } from 'react-intl';
-import { LOCALES } from '../../../i18n/locales.js';
-import { messages } from '../../../i18n/messages.js';
 import SearchField from '../SearchField.js';
+
+jest.mock('react-intl', () => ({
+    useIntl: () => ({
+        formatMessage: (options) => options.id
+    })
+}));
 
 describe('SearchField', () => {
     it('renders component correctly', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField setSearchedItems={(items) => { }} /></IntlProvider>);
+        render(<SearchField items={[]} setSearchedItems={(items) => { }} itemFitsSearch={(item, searchLine) => { }} />);
 
         expect(screen.getByRole('textbox')).toBeInTheDocument;
     });
 
     it('initial search line is empty', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField setSearchedItems={(items) => { }} /></IntlProvider>);
+        render(<SearchField items={[]} setSearchedItems={(items) => { }} itemFitsSearch={(item, searchLine) => { }} />);
 
         expect(screen.getByRole('textbox')).toHaveValue('');
     });
 
     it('entering a search query updates the searchLine state', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField items={[]} setSearchedItems={(items) => { }} /></IntlProvider>);
+        render(<SearchField items={[]} setSearchedItems={(items) => { }} itemFitsSearch={(item, searchLine) => { }} />);
 
         const searchInput = screen.getByRole('textbox');
         const testLine = 'testValue';
@@ -30,7 +33,7 @@ describe('SearchField', () => {
     });
 
     it('clicking the clear button clears the searchLine', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField items={[]} setSearchedItems={(items) => { }} /></IntlProvider>);
+        render(<SearchField items={[]} setSearchedItems={(items) => { }} itemFitsSearch={(item, searchLine) => { }} />);
 
         const searchInput = screen.getByRole('textbox');
         const testLine = 'testValue';
@@ -52,7 +55,7 @@ describe('SearchField', () => {
         const setSearchedItems = jest.fn();
         const itemFitsSearch = jest.fn((item, searchLine) => item.includes(searchLine));
 
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField items={items} setSearchedItems={setSearchedItems} itemFitsSearch={itemFitsSearch} /></IntlProvider>);
+        render(<SearchField items={items} setSearchedItems={setSearchedItems} itemFitsSearch={itemFitsSearch} />);
 
         const searchInput = screen.getByRole('textbox');
 
@@ -67,7 +70,7 @@ describe('SearchField', () => {
         const setSearchedItems = jest.fn();
         const itemFitsSearch = jest.fn((item, searchLine) => item.includes(searchLine));
 
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField items={items} setSearchedItems={setSearchedItems} itemFitsSearch={itemFitsSearch} /></IntlProvider>);
+        render(<SearchField items={items} setSearchedItems={setSearchedItems} itemFitsSearch={itemFitsSearch} />);
 
         const searchInput = screen.getByRole('textbox');
 
@@ -86,7 +89,7 @@ describe('SearchField', () => {
         const setSearchedItems = jest.fn();
         const itemFitsSearch = jest.fn((item, searchLine) => item.includes(searchLine));
 
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><SearchField items={items} setSearchedItems={setSearchedItems} itemFitsSearch={itemFitsSearch} /></IntlProvider>);
+        render(<SearchField items={items} setSearchedItems={setSearchedItems} itemFitsSearch={itemFitsSearch} />);
 
         const searchInput = screen.getByRole('textbox');
 
