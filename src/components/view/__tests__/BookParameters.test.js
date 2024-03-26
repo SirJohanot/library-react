@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { IntlProvider } from 'react-intl';
-import { LOCALES } from '../../../i18n/locales.js';
-import { messages } from '../../../i18n/messages.js';
 import BookParameters from '../BookParameters';
+
+jest.mock('react-intl', () => ({
+    FormattedMessage: (props) => <>{props.id}</>
+}));
 
 describe('BookParameters', () => {
     const book = {
@@ -16,14 +17,14 @@ describe('BookParameters', () => {
     };
 
     it('renders book parameters correctly', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><BookParameters book={book} /></IntlProvider>);
+        render(<BookParameters book={book} />);
 
-        const titleElement = screen.getByText('Title:');
-        const authorsElement = screen.getByText('Author(s):');
-        const genreElement = screen.getByText('Genre:');
-        const publisherElement = screen.getByText('Publisher:');
-        const publishmentYearElement = screen.getByText('Publishment year:');
-        const inStockElement = screen.getByText('In stock:');
+        const titleElement = screen.getByText('bookTitle:');
+        const authorsElement = screen.getByText('authors:');
+        const genreElement = screen.getByText('genre:');
+        const publisherElement = screen.getByText('publisher:');
+        const publishmentYearElement = screen.getByText('publishmentYear:');
+        const inStockElement = screen.getByText('inStock:');
 
         expect(titleElement).toBeInTheDocument();
         expect(authorsElement).toBeInTheDocument();
@@ -34,14 +35,14 @@ describe('BookParameters', () => {
     });
 
     it('displays correct book information', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><BookParameters book={book} /></IntlProvider>);
+        render(<BookParameters book={book} />);
 
-        const titleValue = screen.getByText("Title:").nextSibling.nextSibling.textContent;
-        const authorsValue = screen.getByText("Author(s):").nextSibling.nextSibling.textContent;
-        const genreValue = screen.getByText("Genre:").nextSibling.nextSibling.textContent;
-        const publisherValue = screen.getByText("Publisher:").nextSibling.nextSibling.textContent;
-        const publishmentYearValue = screen.getByText("Publishment year:").nextSibling.nextSibling.textContent;
-        const inStockValue = screen.getByText("In stock:").nextSibling.nextSibling.textContent;
+        const titleValue = screen.getByText("bookTitle:").nextSibling.nextSibling.textContent;
+        const authorsValue = screen.getByText("authors:").nextSibling.nextSibling.textContent;
+        const genreValue = screen.getByText("genre:").nextSibling.nextSibling.textContent;
+        const publisherValue = screen.getByText("publisher:").nextSibling.nextSibling.textContent;
+        const publishmentYearValue = screen.getByText("publishmentYear:").nextSibling.nextSibling.textContent;
+        const inStockValue = screen.getByText("inStock:").nextSibling.nextSibling.textContent;
 
         expect(titleValue).toBe('Book Title');
         expect(authorsValue).toBe('Author 1, Author 2');
@@ -52,14 +53,14 @@ describe('BookParameters', () => {
     });
 
     it('uses FormattedMessage component for parameter names', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><BookParameters book={book} /></IntlProvider>);
+        render(<BookParameters book={book} />);
 
-        const titleElement = screen.getByText('Title:');
-        const authorsElement = screen.getByText('Author(s):');
-        const genreElement = screen.getByText('Genre:');
-        const publisherElement = screen.getByText('Publisher:');
-        const publishmentYearElement = screen.getByText('Publishment year:');
-        const inStockElement = screen.getByText('In stock:');
+        const titleElement = screen.getByText('bookTitle:');
+        const authorsElement = screen.getByText('authors:');
+        const genreElement = screen.getByText('genre:');
+        const publisherElement = screen.getByText('publisher:');
+        const publishmentYearElement = screen.getByText('publishmentYear:');
+        const inStockElement = screen.getByText('inStock:');
 
         expect(titleElement).toContainHTML('<FormattedMessage');
         expect(authorsElement).toContainHTML('<FormattedMessage');
