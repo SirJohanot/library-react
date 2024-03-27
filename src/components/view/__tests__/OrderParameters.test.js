@@ -1,10 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import moment from 'moment/moment';
 import React from 'react';
-import { IntlProvider } from 'react-intl';
-import { LOCALES } from '../../../i18n/locales.js';
-import { messages } from '../../../i18n/messages.js';
 import OrderParameters from '../OrderParameters.js';
+
+jest.mock('react-intl', () => ({
+    FormattedMessage: (props) => <>{props.id}</>,
+    useIntl: () => ({
+        formatMessage: () => 'DD/MM/YYYY'
+    })
+}));
 
 describe('OrderParameters', () => {
     const order = {
@@ -18,14 +22,14 @@ describe('OrderParameters', () => {
     };
 
     it('renders order parameters correctly', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><OrderParameters order={order} /></IntlProvider>);
+        render(<OrderParameters order={order} />);
 
         const titleElement = screen.getByText('Book Title | JohnDoe');
-        const startDateElement = screen.getByText('Start date:');
-        const endDateElement = screen.getByText('End date:');
-        const returnDateElement = screen.getByText('Return date:');
-        const rentalTypeElement = screen.getByText('Rental type:');
-        const rentalStateElement = screen.getByText('State:');
+        const startDateElement = screen.getByText('startDate:');
+        const endDateElement = screen.getByText('endDate:');
+        const returnDateElement = screen.getByText('returnDate:');
+        const rentalTypeElement = screen.getByText('rentalType:');
+        const rentalStateElement = screen.getByText('rentalState:');
 
         expect(titleElement).toBeInTheDocument();
         expect(startDateElement).toBeInTheDocument();
@@ -36,29 +40,29 @@ describe('OrderParameters', () => {
     });
 
     it('displays correct order information', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><OrderParameters order={order} /></IntlProvider>);
+        render(<OrderParameters order={order} />);
 
-        const startDateValue = screen.getByText("Start date:").nextSibling.nextSibling.textContent;
-        const endDateValue = screen.getByText("End date:").nextSibling.nextSibling.textContent;
-        const returnDateValue = screen.getByText("Return date:").nextSibling.nextSibling.textContent;
-        const rentalTypeValue = screen.getByText("Rental type:").nextSibling.nextSibling.textContent;
-        const rentalStateValue = screen.getByText("State:").nextSibling.nextSibling.textContent;
+        const startDateValue = screen.getByText("startDate:").nextSibling.nextSibling.textContent;
+        const endDateValue = screen.getByText("endDate:").nextSibling.nextSibling.textContent;
+        const returnDateValue = screen.getByText("returnDate:").nextSibling.nextSibling.textContent;
+        const rentalTypeValue = screen.getByText("rentalType:").nextSibling.nextSibling.textContent;
+        const rentalStateValue = screen.getByText("rentalState:").nextSibling.nextSibling.textContent;
 
         expect(startDateValue).toBe(moment('2022-01-01').format('DD/MM/YYYY'));
         expect(endDateValue).toBe(moment('2022-01-10').format('DD/MM/YYYY'));
         expect(returnDateValue).toBe(moment('2022-01-12').format('DD/MM/YYYY'));
-        expect(rentalTypeValue).toBe('out of library');
-        expect(rentalStateValue).toBe('book returned');
+        expect(rentalTypeValue).toBe('OUT_OF_LIBRARY');
+        expect(rentalStateValue).toBe('BOOK_RETURNED');
     });
 
     it('uses FormattedMessage component for parameter names', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><OrderParameters order={order} /></IntlProvider>);
+        render(<OrderParameters order={order} />);
 
-        const startDateElement = screen.getByText('Start date:');
-        const endDateElement = screen.getByText('End date:');
-        const returnDateElement = screen.getByText('Return date:');
-        const rentalTypeElement = screen.getByText('Rental type:');
-        const rentalStateElement = screen.getByText('State:');
+        const startDateElement = screen.getByText('startDate:');
+        const endDateElement = screen.getByText('endDate:');
+        const returnDateElement = screen.getByText('returnDate:');
+        const rentalTypeElement = screen.getByText('rentalType:');
+        const rentalStateElement = screen.getByText('rentalState:');
 
         expect(startDateElement).toContainHTML('<FormattedMessage');
         expect(endDateElement).toContainHTML('<FormattedMessage');
