@@ -3,9 +3,7 @@ import React from 'react';
 import BookChanges from '../BookChanges.js';
 
 jest.mock('react-intl', () => ({
-    FormattedMessage: (props) => {
-        return <>{props.id}</>
-    }
+    FormattedMessage: (props) => <>{props.id}</>
 }));
 
 describe('BookChanges', () => {
