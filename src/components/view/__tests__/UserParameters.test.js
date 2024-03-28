@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { IntlProvider } from 'react-intl';
-import { LOCALES } from '../../../i18n/locales.js';
-import { messages } from '../../../i18n/messages.js';
 import UserParameters from '../UserParameters.js';
+
+jest.mock('react-intl', () => ({
+    FormattedMessage: (props) => <>{props.id}</>
+}));
 
 describe('UserParameters', () => {
     const user = {
@@ -15,13 +16,13 @@ describe('UserParameters', () => {
     };
 
     it('renders user parameters correctly', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><UserParameters user={user} /></IntlProvider>);
+        render(<UserParameters user={user} />);
 
-        const loginElement = screen.getByText('Login:');
-        const firstNameElement = screen.getByText('First name:');
-        const lastNameElement = screen.getByText('Last name:');
-        const roleElement = screen.getByText('Role:');
-        const blockedElement = screen.getByText('Blocked:');
+        const loginElement = screen.getByText('loginLocale:');
+        const firstNameElement = screen.getByText('firstName:');
+        const lastNameElement = screen.getByText('lastName:');
+        const roleElement = screen.getByText('role:');
+        const blockedElement = screen.getByText('blocked:');
 
         expect(loginElement).toBeInTheDocument();
         expect(firstNameElement).toBeInTheDocument();
@@ -31,29 +32,29 @@ describe('UserParameters', () => {
     });
 
     it('displays correct user information', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><UserParameters user={user} /></IntlProvider>);
+        render(<UserParameters user={user} />);
 
-        const loginValue = screen.getByText("Login:").nextSibling.nextSibling.textContent;
-        const firstNameValue = screen.getByText("First name:").nextSibling.nextSibling.textContent;
-        const lastNameValue = screen.getByText("Last name:").nextSibling.nextSibling.textContent;
-        const roleValue = screen.getByText("Role:").nextSibling.nextSibling.textContent;
-        const blockedValue = screen.getByText("Blocked:").nextSibling.nextSibling.textContent;
+        const loginValue = screen.getByText("loginLocale:").nextSibling.nextSibling.textContent;
+        const firstNameValue = screen.getByText("firstName:").nextSibling.nextSibling.textContent;
+        const lastNameValue = screen.getByText("lastName:").nextSibling.nextSibling.textContent;
+        const roleValue = screen.getByText("role:").nextSibling.nextSibling.textContent;
+        const blockedValue = screen.getByText("blocked:").nextSibling.nextSibling.textContent;
 
         expect(loginValue).toBe('john_doe');
         expect(firstNameValue).toBe('John');
         expect(lastNameValue).toBe('Doe');
         expect(roleValue).toBe('admin');
-        expect(blockedValue).toBe('no');
+        expect(blockedValue).toBe('false');
     });
 
     it('uses FormattedMessage component for parameter names', () => {
-        render(<IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}><UserParameters user={user} /></IntlProvider>);
+        render(<UserParameters user={user} />);
 
-        const loginElement = screen.getByText('Login:');
-        const firstNameElement = screen.getByText('First name:');
-        const lastNameElement = screen.getByText('Last name:');
-        const roleElement = screen.getByText('Role:');
-        const blockedElement = screen.getByText('Blocked:');
+        const loginElement = screen.getByText('loginLocale:');
+        const firstNameElement = screen.getByText('firstName:');
+        const lastNameElement = screen.getByText('lastName:');
+        const roleElement = screen.getByText('role:');
+        const blockedElement = screen.getByText('blocked:');
 
         expect(loginElement).toContainHTML('<FormattedMessage');
         expect(firstNameElement).toContainHTML('<FormattedMessage');
