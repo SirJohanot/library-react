@@ -3,9 +3,7 @@ import React from 'react';
 import FormWrapper from '../FormWrapper.js';
 
 jest.mock('react-router-dom', () => ({
-    Link: (props) => {
-        return <a href={props.to}>Cancel</a>
-    }
+    Link: (props) => <a href={props.to}>Cancel</a>
 }));
 
 describe('FormWrapper', () => {
