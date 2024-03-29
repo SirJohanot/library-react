@@ -1,14 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 import axios from '../../api/axios.js';
 import useAuthentication from '../../hooks/useAuthentication';
-import { LOCALES } from '../../i18n/locales';
-import { messages } from '../../i18n/messages.js';
 import Header from '../Header';
 
 jest.mock('../../hooks/useAuthentication', () => jest.fn());
+
+jest.mock('react-intl', () => ({
+    FormattedMessage: (props) => <>{props.id}</>
+}));
 
 describe('Header', () => {
     beforeEach(() => {
@@ -25,17 +26,15 @@ describe('Header', () => {
         });
 
         render(
-            <IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}>
-                <MemoryRouter>
-                    <Header />
-                </MemoryRouter>
-            </IntlProvider>
+            <MemoryRouter>
+                <Header />
+            </MemoryRouter>
         );
 
-        const booksLink = screen.getByText('Books');
-        const ordersLink = screen.getByText('My Orders');
-        const addBookLink = screen.queryByText('Add a Book');
-        const usersLink = screen.queryByText('Users');
+        const booksLink = screen.getByText('books');
+        const ordersLink = screen.getByText('myOrders');
+        const addBookLink = screen.queryByText('addABook');
+        const usersLink = screen.queryByText('users');
         const profileLoginElement = screen.getByText('john_doe');
         const signOutButton = screen.getByRole('button');
 
@@ -57,16 +56,14 @@ describe('Header', () => {
         });
 
         render(
-            <IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}>
-                <MemoryRouter>
-                    <Header />
-                </MemoryRouter>
-            </IntlProvider>
+            <MemoryRouter>
+                <Header />
+            </MemoryRouter>
         );
 
-        const booksLink = screen.getByText('Books');
-        const ordersLink = screen.getByText('Orders');
-        const usersLink = screen.queryByText('Users');
+        const booksLink = screen.getByText('books');
+        const ordersLink = screen.getByText('orders');
+        const usersLink = screen.queryByText('users');
         const profileLoginElement = screen.getByText('jane_doe');
         const signOutButton = screen.getByRole('button');
 
@@ -87,16 +84,14 @@ describe('Header', () => {
         });
 
         render(
-            <IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}>
-                <MemoryRouter>
-                    <Header />
-                </MemoryRouter>
-            </IntlProvider>
+            <MemoryRouter>
+                <Header />
+            </MemoryRouter>
         );
 
-        const booksLink = screen.getByText('Books');
-        const addBookLink = screen.getByText('Add a Book');
-        const usersLink = screen.getByText('Users');
+        const booksLink = screen.getByText('books');
+        const addBookLink = screen.getByText('addABook');
+        const usersLink = screen.getByText('users');
         const profileLoginElement = screen.getByText('admin_user');
         const signOutButton = screen.getByRole('button');
 
@@ -120,11 +115,9 @@ describe('Header', () => {
         const mockAxiosInterceptorsRequestClear = jest.spyOn(axios.interceptors.request, 'clear');
 
         render(
-            <IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}>
-                <MemoryRouter>
-                    <Header />
-                </MemoryRouter>
-            </IntlProvider>
+            <MemoryRouter>
+                <Header />
+            </MemoryRouter>
         );
 
         const signOutButton = screen.getByRole('button');
