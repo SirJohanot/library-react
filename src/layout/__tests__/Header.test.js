@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import axios from '../../api/axios.js';
 import useAuthentication from '../../hooks/useAuthentication';
 import Header from '../Header';
@@ -9,6 +8,13 @@ jest.mock('../../hooks/useAuthentication', () => jest.fn());
 
 jest.mock('react-intl', () => ({
     FormattedMessage: (props) => <>{props.id}</>
+}));
+
+const mockNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+    useNavigate: () => mockNavigate,
+    Link: (props) => <a href={props.to}>{props.children}</a>
 }));
 
 describe('Header', () => {
@@ -26,9 +32,7 @@ describe('Header', () => {
         });
 
         render(
-            <MemoryRouter>
-                <Header />
-            </MemoryRouter>
+            <Header />
         );
 
         const booksLink = screen.getByText('books');
@@ -56,9 +60,7 @@ describe('Header', () => {
         });
 
         render(
-            <MemoryRouter>
-                <Header />
-            </MemoryRouter>
+            <Header />
         );
 
         const booksLink = screen.getByText('books');
@@ -84,9 +86,7 @@ describe('Header', () => {
         });
 
         render(
-            <MemoryRouter>
-                <Header />
-            </MemoryRouter>
+            <Header />
         );
 
         const booksLink = screen.getByText('books');
@@ -115,9 +115,7 @@ describe('Header', () => {
         const mockAxiosInterceptorsRequestClear = jest.spyOn(axios.interceptors.request, 'clear');
 
         render(
-            <MemoryRouter>
-                <Header />
-            </MemoryRouter>
+            <Header />
         );
 
         const signOutButton = screen.getByRole('button');
