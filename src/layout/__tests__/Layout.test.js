@@ -1,19 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
-import { LOCALES } from '../../i18n/locales';
-import { messages } from '../../i18n/messages';
 import Layout from '../Layout';
+
+jest.mock('react-intl', () => ({
+    FormattedMessage: (props) => <>{props.id}</>,
+    useIntl: () => ({
+        formatMessage: (options) => options.id
+    })
+}));
 
 describe('Layout', () => {
     it('renders header and footer', () => {
         render(
-            <IntlProvider locale={LOCALES.ENGLISH} messages={messages[LOCALES.ENGLISH]}>
-                <MemoryRouter>
-                    <Layout />
-                </MemoryRouter>
-            </IntlProvider>
+            <MemoryRouter>
+                <Layout />
+            </MemoryRouter>
         );
 
         const headerElement = screen.getByRole('banner');
