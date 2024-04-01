@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import Layout from '../Layout';
 
 jest.mock('react-intl', () => ({
@@ -10,13 +9,17 @@ jest.mock('react-intl', () => ({
     })
 }));
 
+const mockNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+    useNavigate: () => mockNavigate,
+    Link: (props) => <a href={props.to}>{props.children}</a>,
+    Outlet: () => <div>Outlet</div>
+}));
+
 describe('Layout', () => {
     it('renders header and footer', () => {
-        render(
-            <MemoryRouter>
-                <Layout />
-            </MemoryRouter>
-        );
+        render(<Layout />);
 
         const headerElement = screen.getByRole('banner');
         const footerElement = screen.getByRole('contentinfo');
