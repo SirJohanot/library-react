@@ -22,4 +22,10 @@ describe('Unauthorized', () => {
         expect(screen.getByText('insufficientPrivileges')).toBeInTheDocument();
     });
 
+    test('sets the document title with the correct values', () => {
+        render(<Unauthorized />);
+
+        expect(document.title).toBe(`insufficientPrivileges | appName`);
+    });
+
 });
