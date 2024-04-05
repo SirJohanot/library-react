@@ -16,13 +16,13 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Unauthorized', () => {
-    test('renders the unauthorized message', () => {
+    it('renders the unauthorized message', () => {
         render(<Unauthorized />);
 
         expect(screen.getByText('insufficientPrivileges')).toBeInTheDocument();
     });
 
-    test('sets the document title with the correct values', () => {
+    it('sets the document title with the correct values', () => {
         render(<Unauthorized />);
 
         expect(document.title).toBe(`insufficientPrivileges | appName`);
