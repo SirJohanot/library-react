@@ -16,10 +16,16 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Missing', () => {
-    test('renders the missing page message', () => {
+    it('renders the missing page message', () => {
         render(<Missing />);
 
         expect(screen.getByText('missingPage')).toBeInTheDocument();
+    });
+
+    it('sets the document title with the correct value', () => {
+        render(<Missing />);
+
+        expect(document.title).toBe('missingPage');
     });
 
 });
