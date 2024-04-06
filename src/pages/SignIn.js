@@ -92,6 +92,7 @@ export default function SignIn() {
                     ref={loginRef}
                     placeholder={intl.formatMessage({ id: 'loginLocale' })}
                     required
+                    data-testid="login-input"
                 />
                 <input
                     className={!credentials?.password ? 'red-border' : ''}
@@ -102,6 +103,7 @@ export default function SignIn() {
                     onChange={handleChange}
                     placeholder={intl.formatMessage({ id: 'passwordLocale' })}
                     required
+                    data-testid="password-input"
                 />
                 {error &&
                     <div className="error-message"><FormattedMessage id={error} /></div>
