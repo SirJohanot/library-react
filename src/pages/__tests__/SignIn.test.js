@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
@@ -12,10 +12,12 @@ jest.mock('react-intl', () => ({
     })
 }));
 
+const mockNavigate = jest.fn();
+
 jest.mock('react-router-dom', () => ({
     Link: (props) => <a href={props.to}>{props.children}</a>,
     useLocation: jest.fn(),
-    useNavigate: jest.fn(),
+    useNavigate: () => mockNavigate,
 }));
 
 jest.mock('../../api/axios', () => ({
@@ -33,7 +35,7 @@ jest.mock('../../hooks/useAuthentication', () => jest.fn());
 describe('SignIn', () => {
     beforeEach(() => {
         useLocation.mockClear();
-        useNavigate.mockClear();
+        useNavigate().mockClear();
         axios.request.mockClear();
         axios.interceptors.request.clear.mockClear();
         axios.interceptors.request.use.mockClear();
@@ -70,5 +72,51 @@ describe('SignIn', () => {
         render(<SignIn />);
 
         expect(document.title).toBe(`signInLocale | appName`);
+    });
+
+    it('handles form submission successfully', async () => {
+        useAuthentication.mockReturnValue({
+            authentication: {
+                login: '',
+                roles: [],
+            },
+            setAuthentication: jest.fn(),
+        });
+
+        const expectedRoles = ['READER'];
+        const mockResponse = { data: { roles: expectedRoles } };
+        axios.request.mockResolvedValue(mockResponse);
+
+        const mockAuthentication = {
+            login: 'loginTest',
+            password: 'passwordTest',
+            roles: expectedRoles
+        }
+
+        render(<SignIn />);
+
+        const loginInput = screen.getByTestId('login-input');
+        const passwordInput = screen.getByTestId('password-input');
+        const submitButton = screen.getByRole('button', { name: 'signInLocale' });
+
+        fireEvent.change(loginInput, { target: { value: mockAuthentication.login } });
+        fireEvent.change(passwordInput, { target: { value: mockAuthentication.password } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(axios.request).toHaveBeenCalledWith({
+                method: 'get',
+                url: '/users/auth',
+                data: {},
+                auth: {
+                    username: mockAuthentication.login,
+                    password: mockAuthentication.password,
+                },
+            });
+            expect(axios.interceptors.request.clear).toHaveBeenCalled();
+            expect(axios.interceptors.request.use).toHaveBeenCalled();
+            expect(useAuthentication().setAuthentication).toHaveBeenCalledWith(mockAuthentication);
+            expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true });
+        });
     });
 });
