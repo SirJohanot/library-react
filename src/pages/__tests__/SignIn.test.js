@@ -119,4 +119,46 @@ describe('SignIn', () => {
             expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true });
         });
     });
+
+    it('displays error message for invalid credentials', async () => {
+        useAuthentication.mockReturnValue({
+            authentication: {
+                login: '',
+                roles: [],
+            },
+            setAuthentication: jest.fn(),
+        });
+
+        const expectedRoles = ['READER'];
+        axios.request.mockRejectedValueOnce({ response: { status: 401 } });
+
+        const mockAuthentication = {
+            login: 'loginTest',
+            password: 'passwordTest',
+            roles: expectedRoles
+        }
+
+        render(<SignIn />);
+
+        const loginInput = screen.getByTestId('login-input');
+        const passwordInput = screen.getByTestId('password-input');
+        const submitButton = screen.getByRole('button', { name: 'signInLocale' });
+
+        fireEvent.change(loginInput, { target: { value: mockAuthentication.login } });
+        fireEvent.change(passwordInput, { target: { value: mockAuthentication.password } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(axios.request).toHaveBeenCalledWith({
+                method: 'get',
+                url: '/users/auth',
+                data: {},
+                auth: {
+                    username: mockAuthentication.login,
+                    password: mockAuthentication.password,
+                },
+            });
+            expect(screen.getByText('invalidCredentials')).toBeInTheDocument();
+        });
+    });
 });
