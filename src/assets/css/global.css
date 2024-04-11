@@ -1,5 +1,26 @@
 /* Variables */
-:root {
+body.light {
+  --color_background: #ffffff;
+  --color_background_light: #adbec5;
+  --color_link: #3c879c;
+  --color_link_disabled: #3c879c5b;
+  --color_link_active: #1bb194;
+  --color_link_hover: #5ff5ff;
+  --color_link_red: #a52f31;
+  --color_link_red_hover: #ff6969;
+  --color_dark_text: #aab3b6;
+  --color_button_text: #161e21;
+  --color_danger: #cc3000;
+  --color_border: #2d3437;
+  --color_input_text: #abaeaf;
+  --color_input_background: #ffffff;
+  --color_input_border: #213138;
+  --color_border_light: #203137;
+  --color_message: #c5c7c8;
+  --color_text: black;
+}
+
+body.dark {
   --color_background: #101619;
   --color_background_light: #171e21;
   --color_link: #3c879c;
@@ -17,7 +38,7 @@
   --color_input_border: #213138;
   --color_border_light: #203137;
   --color_message: #c5c7c8;
-  --color_text: #919596;
+  --color_text: white;
 }
 
 /* General */
@@ -33,7 +54,7 @@ body,
 body {
   padding: 0;
   margin: 0;
-  color: white;
+  color: var(--color_text);
   background-color: var(--color_background);
 }
 
@@ -317,8 +338,10 @@ header .menu li.separator {
 
 /* Footer */
 footer {
-  background-color: #171e21;
+  background-color: var(--color_background_light);
   padding: 25px 15px;
+  display: flex;
+  flex-direction: row;
 }
 
 footer select {
