@@ -65,13 +65,13 @@ export default function Order() {
                     <div className="entity-container">
                         <OrderParameters order={order} />
                     </div>
-                    {(authentication?.roles?.includes('LIBRARIAN') && order?.state === 'PLACED') &&
+                    {(authentication?.roles?.includes('LIBRARIAN') && order?.state !== 'BOOK_RETURNED') &&
                         <div className="buttons-container">
-                            <button className="btn red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
-                            <button className="btn" onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
-                        </div>}
-                    {(authentication?.roles?.includes('READER') && (order?.state === 'APPROVED' || order?.state === 'BOOK_TAKEN')) &&
-                        <div className="buttons-container">
+                            {order?.state === 'PLACED' &&
+                                <>
+                                    <button className="btn red" onClick={() => handleStateChange('decline')}><FormattedMessage id="decline" /></button>
+                                    <button className="btn" onClick={() => handleStateChange('approve')}><FormattedMessage id="approveOrder" /></button>
+                                </>}
                             {order?.state === 'APPROVED' && <button className="btn" onClick={() => handleStateChange('collect')}><FormattedMessage id="collectOrder" /></button>}
                             {order?.state === 'BOOK_TAKEN' && <button className="btn" onClick={() => handleStateChange('return')}><FormattedMessage id="returnOrder" /></button>}
                         </div>}
