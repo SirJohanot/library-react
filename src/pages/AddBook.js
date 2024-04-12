@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import BookChanges from '../components/forms/BookChanges';
 import FormWrapper from '../components/forms/FormWrapper';
@@ -11,16 +10,16 @@ const ADD_BOOK_URL = '/books';
 export default function AddBook() {
     const intl = useIntl();
 
-    const navigate = useNavigate();
-
-    const [book, setBook] = useState({
+    const initialBook = {
         title: '',
         authors: '',
         genre: '',
         publisher: '',
         publishmentYear: 2022,
         amount: 1
-    });
+    }
+
+    const [book, setBook] = useState(initialBook);
     const [error, setError] = useState('');
     const [disabled, setDisabled] = useState(false);
 
@@ -40,7 +39,7 @@ export default function AddBook() {
                 url: ADD_BOOK_URL,
                 data: JSON.stringify(book)
             });
-            navigate('/books/', { replace: true });
+            setBook(initialBook);
         } catch (err) {
             if (!err?.response) {
                 setError('noResponse');
