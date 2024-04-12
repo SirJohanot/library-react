@@ -8,15 +8,15 @@ body.light {
   --color_link_hover: #5ff5ff;
   --color_link_red: #a52f31;
   --color_link_red_hover: #ff6969;
-  --color_dark_text: #aab3b6;
+  --color_dark_text: black;
   --color_button_text: #161e21;
   --color_danger: #cc3000;
   --color_border: #2d3437;
-  --color_input_text: #abaeaf;
+  --color_input_text: black;
   --color_input_background: #ffffff;
   --color_input_border: #213138;
   --color_border_light: #203137;
-  --color_message: #c5c7c8;
+  --color_message: black;
   --color_text: black;
 }
 
@@ -347,8 +347,8 @@ footer {
 footer select {
   display: block;
   margin: auto;
-  background-color: #3c879c;
-  color: #161e21;
+  background-color: var(--color_link);
+  color: var(--color_button_text);
   cursor: pointer;
   border: 0;
   outline: 0;
@@ -357,12 +357,12 @@ footer select {
 }
 
 footer select:hover {
-  background-color: #5ff5ff;
+  background-color: var(--color_link_hover);
 }
 
 footer select option {
-  background-color: #171e21;
-  color: #aab3b6;
+  background-color: var(--color_background_light);
+  color: var(--color_dark_text);
   padding: 5px;
   border: 0;
   outline: 0;
