@@ -46,7 +46,7 @@ export default function Users() {
                     <SearchField items={users} setSearchedItems={setSearchedUsers} itemFitsSearch={userFitsSearch} />
                     <div>
                         <div className="list-header">
-                            <div className="cell">
+                            <div className="important cell">
                                 <span><FormattedMessage id="loginLocale" /></span>
                             </div>
                             <div className="cell">
@@ -55,14 +55,14 @@ export default function Users() {
                             <div className="cell">
                                 <span><FormattedMessage id="lastName" /></span>
                             </div>
-                            <div className="cell">
+                            <div className="important cell">
                                 <span><FormattedMessage id="role" /></span>
                             </div>
                         </div>
                         <div className="items-list">
                             {displayedUsers.map((user) =>
                                 <div className="row" key={user.id}>
-                                    <Link to={`/user/${user.login}`} className="cell link">
+                                    <Link to={`/user/${user.login}`} className="important cell link">
                                         <span>{user?.login}</span>
                                     </Link>
                                     <div className="cell">
@@ -71,7 +71,7 @@ export default function Users() {
                                     <div className="cell">
                                         <span>{user?.lastName}</span>
                                     </div>
-                                    <div className="cell">
+                                    <div className="important cell">
                                         <span><FormattedMessage id={user?.role} /></span>
                                     </div>
                                 </div>

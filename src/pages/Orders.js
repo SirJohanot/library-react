@@ -49,10 +49,10 @@ export default function Orders() {
                 <SearchField items={orders} setSearchedItems={setSearchedOrders} itemFitsSearch={orderFitsSearch} />
                 <div>
                     <div className="list-header">
-                        <div className="cell">
+                        <div className="important cell">
                             <span><FormattedMessage id="book" /></span>
                         </div>
-                        <div className="cell">
+                        <div className="important cell">
                             <span><FormattedMessage id="user" /></span>
                         </div>
                         <div className="cell">
@@ -61,7 +61,7 @@ export default function Orders() {
                         <div className="cell">
                             <span><FormattedMessage id="startDate" /></span>
                         </div>
-                        <div className="cell">
+                        <div className="important cell">
                             <span><FormattedMessage id="endDate" /></span>
                         </div>
                         <div className="cell">
@@ -74,10 +74,10 @@ export default function Orders() {
                     <div className="items-list">
                         {displayedOrders.map((order) =>
                             <div className="row" key={order.id}>
-                                <Link to={`/order/${order.id}`} className="cell link">
+                                <Link to={`/order/${order.id}`} className="important cell link">
                                     <span>{order?.book?.title}</span>
                                 </Link>
-                                <div className="cell">
+                                <div className="important cell">
                                     <span>{order?.user?.login}</span>
                                 </div>
                                 <div className="cell">
@@ -86,7 +86,7 @@ export default function Orders() {
                                 <div className="cell">
                                     <span>{moment(order?.startDate).format(intl.formatMessage({ id: 'dateFormat' }))}</span>
                                 </div>
-                                <div className="cell">
+                                <div className="important cell">
                                     <span>{moment(order?.endDate).format(intl.formatMessage({ id: 'dateFormat' }))}</span>
                                 </div>
                                 <div className="cell">

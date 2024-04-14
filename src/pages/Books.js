@@ -48,10 +48,10 @@ export default function Books() {
                     <SearchField items={books} setSearchedItems={setSearchedBooks} itemFitsSearch={bookFitsSearch} />
                     <div>
                         <div className="list-header">
-                            <div className="cell">
+                            <div className="important cell">
                                 <span><FormattedMessage id="bookTitle" /></span>
                             </div>
-                            <div className="cell">
+                            <div className="important cell">
                                 <span><FormattedMessage id="authors" /></span>
                             </div>
                             <div className="cell">
@@ -71,10 +71,10 @@ export default function Books() {
                             {displayedBooks.map((book) =>
                                 !book.deleted &&
                                 <div className="row" key={book.id}>
-                                    <Link to={`/book/${book.id}`} className="cell link">
+                                    <Link to={`/book/${book.id}`} className="important cell link">
                                         <span>{book?.title}</span>
                                     </Link>
-                                    <div className="cell">
+                                    <div className="important cell">
                                         <span>{book?.authors?.map(author => author.name).join(", ")}</span>
                                     </div>
                                     <div className="cell">
