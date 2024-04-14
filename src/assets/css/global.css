@@ -1,4 +1,8 @@
 /* Variables */
+:root {
+  --footer-height: 80px;
+}
+
 body.light {
   --color_background: #ffffff;
   --color_background_light: #adbec5;
@@ -73,6 +77,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-bottom: var(--footer-height);
 }
 
 #main-content>* {
@@ -338,9 +343,13 @@ header .menu li.separator {
 
 /* Footer */
 footer {
+  position: fixed;
+  bottom: 0;
   background-color: var(--color_background_light);
   padding: 25px 15px;
+  height: var(--footer-height);
   display: flex;
+  width: 100%;
   flex-direction: row;
 }
 
