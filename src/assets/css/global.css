@@ -602,3 +602,18 @@ footer select option {
   width: 80%;
   min-height: 45px;
 }
+
+/* Phones */
+@media only screen and (max-width: 475px) {
+  .pagination * {
+    font-size: 10px;
+  }
+
+  .pagination .btn {
+    padding: 5px 10px;
+  }
+
+  .cell:not(.important) {
+    display: none;
+  }
+}
