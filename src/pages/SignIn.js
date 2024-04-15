@@ -47,18 +47,15 @@ export default function SignIn() {
             });
 
             const roles = response?.data?.roles;
-            setAuthentication({ login: credentials?.login, password: credentials?.password, roles });
+            const token = response?.data?.accessToken;
+            setAuthentication({ login: credentials?.login, password: credentials?.password, roles, token });
 
             axios.interceptors.request.clear();
             axios.interceptors.request.use(
                 (config) => {
-                    return {
-                        ...config,
-                        auth: {
-                            username: credentials?.login,
-                            password: credentials?.password
-                        }
-                    }
+                    config.headers.Authorization = 'Bearer ' + token;
+
+                    return config;
                 },
                 (error) => Promise.reject(error)
             );
