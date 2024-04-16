@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import BookSymbol from '../components/symbols/BookSymbol';
-import ProfileSymbol from '../components/symbols/ProfileSymbol';
 import SignOutSymbol from '../components/symbols/SignOutSymbol';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -20,14 +19,16 @@ export default function Header() {
 
     return (
         <header>
-            <div className="logotype">
-                <BookSymbol />
-                <h1><FormattedMessage id="appName" /></h1>
-            </div>
+            <Link to="/" className="link">
+                <div className="logotype">
+                    <BookSymbol />
+                    <h1><FormattedMessage id="appName" /></h1>
+                </div>
+            </Link>
             <ul className="menu">
                 {authentication?.login &&
                     <>
-                        <li>
+                        <li className="desktop">
                             <div className="category centered">
                                 <Link className="link" to="/books/">
                                     <FormattedMessage id="books" />
@@ -35,7 +36,7 @@ export default function Header() {
                             </div>
                         </li>
                         {authentication?.roles?.find((role) => role === 'READER') &&
-                            <li>
+                            <li className="desktop">
                                 <div className="category centered">
                                     <Link className="link" to="/orders/">
                                         <FormattedMessage id="myOrders" />
@@ -44,7 +45,7 @@ export default function Header() {
                             </li>
                         }
                         {authentication?.roles?.find((role) => role === 'LIBRARIAN') &&
-                            <li>
+                            <li className="desktop">
                                 <div className="category centered">
                                     <Link className="link" to="/orders/">
                                         <FormattedMessage id="orders" />
@@ -54,14 +55,14 @@ export default function Header() {
                         }
                         {authentication?.roles?.find((role) => role === 'ADMIN') &&
                             <>
-                                <li>
+                                <li className="desktop">
                                     <div className="category centered">
                                         <Link className="link" to="/add-book">
                                             <FormattedMessage id="addABook" />
                                         </Link>
                                     </div>
                                 </li>
-                                <li>
+                                <li className="desktop">
                                     <div className="category centered">
                                         <Link className="link" to="/users/">
                                             <FormattedMessage id="users" />
@@ -70,12 +71,9 @@ export default function Header() {
                                 </li>
                             </>
                         }
-                        <li className="separator" ></li>
+                        <li className="desktop separator" ></li>
                         <li>
                             <div className="category">
-                                <div className="centered">
-                                    <ProfileSymbol />
-                                </div>
                                 <div className="centered profile-login">
                                     <p>{authentication?.login}</p>
                                 </div>
