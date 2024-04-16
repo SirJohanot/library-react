@@ -176,6 +176,29 @@ html::-webkit-scrollbar-thumb {
   background-color: var(--color_link_red_hover);
 }
 
+.btn.card-button {
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  min-height: 100px;
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: var(--color_border);
+  color: var(--color_text);
+  background-color: var(--color_background_light);
+}
+
+.btn.card-button>svg {
+  min-width: 80px;
+  min-height: 80px;
+  fill: var(--color_text);
+}
+
+.btn.card-button>div {
+  text-align: center;
+  width: 100%;
+}
+
 /* Forms */
 .form {
   display: flex;
@@ -484,13 +507,25 @@ footer select option {
 /* Main Page */
 .main-page-message {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 15px;
   background-color: var(--color_background_light);
   color: var(--color_message);
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.home-page {
+  flex-grow: 1;
+}
+
+.card-buttons-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 10px;
 }
 
 /* Tables */
@@ -614,6 +649,11 @@ footer select option {
   }
 
   .cell:not(.important) {
+    display: none;
+  }
+
+  .desktop,
+  header .menu li.desktop {
     display: none;
   }
 }
