@@ -22,7 +22,7 @@ export default function Header() {
             <Link to="/" className="link">
                 <div className="logotype">
                     <BookSymbol />
-                    <h1><FormattedMessage id="appName" /></h1>
+                    <h1 className="desktop"><FormattedMessage id="appName" /></h1>
                 </div>
             </Link>
             <ul className="menu">
