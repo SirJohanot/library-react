@@ -179,8 +179,10 @@ html::-webkit-scrollbar-thumb {
 .btn.card-button {
   display: flex;
   flex-direction: column;
-  min-width: 100px;
-  min-height: 100px;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 140px;
   border: 1px solid;
   border-radius: 10px;
   border-color: var(--color_border);
@@ -189,8 +191,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 .btn.card-button>svg {
-  min-width: 80px;
-  min-height: 80px;
+  flex-grow: 1;
   fill: var(--color_text);
 }
 
@@ -653,7 +654,8 @@ footer select option {
   }
 
   .desktop,
-  header .menu li.desktop {
+  header .menu li.desktop,
+  header .logotype h1.desktop {
     display: none;
   }
 }
