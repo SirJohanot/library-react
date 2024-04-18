@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
 
-export default function Layout({ setCurrentLocale }) {
+export default function Layout({ locale, setCurrentLocale }) {
 
     Layout.propTypes = {
         setCurrentLocale: PropTypes.func.isRequired,
@@ -16,7 +16,7 @@ export default function Layout({ setCurrentLocale }) {
             <section id="main-content">
                 <Outlet />
             </section>
-            <Footer setCurrentLocale={setCurrentLocale} />
+            <Footer locale={locale} setCurrentLocale={setCurrentLocale} />
         </>
     );
 }

@@ -22,14 +22,14 @@ import User from './pages/User';
 import Users from './pages/Users';
 
 function App() {
-  const locale = LOCALES.ENGLISH;
+  const locale = navigator.language || navigator.userLanguage || LOCALES.ENGLISH;
 
   const [currentLocale, setCurrentLocale] = useState(locale);
 
   return (
     <IntlProvider locale={currentLocale} defaultLocale={LOCALES.ENGLISH} messages={messages[currentLocale]}>
       <Routes>
-        <Route path="/" element={<Layout setCurrentLocale={setCurrentLocale} />}>
+        <Route path="/" element={<Layout locale={locale} setCurrentLocale={setCurrentLocale} />}>
           <Route exact path="sign-in" element={<SignIn />} />
           <Route exact path="sign-up" element={<SignUp />} />
           <Route path="*" element={<Missing />} />

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Switch from 'react-switch';
 import { LOCALES } from '../i18n/locales';
 
-export default function Footer({ setCurrentLocale }) {
+export default function Footer({ locale, setCurrentLocale }) {
 
     Footer.propTypes = {
         setCurrentLocale: PropTypes.func.isRequired,
@@ -29,9 +29,9 @@ export default function Footer({ setCurrentLocale }) {
     return (
         <footer>
             <select onChange={handleLocaleChange}>
-                <option value={LOCALES.ENGLISH}>English</option>
-                <option value={LOCALES.RUSSIAN}>Русский</option>
-                <option value={LOCALES.BELARUSIAN}>Беларуская</option>
+                <option selected={locale === LOCALES.ENGLISH} value={LOCALES.ENGLISH}>English</option>
+                <option selected={locale === LOCALES.RUSSIAN} value={LOCALES.RUSSIAN}>Русский</option>
+                <option selected={locale === LOCALES.BELARUSIAN} value={LOCALES.BELARUSIAN}>Беларуская</option>
             </select>
             <Switch onChange={() => setDarkMode(prev => !prev)}
                 checked={isDarkMode}
