@@ -28,10 +28,10 @@ export default function Footer({ locale, setCurrentLocale }) {
 
     return (
         <footer>
-            <select onChange={handleLocaleChange}>
-                <option selected={locale === LOCALES.ENGLISH} value={LOCALES.ENGLISH}>English</option>
-                <option selected={locale === LOCALES.RUSSIAN} value={LOCALES.RUSSIAN}>Русский</option>
-                <option selected={locale === LOCALES.BELARUSIAN} value={LOCALES.BELARUSIAN}>Беларуская</option>
+            <select onChange={handleLocaleChange} defaultValue={locale}>
+                <option value={LOCALES.ENGLISH}>English</option>
+                <option value={LOCALES.RUSSIAN}>Русский</option>
+                <option value={LOCALES.BELARUSIAN}>Беларуская</option>
             </select>
             <Switch onChange={() => setDarkMode(prev => !prev)}
                 checked={isDarkMode}
