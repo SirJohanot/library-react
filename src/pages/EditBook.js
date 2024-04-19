@@ -32,7 +32,7 @@ export default function EditBook() {
             const resultBook = response?.data;
             setBook({
                 title: resultBook?.title,
-                authors: resultBook?.authors.map((author) => author?.name).join(', '),
+                authors: resultBook?.authors.map((author) => author?.name),
                 genre: resultBook?.genre?.name,
                 publisher: resultBook?.publisher?.name,
                 publishmentYear: resultBook?.publishmentYear,

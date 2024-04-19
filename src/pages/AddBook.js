@@ -12,7 +12,7 @@ export default function AddBook() {
 
     const initialBook = {
         title: '',
-        authors: '',
+        authors: [''],
         genre: '',
         publisher: '',
         publishmentYear: 2022,
