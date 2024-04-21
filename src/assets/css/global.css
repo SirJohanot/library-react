@@ -283,6 +283,28 @@ html::-webkit-scrollbar-thumb {
   width: 800px;
 }
 
+.form>div {
+  width: 100%;
+}
+
+.author-input {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.author-input>input {
+  flex-grow: 3;
+  flex-shrink: 3;
+}
+
+.author-input>button {
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: auto;
+}
+
 /* Header*/
 header {
   position: fixed;
