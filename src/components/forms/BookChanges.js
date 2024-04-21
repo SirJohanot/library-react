@@ -82,7 +82,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
 
     useEffect(() => {
         setDisabled(errors?.title
-            || (errors?.authors.indexOf('') !== -1)
+            || (errors?.authors.filter(error => error === '').length !== errors?.authors.length)
             || errors?.genre
             || errors?.publisher);
     }, [errors, setDisabled]);
@@ -102,9 +102,9 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
         setErrors(prev => ({ ...prev, authors: [...prev?.authors, ''] }));
     }
 
-    const handleRemoveAuthor = (e) => {
-        setBook(prev => ({ ...prev, authors: prev?.authors.slice(0, -1) }));
-        setErrors(prev => ({ ...prev, authors: prev?.authors.slice(0, -1) }));
+    const handleRemoveAuthor = (index) => {
+        setBook(prev => ({ ...prev, authors: [...prev?.authors.slice(0, index), ...prev?.authors.slice(index + 1, prev?.authors.length)] }));
+        setErrors(prev => ({ ...prev, authors: [...prev?.authors.slice(0, index), ...prev?.authors.slice(index + 1, prev?.authors.length)] }));
     }
 
     return (
@@ -126,23 +126,25 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
             <label htmlFor="author0"><FormattedMessage id="authors" />:</label>
             {book?.authors.map((element, index) =>
                 <div key={`author${index}`}>
-                    <input
-                        className={errors?.authors[index] ? 'red-border' : ''}
-                        type="text"
-                        id={`author${index}`}
-                        name="author"
-                        value={element}
-                        onChange={(e) => handleAuthorChange(e, index)}
-                        required
-                    />
+                    <div className="author-input">
+                        <input
+                            className={errors?.authors[index] ? 'red-border' : ''}
+                            type="text"
+                            id={`author${index}`}
+                            name="author"
+                            value={element}
+                            onChange={(e) => handleAuthorChange(e, index)}
+                            required
+                        />
+                        {index > 0 &&
+                            <button type="button" className="btn red" onClick={(e) => handleRemoveAuthor(index)}>-</button>
+                        }
+                    </div>
                     {errors?.authors[index] &&
                         <div className="field-error"><FormattedMessage id={errors?.authors[index]} /></div>
                     }
                 </div>
             )}
-            {book?.authors.length > 1 &&
-                <button type="button" className="btn" onClick={handleRemoveAuthor}>-</button>
-            }
             <button type="button" className="btn" onClick={handleAddAuthor}>+</button>
             <label htmlFor="genre"><FormattedMessage id="genre" />:</label>
             <input
