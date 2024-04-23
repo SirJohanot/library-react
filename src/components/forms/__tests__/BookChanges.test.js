@@ -9,7 +9,7 @@ jest.mock('react-intl', () => ({
 describe('BookChanges', () => {
     const mockBook = {
         title: 'Book Title',
-        authors: 'John Doe',
+        authors: ['John Doe'],
         genre: 'Fiction',
         publisher: 'Publisher Name',
         publishmentYear: '2022',
@@ -20,7 +20,7 @@ describe('BookChanges', () => {
         render(<BookChanges book={mockBook} setBook={() => { }} handleSubmit={() => { }} error="" setDisabled={() => { }} />);
 
         expect(screen.getByLabelText('bookTitle:')).toBeInTheDocument();
-        expect(screen.getByLabelText('authors (commaSeparated):')).toBeInTheDocument();
+        expect(screen.getByLabelText('authors:')).toBeInTheDocument();
         expect(screen.getByLabelText('genre:')).toBeInTheDocument();
         expect(screen.getByLabelText('publisher:')).toBeInTheDocument();
         expect(screen.getByLabelText('publishmentYear:')).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe('BookChanges', () => {
     it('displays error messages for invalid input', () => {
         const noTitleBook = {
             title: '',
-            authors: 'John Doe',
+            authors: ['John Doe'],
             genre: 'Fiction',
             publisher: 'Publisher Name',
             publishmentYear: '2022',
