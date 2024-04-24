@@ -131,6 +131,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                             className={errors?.authors[index] ? 'red-border' : ''}
                             type="text"
                             id={`author${index}`}
+                            data-testid={`author${index}`}
                             name="author"
                             value={element}
                             onChange={(e) => handleAuthorChange(e, index)}
