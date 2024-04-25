@@ -50,4 +50,19 @@ describe('BookChanges', () => {
 
         expect(setBookMock).toHaveBeenCalledTimes(1);
     });
+
+    it('renders two author input fields when the book has two authors', () => {
+        const book = {
+            title: 'Book Title',
+            authors: ['John Doe', 'Jane Doe'],
+            genre: 'Fiction',
+            publisher: 'Publisher Name',
+            publishmentYear: '2022',
+            amount: '10',
+        };
+
+        render(<BookChanges book={book} setBook={() => { }} handleSubmit={() => { }} error="" setDisabled={() => { }} />);
+
+        expect(screen.getAllByTestId(/author/i).length).toBe(2);
+    });
 });
