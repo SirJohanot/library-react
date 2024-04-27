@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+  library-spring:
+    container_name: library-spring
+    image: library-spring
+    build:
+      context: ./library-spring
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/library_spring
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=library_spring
+    volumes:
+      - ./library-data:/var/lib/postgresql/data
+
+  library-react:
+    container_name: library-react
+    image: library-react
+    build:
+      context: ./library-react
+    ports:
+      - "3000:3000"
+    depends_on:
+      - library-spring
