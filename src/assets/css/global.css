@@ -554,6 +554,7 @@ footer select option {
 /* Tables */
 .row {
   height: 50px;
+  padding: 5px 15px;
 }
 
 .list-header {
@@ -561,6 +562,7 @@ footer select option {
   box-shadow: 0 10px 10px -8px rgba(7, 16, 19, .25);
   color: var(--color_text);
   height: 64px;
+  padding: 0.5em 15px;
 }
 
 .list-header,
@@ -569,7 +571,6 @@ footer select option {
   align-items: stretch;
   gap: 10px;
   background: var(--color_background_light);
-  padding: 0.5em 15px;
 }
 
 .cell {
