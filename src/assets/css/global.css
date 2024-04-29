@@ -553,8 +553,8 @@ footer select option {
 
 /* Tables */
 .row {
-  height: 50px;
-  padding: 5px 15px;
+  height: auto;
+  padding: 0 15px;
 }
 
 .list-header {
@@ -597,7 +597,7 @@ footer select option {
 .list-header>.cell,
 .row>.cell {
   flex: 1 1 0;
-  padding: 10px 5px;
+  padding: 5px 5px;
 }
 
 .list-header>.cell {
