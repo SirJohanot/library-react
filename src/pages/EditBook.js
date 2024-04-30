@@ -36,6 +36,8 @@ export default function EditBook() {
                 genre: resultBook?.genre?.name,
                 publisher: resultBook?.publisher?.name,
                 publishmentYear: resultBook?.publishmentYear,
+                publishmentLocation: resultBook?.publishmentLocation,
+                isbn: resultBook?.isbn,
                 amount: resultBook?.amount
             });
             document.title = `${intl.formatMessage({ id: 'edit' })} ${resultBook?.title} | ${intl.formatMessage({ id: 'appName' })}`;

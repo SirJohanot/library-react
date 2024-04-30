@@ -16,6 +16,8 @@ export default function AddBook() {
         genre: '',
         publisher: '',
         publishmentYear: 2022,
+        publishmentLocation: '',
+        isbn: '',
         amount: 1
     }
 
