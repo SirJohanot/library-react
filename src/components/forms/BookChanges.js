@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { isAHumanName, isAWord } from '../../utility/validator';
+import { isAHumanName, isAWord, isValidIsbn } from '../../utility/validator';
 
 export default function BookChanges({ book, setBook, handleSubmit, error, setDisabled }) {
 
@@ -19,7 +19,9 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
         title: '',
         authors: [''],
         genre: '',
-        publisher: ''
+        publisher: '',
+        publishmentLocation: '',
+        isbn: ''
     });
 
     useEffect(() => {
@@ -79,6 +81,26 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
         }
         setErrors(prev => ({ ...prev, publisher: '' }));
     }, [book?.publisher, validateField]);
+
+    useEffect(() => {
+        if (validateField('publishmentLocation', (publishmentLocation) => publishmentLocation, 'fieldRequired')) {
+            return;
+        }
+        if (validateField('publishmentLocation', isAWord, 'alphabetical')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, publishmentLocation: '' }));
+    }, [book?.publishmentLocation, validateField]);
+
+    useEffect(() => {
+        if (validateField('isbn', (isbn) => isbn, 'fieldRequired')) {
+            return;
+        }
+        if (validateField('isbn', isValidIsbn, 'isbnFormat')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, isbn: '' }));
+    }, [book?.isbn, validateField]);
 
     useEffect(() => {
         setDisabled(errors?.title
@@ -185,6 +207,30 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                 step="1"
                 required
             />
+            <label htmlFor="publishment-location"><FormattedMessage id="publishmentLocation" />:</label>
+            <input
+                type="text"
+                id="publishment-location"
+                name="publishmentLocation"
+                value={book?.publishmentLocation}
+                onChange={handleChange}
+                required
+            />
+            {errors?.publishmentLocation &&
+                <div className="field-error"><FormattedMessage id={errors?.publishmentLocation} /></div>
+            }
+            <label htmlFor="isbn">ISBN:</label>
+            <input
+                type="text"
+                id="isbn"
+                name="isbn"
+                value={book?.isbn}
+                onChange={handleChange}
+                required
+            />
+            {errors?.isbn &&
+                <div className="field-error"><FormattedMessage id={errors?.isbn} /></div>
+            }
             <label htmlFor="amount"><FormattedMessage id="inStock" />:</label>
             <input
                 type="number"

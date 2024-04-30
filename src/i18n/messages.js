@@ -31,6 +31,7 @@ export const messages = {
         genre: 'Genre',
         publisher: 'Publisher',
         publishmentYear: 'Publishment year',
+        publishmentLocation: 'Publishment location',
         inStock: 'In stock',
         delete: 'Delete',
         deleteConfirmation: 'Do you really want to delete this book?',
@@ -75,6 +76,7 @@ export const messages = {
         fieldRequired: 'This field is required',
         passwordsDoNotMatch: 'Passwords do not match',
         alphabetical: 'This field must start with an alphabetical character',
+        isbnFormat: 'ISBN should consist of 10 or 13 digits',
         failure: 'Failure',
         dontHaveAnAccount: 'Don\'t have an account?',
         alreadyHaveAnAccount: 'Already have an account?'
@@ -109,6 +111,7 @@ export const messages = {
         genre: 'Жанр',
         publisher: 'Издатель',
         publishmentYear: 'Год издания',
+        publishmentLocation: 'Место издания',
         inStock: 'В наличии',
         delete: 'Удалить',
         deleteConfirmation: 'Вы действительно хотите удалить эту книгу?',
@@ -153,6 +156,7 @@ export const messages = {
         fieldRequired: 'Это поле обязательно',
         passwordsDoNotMatch: 'Пароли не совпадают',
         alphabetical: 'Это поле должно начинаться с буквы',
+        isbnFormat: 'ISBN должен состоять из 10-ти или 13-ти цифр',
         failure: 'Неудача',
         dontHaveAnAccount: 'Нету аккаунта?',
         alreadyHaveAnAccount: 'Уже есть аккаунт?'
@@ -187,6 +191,7 @@ export const messages = {
         genre: 'Жанр',
         publisher: 'Выдавец',
         publishmentYear: 'Год выдання',
+        publishmentLocation: 'Месца выдання',
         inStock: 'У наяўнасці',
         delete: 'Выдаліць',
         deleteConfirmation: 'Вы сапраўды хочаце выдаліць гэтую кнігу?',
@@ -231,6 +236,7 @@ export const messages = {
         fieldRequired: 'Гэта поле абавязкова',
         passwordsDoNotMatch: 'Паролі не супадаюць',
         alphabetical: 'Гэтае поле павінна пачынацца з літары',
+        isbnFormat: 'ISBN павінен складацца з 10-ці ці 13-ці лічбаў',
         failure: 'Няўдача',
         dontHaveAnAccount: 'Няма акаўнта?',
         alreadyHaveAnAccount: 'Ужо ёсць акаўнт?'
