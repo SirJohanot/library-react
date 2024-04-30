@@ -106,7 +106,9 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
         setDisabled(errors?.title
             || (errors?.authors.filter(error => error === '').length !== errors?.authors.length)
             || errors?.genre
-            || errors?.publisher);
+            || errors?.publisher
+            || errors?.publishmentLocation
+            || errors?.isbn);
     }, [errors, setDisabled]);
 
     const handleChange = (e) => {
