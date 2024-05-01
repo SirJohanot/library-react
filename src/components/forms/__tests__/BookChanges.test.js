@@ -12,7 +12,7 @@ describe('BookChanges', () => {
         authors: ['John Doe'],
         genre: 'Fiction',
         publisher: 'Publisher Name',
-        publishmentYear: '2022',
+        publicationYear: '2022',
         amount: '10',
     };
 
@@ -23,7 +23,7 @@ describe('BookChanges', () => {
         expect(screen.getByLabelText('authors:')).toBeInTheDocument();
         expect(screen.getByLabelText('genre:')).toBeInTheDocument();
         expect(screen.getByLabelText('publisher:')).toBeInTheDocument();
-        expect(screen.getByLabelText('publishmentYear:')).toBeInTheDocument();
+        expect(screen.getByLabelText('publicationYear:')).toBeInTheDocument();
         expect(screen.getByLabelText('inStock:')).toBeInTheDocument();
     });
 
@@ -33,7 +33,7 @@ describe('BookChanges', () => {
             authors: ['John Doe'],
             genre: 'Fiction',
             publisher: 'Publisher Name',
-            publishmentYear: '2022',
+            publicationYear: '2022',
             amount: '10',
         };
 
@@ -57,7 +57,7 @@ describe('BookChanges', () => {
             authors: ['John Doe', 'Jane Doe'],
             genre: 'Fiction',
             publisher: 'Publisher Name',
-            publishmentYear: '2022',
+            publicationYear: '2022',
             amount: '10',
         };
 

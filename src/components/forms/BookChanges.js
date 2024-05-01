@@ -20,7 +20,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
         authors: [''],
         genre: '',
         publisher: '',
-        publishmentLocation: '',
+        publicationLocation: '',
         isbn: ''
     });
 
@@ -83,14 +83,14 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
     }, [book?.publisher, validateField]);
 
     useEffect(() => {
-        if (validateField('publishmentLocation', (publishmentLocation) => publishmentLocation, 'fieldRequired')) {
+        if (validateField('publicationLocation', (publicationLocation) => publicationLocation, 'fieldRequired')) {
             return;
         }
-        if (validateField('publishmentLocation', isAWord, 'alphabetical')) {
+        if (validateField('publicationLocation', isAWord, 'alphabetical')) {
             return;
         }
-        setErrors(prev => ({ ...prev, publishmentLocation: '' }));
-    }, [book?.publishmentLocation, validateField]);
+        setErrors(prev => ({ ...prev, publicationLocation: '' }));
+    }, [book?.publicationLocation, validateField]);
 
     useEffect(() => {
         if (validateField('isbn', (isbn) => isbn, 'fieldRequired')) {
@@ -107,7 +107,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
             || (errors?.authors.filter(error => error === '').length !== errors?.authors.length)
             || errors?.genre
             || errors?.publisher
-            || errors?.publishmentLocation
+            || errors?.publicationLocation
             || errors?.isbn);
     }, [errors, setDisabled]);
 
@@ -197,29 +197,29 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
             {errors?.publisher &&
                 <div className="field-error"><FormattedMessage id={errors?.publisher} /></div>
             }
-            <label htmlFor="publishment-year"><FormattedMessage id="publishmentYear" />:</label>
+            <label htmlFor="publication-year"><FormattedMessage id="publicationYear" />:</label>
             <input
                 type="number"
-                id="publishment-year"
-                name="publishmentYear"
-                value={book?.publishmentYear}
+                id="publication-year"
+                name="publicationYear"
+                value={book?.publicationYear}
                 onChange={handleChange}
                 min="1900"
                 max="2025"
                 step="1"
                 required
             />
-            <label htmlFor="publishment-location"><FormattedMessage id="publishmentLocation" />:</label>
+            <label htmlFor="publication-location"><FormattedMessage id="publicationLocation" />:</label>
             <input
                 type="text"
-                id="publishment-location"
-                name="publishmentLocation"
-                value={book?.publishmentLocation}
+                id="publication-location"
+                name="publicationLocation"
+                value={book?.publicationLocation}
                 onChange={handleChange}
                 required
             />
-            {errors?.publishmentLocation &&
-                <div className="field-error"><FormattedMessage id={errors?.publishmentLocation} /></div>
+            {errors?.publicationLocation &&
+                <div className="field-error"><FormattedMessage id={errors?.publicationLocation} /></div>
             }
             <label htmlFor="isbn">ISBN:</label>
             <input

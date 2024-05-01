@@ -33,11 +33,14 @@ export default function EditBook() {
             setBook({
                 title: resultBook?.title,
                 authors: resultBook?.authors.map((author) => author?.name),
+                editors: resultBook?.editors,
                 genre: resultBook?.genre?.name,
-                publisher: resultBook?.publisher?.name,
-                publishmentYear: resultBook?.publishmentYear,
-                publishmentLocation: resultBook?.publishmentLocation,
+                publisher: resultBook?.publisher,
+                publicationYear: resultBook?.publicationYear,
+                publicationLocation: resultBook?.publicationLocation,
                 isbn: resultBook?.isbn,
+                udc: resultBook?.udc,
+                bbc: resultBook?.bbc,
                 amount: resultBook?.amount
             });
             document.title = `${intl.formatMessage({ id: 'edit' })} ${resultBook?.title} | ${intl.formatMessage({ id: 'appName' })}`;

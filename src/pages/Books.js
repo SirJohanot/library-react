@@ -36,7 +36,7 @@ export default function Books() {
             || book.authors.map(author => author.name.toLowerCase()).some(author => author.includes(keyword))
             || book.genre.name.toLowerCase().includes(keyword)
             || book.publisher.name.toLowerCase().includes(keyword)
-            || book.publishmentYear.toString().includes(keyword)
+            || book.publicationYear.toString().includes(keyword)
             || book.amount.toString().includes(keyword)
         );
     }, []);
@@ -61,7 +61,7 @@ export default function Books() {
                                 <span><FormattedMessage id="publisher" /></span>
                             </div>
                             <div className="cell">
-                                <span><FormattedMessage id="publishmentYear" /></span>
+                                <span><FormattedMessage id="publicationYear" /></span>
                             </div>
                             <div className="cell">
                                 <span><FormattedMessage id="inStock" /></span>
@@ -84,7 +84,7 @@ export default function Books() {
                                         <span>{book?.publisher?.name}</span>
                                     </div>
                                     <div className="cell">
-                                        <span>{book?.publishmentYear}</span>
+                                        <span>{book?.publicationYear}</span>
                                     </div>
                                     <div className="cell">
                                         <span>{book?.amount}</span>

@@ -14,8 +14,8 @@ export default function BookParameters({ book }) {
             <p><span className="parameter-name"><FormattedMessage id="authors" />:</span> {book?.authors?.map(author => author.name).join(", ")}</p>
             <p><span className="parameter-name"><FormattedMessage id="genre" />:</span> {book?.genre?.name}</p>
             <p><span className="parameter-name"><FormattedMessage id="publisher" />:</span> {book?.publisher?.name}</p>
-            <p><span className="parameter-name"><FormattedMessage id="publishmentYear" />:</span> {book?.publishmentYear}</p>
-            <p><span className="parameter-name"><FormattedMessage id="publishmentLocation" />:</span> {book?.publishmentLocation}</p>
+            <p><span className="parameter-name"><FormattedMessage id="publicationYear" />:</span> {book?.publicationYear}</p>
+            <p><span className="parameter-name"><FormattedMessage id="publicationLocation" />:</span> {book?.publicationLocation}</p>
             <p><span className="parameter-name">ISBN:</span> {book?.isbn}</p>
             <p><span className="parameter-name"><FormattedMessage id="inStock" />:</span> {book?.amount}</p>
         </>

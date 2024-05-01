@@ -13,11 +13,14 @@ export default function AddBook() {
     const initialBook = {
         title: '',
         authors: [''],
+        editors: [{ role: '', name: '' }],
         genre: '',
-        publisher: '',
-        publishmentYear: 2022,
-        publishmentLocation: '',
+        publisher: { name: '', postalCode: '', address: '' },
+        publicationYear: 2022,
+        publicationLocation: '',
         isbn: '',
+        udc: '',
+        bbc: '',
         amount: 1
     }
 
