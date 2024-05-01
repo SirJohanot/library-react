@@ -213,8 +213,16 @@ html::-webkit-scrollbar-thumb {
   gap: 1rem;
 }
 
+.form-element {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
 .form input,
-.form select {
+.form select,
+.form textarea {
   padding: 0.45rem 0.75rem 0.3rem;
   color: var(--color_input_text);
   background-color: var(--color_input_background);
@@ -229,7 +237,8 @@ html::-webkit-scrollbar-thumb {
 }
 
 .form input:focus,
-.form select:focus {
+.form select:focus,
+.form textarea:focus {
   border-color: var(--color_link_active);
   outline: 0;
 }
@@ -287,19 +296,20 @@ html::-webkit-scrollbar-thumb {
   width: 100%;
 }
 
-.author-input {
+.complex-input {
   display: flex;
   flex-direction: row;
   gap: 10px;
   margin-bottom: 0.5rem;
 }
 
-.author-input>input {
+.complex-input>input,
+.complex-input>textarea {
   flex-grow: 3;
   flex-shrink: 3;
 }
 
-.author-input>button {
+.complex-input>button {
   flex-grow: 1;
   flex-shrink: 1;
   width: auto;
