@@ -32,12 +32,12 @@ function App() {
         <Route path="/" element={<Layout locale={locale} setCurrentLocale={setCurrentLocale} />}>
           <Route exact path="sign-in" element={<SignIn />} />
           <Route exact path="sign-up" element={<SignUp />} />
+          <Route path="" element={<Home />} />
+          <Route path="books/" element={<Books />} />
+          <Route path="book/:id" element={<Book />} />
           <Route path="*" element={<Missing />} />
           <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN", "ADMIN"]} />}>
             <Route path="/unauthorized" element={<Unauthorized />} />
-            <Route path="" element={<Home />} />
-            <Route path="books/" element={<Books />} />
-            <Route path="book/:id" element={<Book />} />
           </Route>
           <Route element={<RequireAthentication allowedRoles={["ADMIN"]} />}>
             <Route path="users/" element={<Users />} />
