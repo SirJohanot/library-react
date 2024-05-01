@@ -59,7 +59,7 @@ export default function Book() {
                         <div className="entity-container">
                             <BookParameters book={book} />
                         </div>
-                        {authentication?.roles.includes('ADMIN') &&
+                        {(authentication?.roles && authentication?.roles.includes('ADMIN')) &&
                             <div className="buttons-container">
                                 <button className="btn red" onClick={handleDelete}><FormattedMessage id="delete" /></button>
                                 <Link to={`/book/${id}/edit`} className="btn">
@@ -68,7 +68,7 @@ export default function Book() {
                             </div>
                         }
                     </div>
-                    {(authentication?.roles.includes('READER') && book?.amount > 0) &&
+                    {(authentication?.roles && authentication?.roles.includes('READER') && book?.amount > 0) &&
                         <FormWrapper formName={intl.formatMessage({ id: 'order' })} formId="order-book" cancelPath="/books/" submitDisabled={false} submitName={intl.formatMessage({ id: 'order' })}>
                             <BookOrderForm bookId={book?.id} />
                         </FormWrapper>
