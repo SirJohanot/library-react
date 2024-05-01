@@ -26,15 +26,15 @@ export default function Header() {
                 </div>
             </Link>
             <ul className="menu">
-                {authentication?.login &&
+                <li className="desktop">
+                    <div className="category centered">
+                        <Link className="link" to="/books/">
+                            <FormattedMessage id="books" />
+                        </Link>
+                    </div>
+                </li>
+                {authentication?.login ?
                     <>
-                        <li className="desktop">
-                            <div className="category centered">
-                                <Link className="link" to="/books/">
-                                    <FormattedMessage id="books" />
-                                </Link>
-                            </div>
-                        </li>
                         {authentication?.roles?.find((role) => role === 'READER') &&
                             <li className="desktop">
                                 <div className="category centered">
@@ -84,6 +84,16 @@ export default function Header() {
                                 <button type="button" className="sign-out-button centered" onClick={handleSignOut}>
                                     <SignOutSymbol />
                                 </button>
+                            </div>
+                        </li>
+                    </>
+                    : <>
+                        <li className="desktop separator" ></li>
+                        <li>
+                            <div className="category centered">
+                                <Link className="link" to="/sign-in">
+                                    <FormattedMessage id="signInLocale" />
+                                </Link>
                             </div>
                         </li>
                     </>
