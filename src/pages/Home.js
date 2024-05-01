@@ -18,7 +18,7 @@ export default function Home() {
     return (
         <div className="home-page">
             <div className="main-page-message">
-                <h1><FormattedMessage id="greetingsMessage" />, {authentication?.login}</h1>
+                <h1><FormattedMessage id="greetingsMessage" />{authentication?.login && `, ${authentication?.login}`}</h1>
             </div>
             <div className="card-buttons-container">
                 <CardButton symbol={<BookSymbol />} text="books" destination="/books/" />
