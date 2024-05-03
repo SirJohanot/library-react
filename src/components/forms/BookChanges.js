@@ -171,10 +171,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
     }, [book?.publicationLocation, validateField]);
 
     useEffect(() => {
-        if (validateField('isbn', (isbn) => isbn, 'fieldRequired')) {
-            return;
-        }
-        if (validateField('isbn', isValidIsbn, 'isbnFormat')) {
+        if (book?.isbn?.length > 0 && validateField('isbn', isValidIsbn, 'isbnFormat')) {
             return;
         }
         setErrors(prev => ({ ...prev, isbn: '' }));
@@ -487,7 +484,6 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                     name="isbn"
                     value={book?.isbn}
                     onChange={handleChange}
-                    required
                 />
                 {errors?.isbn &&
                     <div className="field-error"><FormattedMessage id={errors?.isbn} /></div>
@@ -501,7 +497,6 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                     name="udc"
                     value={book?.udc}
                     onChange={handleChange}
-                    required
                 />
                 {errors?.udc &&
                     <div className="field-error"><FormattedMessage id={errors?.udc} /></div>
@@ -515,7 +510,6 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                     name="bbc"
                     value={book?.bbc}
                     onChange={handleChange}
-                    required
                 />
                 {errors?.bbc &&
                     <div className="field-error"><FormattedMessage id={errors?.bbc} /></div>

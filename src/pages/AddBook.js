@@ -45,7 +45,7 @@ export default function AddBook() {
             await axios.request({
                 method: ADD_BOOK_METHOD,
                 url: ADD_BOOK_URL,
-                data: JSON.stringify(book)
+                data: JSON.stringify(book, (key, value) => value === '' ? null : value)
             });
             setBook(initialBook);
         } catch (err) {

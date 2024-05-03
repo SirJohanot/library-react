@@ -61,7 +61,7 @@ export default function EditBook() {
             await axios.request({
                 method: EDIT_BOOK_METHOD,
                 url: EDIT_BOOK_URL + id,
-                data: JSON.stringify(book)
+                data: JSON.stringify(book, (key, value) => value === '' ? null : value)
             });
             navigate(`/book/${id}`, { replace: true });
         } catch (err) {
