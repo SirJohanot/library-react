@@ -296,20 +296,26 @@ html::-webkit-scrollbar-thumb {
   width: 100%;
 }
 
-.complex-input {
+.author-input,
+.editor-input {
   display: flex;
   flex-direction: row;
   gap: 10px;
   margin-bottom: 0.5rem;
 }
 
-.complex-input>input,
-.complex-input>textarea {
-  flex-grow: 3;
-  flex-shrink: 3;
+.author-input>input,
+.author-input>textarea {
+  flex: 0 0 90%;
 }
 
-.complex-input>button {
+.editor-input>input,
+.editor-input>textarea {
+  flex: 0 0 45%;
+}
+
+.author-input>button,
+.editor-input>button {
   flex-grow: 1;
   flex-shrink: 1;
   width: auto;
