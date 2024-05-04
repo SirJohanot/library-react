@@ -261,7 +261,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                 <label htmlFor="author0"><FormattedMessage id="authors" />:</label>
                 {book?.authors.map((element, index) =>
                     <div key={`author${index}`}>
-                        <div className="complex-input">
+                        <div className="author-input">
                             <input
                                 className={errors?.authors[index] ? 'red-border' : ''}
                                 type="text"
@@ -287,7 +287,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                 <label htmlFor="editor0role"><FormattedMessage id="editors" />:</label>
                 {book?.editors.map((element, index) =>
                     <div key={`editor${index}`}>
-                        <div className="complex-input">
+                        <div className="editor-input">
                             <input
                                 className={errors?.editors[index] ? 'red-border' : ''}
                                 type="text"
