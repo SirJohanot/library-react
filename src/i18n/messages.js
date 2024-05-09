@@ -86,6 +86,7 @@ export const messages = {
         passwordsDoNotMatch: 'Passwords do not match',
         alphabetical: 'This field must start with an alphabetical character',
         isbnFormat: 'ISBN should consist of 10 or 13 digits',
+        invalidFormat: 'Invalid format',
         failure: 'Failure',
         dontHaveAnAccount: 'Don\'t have an account?',
         alreadyHaveAnAccount: 'Already have an account?'
@@ -175,6 +176,7 @@ export const messages = {
         passwordsDoNotMatch: 'Пароли не совпадают',
         alphabetical: 'Это поле должно начинаться с буквы',
         isbnFormat: 'ISBN должен состоять из 10-ти или 13-ти цифр',
+        invalidFormat: 'Неверный формат',
         failure: 'Неудача',
         dontHaveAnAccount: 'Нету аккаунта?',
         alreadyHaveAnAccount: 'Уже есть аккаунт?'
@@ -264,6 +266,7 @@ export const messages = {
         passwordsDoNotMatch: 'Паролі не супадаюць',
         alphabetical: 'Гэтае поле павінна пачынацца з літары',
         isbnFormat: 'ISBN павінен складацца з 10-ці ці 13-ці лічбаў',
+        invalidFormat: 'Няправільны фармат',
         failure: 'Няўдача',
         dontHaveAnAccount: 'Няма акаўнта?',
         alreadyHaveAnAccount: 'Ужо ёсць акаўнт?'
