@@ -2,6 +2,7 @@ const humanNameRegex = /^\p{L}+.*$/u;
 const wordRegex = /^[\p{L}\w]+.*$/u;
 const humanNamesRegex = /^\p{L}+.*( *, +\p{L}+.*)*$/u;
 const isbnRegex = /^([0-9]{10}|[0-9]{13})$/
+const udcBbcRegex = /^^\d+(\.\d+)?/;
 
 export function isAHumanName(string) {
     return humanNameRegex.test(string);
@@ -17,4 +18,8 @@ export function isHumanNames(string) {
 
 export function isValidIsbn(string) {
     return isbnRegex.test(string);
+}
+
+export function isValidUdcBbc(string) {
+    return udcBbcRegex.test(string);
 }
