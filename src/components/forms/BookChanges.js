@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { isAHumanName, isAWord, isValidIsbn } from '../../utility/validator';
+import { isAHumanName, isAWord, isValidIsbn, isValidUdcBbc } from '../../utility/validator';
 
 export default function BookChanges({ book, setBook, handleSubmit, error, setDisabled }) {
 
@@ -176,6 +176,20 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
         }
         setErrors(prev => ({ ...prev, isbn: '' }));
     }, [book?.isbn, validateField]);
+
+    useEffect(() => {
+        if (book?.udc?.length > 0 && validateField('udc', isValidUdcBbc, 'invalidFormat')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, udc: '' }));
+    }, [book?.udc, validateField]);
+
+    useEffect(() => {
+        if (book?.bbc?.length > 0 && validateField('bbc', isValidUdcBbc, 'invalidFormat')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, bbc: '' }));
+    }, [book?.bbc, validateField]);
 
     useEffect(() => {
         setDisabled(errors?.title
