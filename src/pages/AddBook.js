@@ -24,6 +24,7 @@ export default function AddBook() {
         isbn: '',
         udc: '',
         bbc: '',
+        authorIndex: '',
         amount: 1
     }
 

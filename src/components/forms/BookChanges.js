@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { isAHumanName, isAWord, isValidIsbn, isValidUdcBbc } from '../../utility/validator';
+import { isAHumanName, isAWord, isValidAuthorIndex, isValidIsbn, isValidUdcBbc } from '../../utility/validator';
 
 export default function BookChanges({ book, setBook, handleSubmit, error, setDisabled }) {
 
@@ -28,7 +28,8 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
         description: '',
         isbn: '',
         udc: '',
-        bbc: ''
+        bbc: '',
+        authorIndex: ''
     });
 
     useEffect(() => {
@@ -192,6 +193,13 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
     }, [book?.bbc, validateField]);
 
     useEffect(() => {
+        if (book?.authorIndex?.length > 0 && validateField('authorIndex', isValidAuthorIndex, 'invalidFormat')) {
+            return;
+        }
+        setErrors(prev => ({ ...prev, authorIndex: '' }));
+    }, [book?.authorIndex, validateField]);
+
+    useEffect(() => {
         setDisabled(errors?.title
             || (errors?.authors.filter(error => error === '').length !== errors?.authors.length)
             || (errors?.editors.filter(error => error === '').length !== errors?.editors.length)
@@ -206,7 +214,8 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
             || errors?.description
             || errors?.isbn
             || errors?.udc
-            || errors?.bbc);
+            || errors?.bbc
+            || errors?.authorIndex);
     }, [errors, setDisabled]);
 
     const handleChange = (e) => {
@@ -527,6 +536,19 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
                 />
                 {errors?.bbc &&
                     <div className="field-error"><FormattedMessage id={errors?.bbc} /></div>
+                }
+            </div>
+            <div className="form-element">
+                <label htmlFor="author-index"><FormattedMessage id="authorIndex" />:</label>
+                <input
+                    type="text"
+                    id="author-index"
+                    name="authorIndex"
+                    value={book?.authorIndex}
+                    onChange={handleChange}
+                />
+                {errors?.authorIndex &&
+                    <div className="field-error"><FormattedMessage id={errors?.authorIndex} /></div>
                 }
             </div>
             <div className="form-element">
