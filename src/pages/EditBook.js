@@ -31,20 +31,9 @@ export default function EditBook() {
             });
             const resultBook = response?.data;
             setBook({
-                title: resultBook?.title,
+                ...resultBook,
                 authors: resultBook?.authors.map((author) => author?.name),
-                editors: resultBook?.editors,
-                genre: resultBook?.genre?.name,
-                publisher: resultBook?.publisher,
-                printingHouse: resultBook?.printingHouse,
-                publicationYear: resultBook?.publicationYear,
-                publicationLocation: resultBook?.publicationLocation,
-                description: resultBook?.description,
-                pagesNumber: resultBook?.pagesNumber,
-                isbn: resultBook?.isbn,
-                udc: resultBook?.udc,
-                bbc: resultBook?.bbc,
-                amount: resultBook?.amount
+                genre: resultBook?.genre?.name
             });
             document.title = `${intl.formatMessage({ id: 'edit' })} ${resultBook?.title} | ${intl.formatMessage({ id: 'appName' })}`;
         }
