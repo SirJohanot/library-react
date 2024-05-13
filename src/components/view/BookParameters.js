@@ -23,6 +23,7 @@ export default function BookParameters({ book }) {
             <p><span className="parameter-name">ISBN:</span> {book?.isbn}</p>
             <p><span className="parameter-name"><FormattedMessage id="udc" />:</span> {book?.udc}</p>
             <p><span className="parameter-name"><FormattedMessage id="bbc" />:</span> {book?.bbc}</p>
+            <p><span className="parameter-name"><FormattedMessage id="authorIndex" />:</span> {book?.authorIndex}</p>
             <p><span className="parameter-name"><FormattedMessage id="inStock" />:</span> {book?.amount}</p>
         </>
     );
