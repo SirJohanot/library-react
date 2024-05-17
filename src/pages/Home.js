@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import AddBookSymbol from '../components/symbols/AddBookSymbol.js';
 import BookSymbol from '../components/symbols/BookSymbol';
 import OrdersSymbol from '../components/symbols/OrdersSymbol';
 import ProfileSymbol from '../components/symbols/ProfileSymbol';
@@ -32,7 +33,7 @@ export default function Home() {
                 }
                 {authentication?.roles?.find((role) => role === 'ADMIN') &&
                     <>
-                        <CardButton symbol={<BookSymbol />} text="addABook" destination="/add-book" />
+                        <CardButton symbol={<AddBookSymbol />} text="addABook" destination="/add-book" />
                         <CardButton symbol={<ProfileSymbol />} text="users" destination="/users/" />
                     </>
                 }
