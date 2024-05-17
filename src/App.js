@@ -7,6 +7,8 @@ import { LOCALES } from './i18n/locales';
 import { messages } from './i18n/messages';
 import Layout from './layout/Layout';
 import AddBook from './pages/AddBook';
+import AuthorBooks from './pages/AuthorBooks';
+import Authors from './pages/Authors';
 import Book from './pages/Book';
 import Books from './pages/Books';
 import EditBook from './pages/EditBook';
@@ -35,6 +37,8 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="books/" element={<Books />} />
           <Route path="book/:id" element={<Book />} />
+          <Route path="authors/" element={<Authors />} />
+          <Route path="author/:id" element={<AuthorBooks />} />
           <Route path="*" element={<Missing />} />
           <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN", "ADMIN"]} />}>
             <Route path="/unauthorized" element={<Unauthorized />} />
