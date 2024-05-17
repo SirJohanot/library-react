@@ -200,7 +200,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
     }, [book?.authorIndex, validateField]);
 
     useEffect(() => {
-        setDisabled(errors?.title
+        setDisabled((errors?.title
             || (errors?.authors.filter(error => error === '').length !== errors?.authors.length)
             || (errors?.editors.filter(error => error === '').length !== errors?.editors.length)
             || errors?.genre
@@ -215,7 +215,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
             || errors?.isbn
             || errors?.udc
             || errors?.bbc
-            || errors?.authorIndex);
+            || errors?.authorIndex) ? true : false);
     }, [errors, setDisabled]);
 
     const handleChange = (e) => {
