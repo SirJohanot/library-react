@@ -3,6 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import BookSymbol from '../components/symbols/BookSymbol';
 import OrdersSymbol from '../components/symbols/OrdersSymbol';
 import ProfileSymbol from '../components/symbols/ProfileSymbol';
+import QuillSymbol from '../components/symbols/QuillSymbol.js';
 import CardButton from '../components/ui/CardButton';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -22,6 +23,7 @@ export default function Home() {
             </div>
             <div className="card-buttons-container">
                 <CardButton symbol={<BookSymbol />} text="books" destination="/books/" />
+                <CardButton symbol={<QuillSymbol />} text="authors" destination="/authors/" />
                 {authentication?.roles?.find((role) => role === 'READER') &&
                     <CardButton symbol={<OrdersSymbol />} text="myOrders" destination="/orders/" />
                 }
