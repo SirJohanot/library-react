@@ -616,6 +616,12 @@ footer select option {
   padding: 5px 5px;
 }
 
+.list-header>.cell.description,
+.row>.cell.description {
+  flex: 8 8 0;
+  padding: 5px 5px;
+}
+
 .list-header>.cell {
   border-bottom: 1px solid var(--color_border);
 }
