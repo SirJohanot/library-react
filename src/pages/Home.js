@@ -5,6 +5,7 @@ import BookSymbol from '../components/symbols/BookSymbol';
 import OrdersSymbol from '../components/symbols/OrdersSymbol';
 import ProfileSymbol from '../components/symbols/ProfileSymbol';
 import QuillSymbol from '../components/symbols/QuillSymbol.js';
+import ThemeSymbol from '../components/symbols/ThemeSymbol.js';
 import CardButton from '../components/ui/CardButton';
 import useAuthentication from '../hooks/useAuthentication';
 
@@ -25,6 +26,7 @@ export default function Home() {
             <div className="card-buttons-container">
                 <CardButton symbol={<BookSymbol />} text="books" destination="/books/" />
                 <CardButton symbol={<QuillSymbol />} text="authors" destination="/authors/" />
+                <CardButton symbol={<ThemeSymbol />} text="themes" destination="/classifiers/" />
                 {authentication?.roles?.find((role) => role === 'READER') &&
                     <CardButton symbol={<OrdersSymbol />} text="myOrders" destination="/orders/" />
                 }
