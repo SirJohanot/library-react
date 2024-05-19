@@ -25,8 +25,8 @@ export default function AuthorBooks() {
                 method: GET_BOOKS_METHOD,
                 url: GET_BOOKS_URL
             });
-            const booksOfAuthor = response?.data;
-            booksOfAuthor.filter((book) => book.authors.findIndex((author) => author.id === id) !== -1);
+            const allBooks = response?.data;
+            const booksOfAuthor = allBooks.filter((book) => book.authors.findIndex((author) => author.id.toString() === id) !== -1);
             setBooks(booksOfAuthor);
             setAuthorName(booksOfAuthor[0].authors.find((author) => author.id.toString() === id).name);
         }
