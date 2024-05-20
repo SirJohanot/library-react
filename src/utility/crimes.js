@@ -1,4 +1,8 @@
 const title = document.evaluate("//td[text()='Заглавие']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent;
+const titleContinuationNode = document.evaluate("//td[text()='Продолж. заглавия']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+if (titleContinuationNode) {
+    title += " : " + titleContinuationNode.textContent;
+}
 
 const author = document.evaluate("//td[text()='Автор']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent;
 
@@ -15,14 +19,15 @@ const publicationYear = document.evaluate("//td[text()='Дата издания'
 
 const publicationLocation = document.evaluate("//td[text()='Место издания']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent;
 
-const description = "Описание описание";
+const descriptionNode = document.evaluate("//td[text()='Аннотация']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+const description = descriptionNode ? descriptionNode.textContent : "Описание описание";
 
 const pagesNumberLineNode = document.evaluate("//td[text()='Объем']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 const pagesNumberLine = pagesNumberLineNode ? pagesNumberLineNode.textContent : "100 c.";
 const pagesNumber = pagesNumberLine.substring(0, pagesNumberLine.length - 3);
 
 const isbnNode = document.evaluate("//td[text()='ISBN']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-const isbn = isbnNode ? isbnNode.textContent.replace(/\-/g, "") : null;
+const isbn = isbnNode ? isbnNode.textContent.replace(/\-/g, "").replace(/\p{L}/u, "1") : null;
 
 const udcNode = document.evaluate("//td[text()='Индекс УДК']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 const udc = udcNode ? udcNode.textContent : null;
@@ -30,7 +35,8 @@ const udc = udcNode ? udcNode.textContent : null;
 const bbcNode = document.evaluate("//td[text()='Индекс другой классификации/Индекс ББК']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 const bbc = bbcNode ? bbcNode.textContent : null;
 
-const authorIndex = document.evaluate("//td[text()='Авторский знак']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent;
+const authorIndexNode = document.evaluate("//td[text()='Авторский знак']/../td[5]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+const authorIndex = authorIndexNode ? authorIndexNode.textContent : null;
 
 const amount = 10;
 
