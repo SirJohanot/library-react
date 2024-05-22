@@ -11,6 +11,7 @@ import AuthorBooks from './pages/AuthorBooks';
 import Authors from './pages/Authors';
 import Book from './pages/Book';
 import Books from './pages/Books';
+import Classifiers from './pages/Classifiers';
 import EditBook from './pages/EditBook';
 import EditUser from './pages/EditUser';
 import Home from './pages/Home';
@@ -19,6 +20,7 @@ import Order from './pages/Order';
 import Orders from './pages/Orders';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import ThemeBooks from './pages/ThemeBooks';
 import Unauthorized from './pages/Unauthorized';
 import User from './pages/User';
 import Users from './pages/Users';
@@ -39,6 +41,8 @@ function App() {
           <Route path="book/:id" element={<Book />} />
           <Route path="authors/" element={<Authors />} />
           <Route path="author/:id" element={<AuthorBooks />} />
+          <Route path="classifiers/" element={<Classifiers />} />
+          <Route path="classifier/:code" element={<ThemeBooks />} />
           <Route path="*" element={<Missing />} />
           <Route element={<RequireAthentication allowedRoles={["READER", "LIBRARIAN", "ADMIN"]} />}>
             <Route path="/unauthorized" element={<Unauthorized />} />
