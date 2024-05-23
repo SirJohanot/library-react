@@ -19,11 +19,7 @@ export default function EditUser() {
 
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
-        role: ''
-    });
+    const [user, setUser] = useState();
     const [errors, setErrors] = useState({
         firstName: '',
         lastName: '',
@@ -48,7 +44,7 @@ export default function EditUser() {
 
     const validateField = useCallback(
         (key, validateAgainst, errorMessage) => {
-            if (!validateAgainst(user[key])) {
+            if (user && !validateAgainst(user[key])) {
                 setErrors(prev => ({ ...prev, [key]: errorMessage }));
                 return true;
             }
@@ -108,7 +104,7 @@ export default function EditUser() {
 
     return (
         <>
-            {user?.role ?
+            {user ?
                 <FormWrapper formName={intl.formatMessage({ id: 'edit' })} formId="user-changes" cancelPath={`/user/${login}`} submitDisabled={formHasErrors()} submitName={intl.formatMessage({ id: 'commitChanges' })}>
                     <form id="user-changes" className="form" onSubmit={handleSubmit}>
                         <h1><FormattedMessage id="loginLocale" />: {user?.login}</h1>
