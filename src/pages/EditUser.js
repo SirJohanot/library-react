@@ -92,10 +92,8 @@ export default function EditUser() {
     }
 
     const formHasErrors = () => {
-        return (
-            errors?.firstName
-            || errors?.lastName
-        );
+        return ((errors?.firstName
+            || errors?.lastName) !== '');
     }
 
     const handleChange = (e) => {
