@@ -112,13 +112,11 @@ export default function SignUp() {
     }
 
     const formHasErrors = () => {
-        return (
-            errors?.login
+        return (errors?.login
             || errors?.password
             || errors?.confirmedPassword
             || errors?.firstName
-            || errors?.lastName
-        );
+            || errors?.lastName) ? true : false;
     }
 
     const handleChange = (e) => {
