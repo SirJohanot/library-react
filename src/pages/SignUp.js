@@ -116,7 +116,7 @@ export default function SignUp() {
             || errors?.password
             || errors?.confirmedPassword
             || errors?.firstName
-            || errors?.lastName) ? true : false;
+            || errors?.lastName).length > 0;
     }
 
     const handleChange = (e) => {
