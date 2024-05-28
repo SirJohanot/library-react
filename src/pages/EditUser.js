@@ -92,7 +92,7 @@ export default function EditUser() {
     }
 
     const formHasErrors = () => {
-        return (errors?.firstName || errors?.lastName) !== '';
+        return (errors?.firstName || errors?.lastName).length > 0;
     }
 
     const handleChange = (e) => {
