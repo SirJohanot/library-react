@@ -215,7 +215,7 @@ export default function BookChanges({ book, setBook, handleSubmit, error, setDis
             || errors?.isbn
             || errors?.udc
             || errors?.bbc
-            || errors?.authorIndex) ? true : false);
+            || errors?.authorIndex).length > 0);
     }, [errors, setDisabled]);
 
     const handleChange = (e) => {
