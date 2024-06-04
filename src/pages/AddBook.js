@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Bounce, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import axios from '../api/axios';
 import BookChanges from '../components/forms/BookChanges';
 import FormWrapper from '../components/forms/FormWrapper';
@@ -49,17 +49,7 @@ export default function AddBook() {
                 url: ADD_BOOK_URL,
                 data: JSON.stringify(book, (key, value) => value === '' ? null : value)
             });
-            toast.success(intl.formatMessage({ id: 'success' }) + '!', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Bounce,
-            });
+            toast.success(intl.formatMessage({ id: 'success' }) + '!');
             setBook(initialBook);
         } catch (err) {
             if (!err?.response) {
