@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from '../api/axios';
 import FormWrapper from '../components/forms/FormWrapper';
 import LoadingBars from '../components/ui/LoadingBars';
@@ -79,6 +80,7 @@ export default function EditUser() {
                 url: EDIT_USER_URL + user?.id,
                 data: JSON.stringify(user)
             });
+            toast.success(intl.formatMessage({ id: 'success' }) + '!');
             navigate(`/user/${login}`, { replace: true });
         } catch (err) {
             if (!err?.response) {
