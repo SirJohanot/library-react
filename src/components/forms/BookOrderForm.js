@@ -2,6 +2,7 @@ import { PropTypes } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from '../../api/axios';
 
 const PLACE_ORDER_METHOD = 'post';
@@ -49,6 +50,7 @@ export default function BookOrderForm({ bookId }) {
                 url: PLACE_ORDER_URL + bookId,
                 data: JSON.stringify(order)
             });
+            toast.success(intl.formatMessage({ id: 'success' }) + '!');
             navigate('/orders/', { replace: true });
         } catch (err) {
             if (!err?.response) {
