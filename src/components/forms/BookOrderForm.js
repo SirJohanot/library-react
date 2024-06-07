@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../../api/axios';
@@ -9,6 +9,7 @@ const PLACE_ORDER_METHOD = 'post';
 const PLACE_ORDER_URL = '/orders/'
 
 export default function BookOrderForm({ bookId }) {
+    const intl = useIntl();
 
     BookOrderForm.propTypes = {
         bookId: PropTypes.number.isRequired,
