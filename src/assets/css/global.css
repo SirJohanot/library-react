@@ -220,6 +220,10 @@ html::-webkit-scrollbar-thumb {
   gap: 0.5rem;
 }
 
+.form-element>* {
+  margin: 0;
+}
+
 .form input,
 .form select,
 .form textarea {
