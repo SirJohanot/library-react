@@ -133,7 +133,7 @@ export const messages = {
         publicationYear: 'Год издания',
         publicationLocation: 'Место издания',
         description: 'Описание',
-        pagesNumber: 'Количесвто страниц',
+        pagesNumber: 'Количество страниц',
         udc: 'УДК',
         bbc: 'ББК',
         authorIndex: 'Авторский знак',
