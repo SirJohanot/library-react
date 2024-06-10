@@ -55,9 +55,6 @@ export default function Books() {
                                 <span><FormattedMessage id="authors" /></span>
                             </div>
                             <div className="cell">
-                                <span><FormattedMessage id="genre" /></span>
-                            </div>
-                            <div className="cell">
                                 <span><FormattedMessage id="publisher" /></span>
                             </div>
                             <div className="cell">
@@ -76,9 +73,6 @@ export default function Books() {
                                     </Link>
                                     <div className="important cell">
                                         <span>{book?.authors?.map(author => author.name).join(", ")}</span>
-                                    </div>
-                                    <div className="cell">
-                                        <span>{book?.genre?.name}</span>
                                     </div>
                                     <div className="cell">
                                         <span>{book?.publisher?.name}</span>
