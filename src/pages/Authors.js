@@ -39,7 +39,7 @@ export default function Authors() {
     const authorFitsSearch = useCallback((author, line) => {
         const lowercaseLine = line.toLowerCase();
         const lowercaseLineKeywords = lowercaseLine.split(' ');
-        return lowercaseLineKeywords.any(keyword =>
+        return lowercaseLineKeywords.every(keyword =>
             author.name.toLowerCase().includes(keyword)
         );
     }, []);
