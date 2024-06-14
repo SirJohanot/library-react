@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from '../api/axios';
 import LoadingBars from '../components/ui/LoadingBars';
 import BookParameters from '../components/view/BookParameters';
@@ -47,6 +48,7 @@ export default function Order() {
             method: CHANGE_ORDER_STATE_METHOD,
             url: `${CHANGE_ORDER_STATE_URL}${order?.id}/${action}`
         });
+        toast.success(intl.formatMessage({ id: 'success' }) + '!');
         fetchOrder();
     }
 
