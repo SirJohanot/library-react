@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from '../api/axios';
 import LoadingBars from '../components/ui/LoadingBars';
 import UserParameters from '../components/view/UserParameters';
@@ -40,6 +41,7 @@ export default function User() {
             method: SWITCH_USER_BLOCKED_METHOD,
             url: `/users/${user?.id}/switch-blocked`
         });
+        toast.success(intl.formatMessage({ id: 'success' }) + '!');
         fetchUser();
     }
 
