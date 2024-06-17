@@ -92,7 +92,9 @@ export const messages = {
         invalidFormat: 'Invalid format',
         failure: 'Failure',
         dontHaveAnAccount: 'Don\'t have an account?',
-        alreadyHaveAnAccount: 'Already have an account?'
+        alreadyHaveAnAccount: 'Already have an account?',
+        showMore: 'Show more',
+        showLess: 'Show less'
     },
     [LOCALES.RUSSIAN]: {
         appName: 'Библиотека',
@@ -185,7 +187,9 @@ export const messages = {
         invalidFormat: 'Неверный формат',
         failure: 'Неудача',
         dontHaveAnAccount: 'Нету аккаунта?',
-        alreadyHaveAnAccount: 'Уже есть аккаунт?'
+        alreadyHaveAnAccount: 'Уже есть аккаунт?',
+        showMore: 'Подробнее',
+        showLess: 'Скрыть'
     },
     [LOCALES.BELARUSIAN]: {
         appName: 'Бібліятэка',
@@ -278,6 +282,8 @@ export const messages = {
         invalidFormat: 'Няправільны фармат',
         failure: 'Няўдача',
         dontHaveAnAccount: 'Няма акаўнта?',
-        alreadyHaveAnAccount: 'Ужо ёсць акаўнт?'
+        alreadyHaveAnAccount: 'Ужо ёсць акаўнт?',
+        showMore: 'Падрабязней',
+        showLess: 'Схаваць'
     }
 }
