@@ -22,7 +22,7 @@ export default function Users() {
                 method: GET_USERS_METHOD,
                 url: GET_USERS_URL
             });
-            setUsers(response?.data);
+            setUsers(response?.data.sort((a, b) => { a?.enabled ? 1 : -1 }));
         }
         fetchUsers();
         document.title = `${intl.formatMessage({ id: 'users' })} | ${intl.formatMessage({ id: 'appName' })}`;
@@ -58,6 +58,9 @@ export default function Users() {
                             <div className="important cell">
                                 <span><FormattedMessage id="role" /></span>
                             </div>
+                            <div className="important cell">
+                                <span><FormattedMessage id="active" /></span>
+                            </div>
                         </div>
                         <div className="items-list">
                             {displayedUsers.map((user) =>
@@ -73,6 +76,9 @@ export default function Users() {
                                     </div>
                                     <div className="important cell">
                                         <span><FormattedMessage id={user?.role} /></span>
+                                    </div>
+                                    <div className="important cell">
+                                        <span>{typeof user?.enabled !== typeof undefined && <FormattedMessage id={user?.enabled?.toString()} />}</span>
                                     </div>
                                 </div>
                             )}
