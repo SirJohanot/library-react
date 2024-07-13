@@ -19,6 +19,9 @@ export default function UserParameters({ user }) {
             <p>
                 <span className="parameter-name"><FormattedMessage id="blocked" />:</span> {typeof user?.blocked !== typeof undefined && <FormattedMessage id={user?.blocked?.toString()} />}
             </p>
+            <p>
+                <span className="parameter-name"><FormattedMessage id="active" />:</span> {typeof user?.enabled !== typeof undefined && <FormattedMessage id={user?.enabled?.toString()} />}
+            </p>
         </>
     );
 }
