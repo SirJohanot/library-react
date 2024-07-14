@@ -54,10 +54,12 @@ export default function User() {
                     </div>
                     {user?.role !== 'ADMIN' &&
                         <div className="buttons-container">
-                            <button className="btn red" onClick={handleBlockButton}><FormattedMessage id={user?.blocked ? "unblock" : "block"} /></button>
-                            <Link to={`/user/${login}/edit`} className="btn">
-                                <FormattedMessage id="edit" />
-                            </Link>
+                            {user.enabled && <>
+                                <button className="btn red" onClick={handleBlockButton}><FormattedMessage id={user?.blocked ? "unblock" : "block"} /></button>
+                                <Link to={`/user/${login}/edit`} className="btn">
+                                    <FormattedMessage id="edit" />
+                                </Link>
+                            </>}
                         </div>
                     }
                 </div>
