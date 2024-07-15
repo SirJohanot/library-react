@@ -22,7 +22,7 @@ export default function Users() {
                 method: GET_USERS_METHOD,
                 url: GET_USERS_URL
             });
-            setUsers(response?.data.sort((a, b) => { a?.enabled ? 1 : -1 }));
+            setUsers([...response?.data].sort((a, b) => a?.enabled ? 1 : -1));
         }
         fetchUsers();
         document.title = `${intl.formatMessage({ id: 'users' })} | ${intl.formatMessage({ id: 'appName' })}`;
