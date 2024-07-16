@@ -27,7 +27,7 @@ export default function Home() {
                 <CardButton symbol={<BookSymbol />} text="books" destination="/books/" />
                 <CardButton symbol={<QuillSymbol />} text="authors" destination="/authors/" />
                 <CardButton symbol={<ThemeSymbol />} text="themes" destination="/classifiers/" />
-                {authentication?.roles?.length !== 0 &&
+                {authentication?.roles !== undefined &&
                     <CardButton symbol={<ProfileSymbol />} text="profile" destination="/profile/" />
                 }
                 {authentication?.roles?.find((role) => role === 'READER') &&
