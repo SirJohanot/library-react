@@ -12,18 +12,18 @@ const GET_USER_URL = '/users/';
 export default function User() {
     const intl = useIntl();
 
-    const { login } = useAuthentication();
+    const { authentication } = useAuthentication();
 
     const [user, setUser] = useState();
 
     const fetchUser = useCallback(async () => {
         const response = await axios.request({
             method: GET_USER_METHOD,
-            url: GET_USER_URL + login
+            url: GET_USER_URL + authentication.login
         });
         setUser(response?.data);
         document.title = `${response?.data?.login} | ${intl.formatMessage({ id: 'appName' })}`
-    }, [login, intl]);
+    }, [authentication, intl]);
 
     useEffect(() => {
         fetchUser();
