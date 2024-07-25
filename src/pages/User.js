@@ -11,6 +11,8 @@ const GET_USER_URL = '/users/';
 
 const SWITCH_USER_BLOCKED_METHOD = 'patch';
 
+const ACTIVATE_USER_METHOD = 'patch';
+
 export default function User() {
     const intl = useIntl();
 
@@ -45,6 +47,20 @@ export default function User() {
         fetchUser();
     }
 
+    const handleActivateButton = async () => {
+        if (!window.confirm(intl.formatMessage({
+            id: 'activateConfirmation'
+        }))) {
+            return;
+        }
+        await axios.request({
+            method: ACTIVATE_USER_METHOD,
+            url: `/users/${user?.id}/activate`
+        });
+        toast.success(intl.formatMessage({ id: 'success' }) + '!');
+        fetchUser();
+    }
+
     return (
         <>
             {user ?
@@ -54,12 +70,13 @@ export default function User() {
                     </div>
                     {user?.role !== 'ADMIN' &&
                         <div className="buttons-container">
-                            {user.enabled && <>
+                            {user.enabled ? <>
                                 <button className="btn red" onClick={handleBlockButton}><FormattedMessage id={user?.blocked ? "unblock" : "block"} /></button>
                                 <Link to={`/user/${login}/edit`} className="btn">
                                     <FormattedMessage id="edit" />
                                 </Link>
-                            </>}
+                            </>
+                                : <button className="btn" onClick={handleActivateButton}><FormattedMessage id="activate" /></button>}
                         </div>
                     }
                 </div>
