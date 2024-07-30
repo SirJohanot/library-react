@@ -101,6 +101,7 @@ export default function SignUp() {
         <div className="centered">
             <form className="form smaller-form" onSubmit={handleSubmit}>
                 <div className="form-element">
+                    <label htmlFor="current-password"><FormattedMessage id="currentPassword" />:</label>
                     <input
                         className={errors?.currentPassword ? 'red-border' : ''}
                         type="password"
@@ -108,7 +109,6 @@ export default function SignUp() {
                         name="currentPassword"
                         value={passwords?.currentPassword}
                         onChange={handleChange}
-                        placeholder={intl.formatMessage({ id: 'currentPassword' })}
                         required
                     />
                     {errors?.currentPassword &&
@@ -116,6 +116,7 @@ export default function SignUp() {
                     }
                 </div>
                 <div className="form-element">
+                    <label htmlFor="new-password"><FormattedMessage id="newPassword" />:</label>
                     <input
                         className={errors?.newPassword ? 'red-border' : ''}
                         type="password"
@@ -123,7 +124,6 @@ export default function SignUp() {
                         name="newPassword"
                         value={passwords?.newPassword}
                         onChange={handleChange}
-                        placeholder={intl.formatMessage({ id: 'newPassword' })}
                         required
                     />
                     {errors?.newPassword &&
@@ -131,6 +131,7 @@ export default function SignUp() {
                     }
                 </div>
                 <div className="form-element">
+                    <label htmlFor="confirmed-password"><FormattedMessage id="confirmPassword" />:</label>
                     <input
                         className={errors?.confirmedPassword ? 'red-border' : ''}
                         type="password"
@@ -138,7 +139,6 @@ export default function SignUp() {
                         name="confirmedPassword"
                         value={passwords?.confirmedPassword}
                         onChange={handleChange}
-                        placeholder={intl.formatMessage({ id: 'confirmPassword' })}
                         required
                     />
                     {errors?.confirmedPassword &&
